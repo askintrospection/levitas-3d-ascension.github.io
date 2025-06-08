@@ -3,47 +3,54 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Space-themed design system */
+/* Import Satoshi font */
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,600,700,800,900&display=swap');
+
+/* Star Wars-inspired design system */
 @layer base {
   :root {
-    --background: 9 9% 4%;
-    --foreground: 210 100% 90%;
+    --background: 220 13% 8%;
+    --foreground: 0 0% 95%;
 
-    --card: 12 8% 8%;
-    --card-foreground: 210 100% 90%;
+    --card: 220 13% 12%;
+    --card-foreground: 0 0% 95%;
 
-    --popover: 12 8% 8%;
-    --popover-foreground: 210 100% 90%;
+    --popover: 220 13% 12%;
+    --popover-foreground: 0 0% 95%;
 
-    --primary: 210 100% 60%;
-    --primary-foreground: 222 47% 11%;
+    --primary: 215 100% 60%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 260 60% 25%;
-    --secondary-foreground: 210 100% 90%;
+    --secondary: 220 13% 18%;
+    --secondary-foreground: 0 0% 95%;
 
-    --muted: 217 33% 17%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 220 13% 15%;
+    --muted-foreground: 0 0% 60%;
 
-    --accent: 285 100% 65%;
-    --accent-foreground: 222 47% 11%;
+    --accent: 0 72% 51%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 85% 60%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 217 33% 17%;
-    --input: 217 33% 17%;
-    --ring: 210 100% 60%;
+    --border: 220 13% 18%;
+    --input: 220 13% 18%;
+    --ring: 215 100% 60%;
 
-    --radius: 1rem;
+    --imperial: 0 0% 85%;
+    --sith: 0 72% 51%;
+    --tie-blue: 215 100% 60%;
 
-    --sidebar-background: 9 9% 4%;
-    --sidebar-foreground: 210 100% 90%;
-    --sidebar-primary: 210 100% 60%;
-    --sidebar-primary-foreground: 222 47% 11%;
-    --sidebar-accent: 217 33% 17%;
-    --sidebar-accent-foreground: 210 100% 90%;
-    --sidebar-border: 217 33% 17%;
-    --sidebar-ring: 210 100% 60%;
+    --radius: 0.75rem;
+
+    --sidebar-background: 220 13% 8%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 215 100% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 13% 18%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 220 13% 18%;
+    --sidebar-ring: 215 100% 60%;
   }
 }
 
@@ -53,115 +60,140 @@
   }
 
   body {
-    @apply bg-background text-foreground font-mono;
-    background: radial-gradient(ellipse at center, rgba(16, 16, 32, 1) 0%, rgba(8, 8, 16, 1) 100%);
+    @apply bg-background text-foreground;
+    font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: radial-gradient(ellipse at center, rgba(30, 30, 40, 1) 0%, rgba(15, 15, 20, 1) 100%);
     min-height: 100vh;
   }
 
-  /* Smooth scrolling */
   html {
     scroll-behavior: smooth;
   }
 }
 
 /* Custom animations */
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
+@keyframes hangarFog {
+  0%, 100% { opacity: 0.3; transform: translateX(0px) translateY(0px); }
+  25% { opacity: 0.6; transform: translateX(20px) translateY(-10px); }
+  50% { opacity: 0.4; transform: translateX(-15px) translateY(15px); }
+  75% { opacity: 0.7; transform: translateX(25px) translateY(-5px); }
 }
 
-@keyframes glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.5); }
-  50% { box-shadow: 0 0 40px rgba(59, 130, 246, 0.8); }
+@keyframes levitate {
+  0%, 100% { transform: translateY(0px) rotateY(0deg); }
+  50% { transform: translateY(-15px) rotateY(2deg); }
 }
 
-@keyframes particles {
-  0% { opacity: 0; transform: translateY(100vh) scale(0); }
-  10% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { opacity: 0; transform: translateY(-100vh) scale(1); }
+@keyframes glowPulse {
+  0%, 100% { 
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3),
+                0 0 40px rgba(59, 130, 246, 0.1),
+                inset 0 0 20px rgba(59, 130, 246, 0.1);
+  }
+  50% { 
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.6),
+                0 0 60px rgba(59, 130, 246, 0.2),
+                inset 0 0 30px rgba(59, 130, 246, 0.2);
+  }
 }
 
-@keyframes slideInUp {
+@keyframes slideInCinematic {
   from {
     opacity: 0;
-    transform: translateY(50px);
+    transform: translateY(60px) scale(0.9);
+    filter: blur(10px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
+    filter: blur(0px);
   }
 }
 
-@keyframes fadeInScale {
-  from {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+@keyframes lensFlare {
+  0% { opacity: 0; transform: scale(0.8) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1.2) rotate(180deg); }
+  100% { opacity: 0; transform: scale(0.8) rotate(360deg); }
 }
 
-.float {
-  animation: float 6s ease-in-out infinite;
+.hangar-fog {
+  animation: hangarFog 8s ease-in-out infinite;
 }
 
-.glow {
-  animation: glow 2s ease-in-out infinite alternate;
+.levitate {
+  animation: levitate 4s ease-in-out infinite;
 }
 
-.particles {
-  animation: particles 15s linear infinite;
+.glow-pulse {
+  animation: glowPulse 3s ease-in-out infinite;
 }
 
-.slide-in-up {
-  animation: slideInUp 0.8s ease-out;
+.cinematic-enter {
+  animation: slideInCinematic 1.2s ease-out;
 }
 
-.fade-in-scale {
-  animation: fadeInScale 0.6s ease-out;
+.lens-flare {
+  animation: lensFlare 2s ease-in-out;
 }
 
-/* Glass morphism effects */
-.glass {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
+/* Star Wars inspired glass morphism */
+.hangar-glass {
+  background: rgba(30, 30, 40, 0.85);
+  backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
-.glass-dark {
-  background: rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+.imperial-panel {
+  background: linear-gradient(135deg, 
+    rgba(40, 40, 50, 0.9) 0%, 
+    rgba(25, 25, 35, 0.95) 100%);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(136, 136, 136, 0.2);
+  box-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(136, 136, 136, 0.1);
 }
 
-/* Neon text effects */
-.neon-text {
+/* Typography enhancements */
+.imperial-title {
+  font-family: 'Satoshi', sans-serif;
+  font-weight: 800;
+  letter-spacing: 0.05em;
   text-shadow: 
-    0 0 5px rgba(59, 130, 246, 0.8),
-    0 0 10px rgba(59, 130, 246, 0.6),
-    0 0 15px rgba(59, 130, 246, 0.4),
-    0 0 20px rgba(59, 130, 246, 0.2);
+    0 0 10px rgba(59, 130, 246, 0.5),
+    0 0 20px rgba(59, 130, 246, 0.3),
+    0 0 30px rgba(59, 130, 246, 0.1);
 }
 
-.neon-text-purple {
+.sith-glow {
+  color: hsl(var(--accent));
   text-shadow: 
-    0 0 5px rgba(168, 85, 247, 0.8),
-    0 0 10px rgba(168, 85, 247, 0.6),
-    0 0 15px rgba(168, 85, 247, 0.4),
-    0 0 20px rgba(168, 85, 247, 0.2);
+    0 0 10px rgba(220, 38, 38, 0.8),
+    0 0 20px rgba(220, 38, 38, 0.4),
+    0 0 30px rgba(220, 38, 38, 0.2);
+}
+
+.tie-glow {
+  color: hsl(var(--primary));
+  text-shadow: 
+    0 0 10px rgba(59, 130, 246, 0.8),
+    0 0 20px rgba(59, 130, 246, 0.4),
+    0 0 30px rgba(59, 130, 246, 0.2);
 }
 
 /* Hover effects */
-.hover-lift {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+.hover-lift-heavy {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.hover-lift:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 10px 40px rgba(59, 130, 246, 0.3);
+.hover-lift-heavy:hover {
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.4),
+    0 0 40px rgba(59, 130, 246, 0.2);
 }
 
 /* Scrollbar styling */
@@ -170,14 +202,46 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(30, 30, 40, 0.5);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #3b82f6, #8b5cf6);
+  background: linear-gradient(180deg, 
+    hsl(var(--primary)), 
+    hsl(var(--accent)));
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #2563eb, #7c3aed);
+  background: linear-gradient(180deg, 
+    hsl(var(--primary)), 
+    hsl(var(--accent)));
+  filter: brightness(1.2);
+}
+
+/* Particle effects */
+.hangar-particles {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: rgba(136, 136, 136, 0.6);
+  border-radius: 50%;
+  animation: particles 20s linear infinite;
+}
+
+@keyframes particles {
+  0% { 
+    opacity: 0; 
+    transform: translateY(100vh) translateX(0px) scale(0);
+  }
+  10% { 
+    opacity: 1; 
+  }
+  90% { 
+    opacity: 1; 
+  }
+  100% { 
+    opacity: 0; 
+    transform: translateY(-100vh) translateX(50px) scale(1);
+  }
 }

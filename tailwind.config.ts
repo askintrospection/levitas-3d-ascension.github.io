@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -18,6 +19,10 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				'satoshi': ['Satoshi', 'Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
+				'sans': ['Satoshi', 'Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -61,7 +66,11 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+				// Star Wars inspired colors
+				imperial: 'hsl(var(--imperial))',
+				sith: 'hsl(var(--sith))',
+				'tie-blue': 'hsl(var(--tie-blue))',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -84,11 +93,23 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'hangar-fog': {
+					'0%, 100%': { opacity: '0.3', transform: 'translateX(0px) translateY(0px)' },
+					'25%': { opacity: '0.6', transform: 'translateX(20px) translateY(-10px)' },
+					'50%': { opacity: '0.4', transform: 'translateX(-15px) translateY(15px)' },
+					'75%': { opacity: '0.7', transform: 'translateX(25px) translateY(-5px)' }
+				},
+				'levitate': {
+					'0%, 100%': { transform: 'translateY(0px) rotateY(0deg)' },
+					'50%': { transform: 'translateY(-15px) rotateY(2deg)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'hangar-fog': 'hangar-fog 8s ease-in-out infinite',
+				'levitate': 'levitate 4s ease-in-out infinite'
 			}
 		}
 	},

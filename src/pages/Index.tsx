@@ -1,128 +1,269 @@
 
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Scene3D } from '../components/Scene3D';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, Zap, Shield, Cpu } from 'lucide-react';
 
 const Index = () => {
   const [showContent, setShowContent] = useState(false);
-  const [introComplete, setIntroComplete] = useState(false);
+  const [cinematicComplete, setCinematicComplete] = useState(false);
+  const [loadingProgress, setLoadingProgress] = useState(0);
 
   useEffect(() => {
-    const timer1 = setTimeout(() => setShowContent(true), 3000);
-    const timer2 = setTimeout(() => setIntroComplete(true), 6000);
+    // Simulate loading progress
+    const progressInterval = setInterval(() => {
+      setLoadingProgress(prev => {
+        if (prev >= 100) {
+          clearInterval(progressInterval);
+          return 100;
+        }
+        return prev + Math.random() * 15;
+      });
+    }, 200);
+
+    const timer1 = setTimeout(() => setShowContent(true), 4000);
+    const timer2 = setTimeout(() => setCinematicComplete(true), 12000);
+    
     return () => {
       clearTimeout(timer1);
       clearTimeout(timer2);
+      clearInterval(progressInterval);
     };
   }, []);
 
   return (
     <div className="relative min-h-screen overflow-hidden">
-      {/* 3D Scene */}
+      {/* Loading Screen */}
+      <AnimatePresence>
+        {loadingProgress < 100 && (
+          <motion.div
+            className="fixed inset-0 z-50 bg-background flex items-center justify-center"
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1 }}
+          >
+            <div className="text-center">
+              <motion.div
+                className="w-16 h-16 border-4 border-primary/30 border-t-primary rounded-full mx-auto mb-8"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+              />
+              <motion.h2 
+                className="text-2xl font-bold imperial-title tie-glow mb-4"
+                animate={{ opacity: [0.5, 1, 0.5] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              >
+                INITIALIZING HANGAR SYSTEMS
+              </motion.h2>
+              <div className="w-64 h-2 bg-secondary rounded-full overflow-hidden">
+                <motion.div
+                  className="h-full bg-gradient-to-r from-primary to-accent"
+                  initial={{ width: 0 }}
+                  animate={{ width: `${loadingProgress}%` }}
+                  transition={{ duration: 0.3 }}
+                />
+              </div>
+              <p className="text-sm text-muted-foreground mt-2">{Math.round(loadingProgress)}%</p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* 3D Cinematic Scene */}
       <div className="absolute inset-0">
         <Scene3D />
       </div>
 
-      {/* Hero Content */}
+      {/* Hero Content Overlay */}
       <div className="relative z-20 flex flex-col items-center justify-center min-h-screen px-6">
-        <motion.div
-          className="text-center"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: showContent ? 1 : 0, y: showContent ? 0 : 50 }}
-          transition={{ duration: 1, delay: 0.5 }}
-        >
-          <h1 className="text-6xl md:text-8xl font-bold mb-6 neon-text">
-            LEVITAS
-          </h1>
-          <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl">
-            F1 in Schools Team • Defying Gravity • Engineering Excellence
-          </p>
-          <motion.div
-            className="text-lg text-primary neon-text-purple"
-            animate={{ opacity: [0.5, 1, 0.5] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          >
-            "Lightness • Innovation • Victory"
-          </motion.div>
-        </motion.div>
+        <AnimatePresence>
+          {showContent && (
+            <motion.div
+              className="text-center"
+              initial={{ opacity: 0, y: 50, scale: 0.9 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 1.2, ease: "easeOut" }}
+            >
+              <motion.div
+                className="hangar-glass p-8 rounded-2xl mb-8"
+                initial={{ backdropFilter: "blur(0px)" }}
+                animate={{ backdropFilter: "blur(20px)" }}
+                transition={{ delay: 0.5, duration: 1 }}
+              >
+                <motion.h1 
+                  className="text-7xl md:text-9xl font-bold mb-4 imperial-title tie-glow"
+                  animate={{ 
+                    textShadow: [
+                      "0 0 10px rgba(59, 130, 246, 0.5)",
+                      "0 0 20px rgba(59, 130, 246, 0.8)",
+                      "0 0 10px rgba(59, 130, 246, 0.5)"
+                    ]
+                  }}
+                  transition={{ duration: 3, repeat: Infinity }}
+                >
+                  LEVITAS
+                </motion.h1>
+                <motion.h2 
+                  className="text-2xl md:text-3xl font-semibold mb-6 text-muted-foreground tracking-wider"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 1, duration: 1 }}
+                >
+                  STEM RACING
+                </motion.h2>
+                <motion.p 
+                  className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl leading-relaxed"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 1.5, duration: 1 }}
+                >
+                  Engineering Excellence • Defying Gravity • Imperial Precision
+                </motion.p>
+                <motion.div
+                  className="text-xl text-accent sith-glow font-semibold"
+                  animate={{ 
+                    opacity: [0.6, 1, 0.6],
+                    scale: [1, 1.05, 1]
+                  }}
+                  transition={{ duration: 4, repeat: Infinity }}
+                >
+                  "LIGHTNESS • INNOVATION • VICTORY"
+                </motion.div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
-        {/* Scroll indicator */}
-        {introComplete && (
+        {/* Scroll Indicator */}
+        {cinematicComplete && (
           <motion.div
             className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 2 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 2, duration: 1 }}
           >
             <motion.div
-              animate={{ y: [0, 10, 0] }}
-              transition={{ duration: 2, repeat: Infinity }}
-              className="text-primary"
+              animate={{ y: [0, 15, 0] }}
+              transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+              className="flex flex-col items-center space-y-2"
             >
-              <ChevronDown className="w-8 h-8" />
+              <div className="imperial-panel p-3 rounded-full">
+                <ChevronDown className="w-6 h-6 tie-glow" />
+              </div>
+              <span className="text-xs text-muted-foreground font-medium tracking-wider">EXPLORE</span>
             </motion.div>
           </motion.div>
         )}
       </div>
 
-      {/* Content sections */}
-      {introComplete && (
+      {/* Content Sections */}
+      {cinematicComplete && (
         <motion.div
-          className="relative z-20 bg-background/80 backdrop-blur-sm"
+          className="relative z-20"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1 }}
+          transition={{ delay: 1.5, duration: 1 }}
         >
           {/* Mission Section */}
-          <section className="py-20 px-6">
+          <section className="py-24 px-6 hangar-glass">
             <div className="container mx-auto text-center">
               <motion.h2
-                className="text-4xl font-bold mb-8 neon-text"
+                className="text-5xl font-bold mb-12 imperial-title tie-glow"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
+                transition={{ duration: 1 }}
                 viewport={{ once: true }}
               >
-                Our Mission
+                Imperial Engineering Division
               </motion.h2>
               <motion.p
-                className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed"
+                className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed mb-16"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
+                transition={{ duration: 1, delay: 0.3 }}
                 viewport={{ once: true }}
               >
-                To engineer the future of motorsport through innovative design, cutting-edge technology, 
-                and the relentless pursuit of speed. Levitas represents the pinnacle of student engineering 
-                excellence in the F1 in Schools competition.
+                To forge the future of motorsport through precision engineering, cutting-edge technology, 
+                and relentless pursuit of perfection. Levitas represents the apex of STEM innovation 
+                in competitive racing excellence.
               </motion.p>
             </div>
           </section>
 
           {/* Features Grid */}
-          <section className="py-20 px-6 bg-card/50">
+          <section className="py-24 px-6">
             <div className="container mx-auto">
               <div className="grid md:grid-cols-3 gap-8">
                 {[
-                  { title: 'Aerodynamics', desc: 'Cutting-edge CFD analysis for optimal downforce' },
-                  { title: 'Materials', desc: 'Advanced composite materials for maximum strength' },
-                  { title: 'Innovation', desc: 'Revolutionary design concepts pushing boundaries' }
+                  { 
+                    icon: Zap, 
+                    title: 'Aerodynamics', 
+                    desc: 'Imperial-grade computational fluid dynamics for optimal downforce and minimal drag coefficients.',
+                    color: 'tie-glow'
+                  },
+                  { 
+                    icon: Shield, 
+                    title: 'Materials', 
+                    desc: 'Advanced composite materials engineered for maximum strength-to-weight ratios.',
+                    color: 'sith-glow'
+                  },
+                  { 
+                    icon: Cpu, 
+                    title: 'Innovation', 
+                    desc: 'Revolutionary design concepts pushing the boundaries of what\'s possible in competitive racing.',
+                    color: 'tie-glow'
+                  }
                 ].map((feature, index) => (
                   <motion.div
                     key={index}
-                    className="glass p-6 rounded-xl hover-lift"
-                    initial={{ opacity: 0, y: 30 }}
+                    className="imperial-panel p-8 rounded-xl hover-lift-heavy group"
+                    initial={{ opacity: 0, y: 50 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: index * 0.1 }}
+                    transition={{ duration: 0.8, delay: index * 0.2 }}
                     viewport={{ once: true }}
+                    whileHover={{ scale: 1.02 }}
                   >
-                    <h3 className="text-xl font-bold mb-3 text-primary">{feature.title}</h3>
-                    <p className="text-muted-foreground">{feature.desc}</p>
+                    <motion.div
+                      className="mb-6"
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                    >
+                      <feature.icon className={`w-12 h-12 ${feature.color} mx-auto`} />
+                    </motion.div>
+                    <h3 className={`text-2xl font-bold mb-4 ${feature.color}`}>{feature.title}</h3>
+                    <p className="text-muted-foreground leading-relaxed">{feature.desc}</p>
                   </motion.div>
                 ))}
               </div>
             </div>
+          </section>
+
+          {/* Call to Action */}
+          <section className="py-24 px-6">
+            <motion.div
+              className="container mx-auto text-center"
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1 }}
+              viewport={{ once: true }}
+            >
+              <div className="hangar-glass p-16 rounded-2xl">
+                <h2 className="text-4xl font-bold mb-8 imperial-title tie-glow">
+                  Join the Imperial Fleet
+                </h2>
+                <p className="text-xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed">
+                  Experience the cutting edge of STEM racing technology. Witness precision engineering 
+                  that defies conventional limitations.
+                </p>
+                <motion.button
+                  className="imperial-panel px-12 py-4 rounded-lg font-semibold text-lg tie-glow hover-lift-heavy glow-pulse"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                >
+                  Explore Our Technology
+                </motion.button>
+              </div>
+            </motion.div>
           </section>
         </motion.div>
       )}
