@@ -1,7 +1,7 @@
 
 import { Suspense, useRef, useEffect, useState } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { OrbitControls, Environment, Stars, Text, Fog } from '@react-three/drei';
+import { OrbitControls, Environment, Stars, Text } from '@react-three/drei';
 import { CinematicCar } from './CinematicCar';
 import * as THREE from 'three';
 
@@ -60,18 +60,9 @@ const CinematicCamera = ({ phase, onPhaseComplete }: { phase: number; onPhaseCom
 };
 
 const HangarEnvironment = () => {
-  const fogRef = useRef<THREE.Fog>();
-  
-  useFrame((state) => {
-    if (fogRef.current) {
-      // Animate fog density for atmosphere
-      fogRef.current.density = 0.02 + Math.sin(state.clock.elapsedTime * 0.5) * 0.005;
-    }
-  });
-
   return (
     <>
-      <fog ref={fogRef} attach="fog" args={['#0f0f1a', 10, 50]} />
+      <fog attach="fog" args={['#0f0f1a', 10, 50]} />
       
       {/* Hangar floor */}
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -1, 0]} receiveShadow>
@@ -135,11 +126,6 @@ export const Scene3D = () => {
     <Canvas
       className="absolute inset-0 z-10"
       camera={{ position: [-15, 2, 8], fov: 75 }}
-      gl={{ 
-        antialias: true, 
-        alpha: true,
-        shadowMap: { enabled: true, type: THREE.PCFSoftShadowMap }
-      }}
       shadows
     >
       <color attach="background" args={['#0a0a15']} />
@@ -212,7 +198,6 @@ export const Scene3D = () => {
           color="#1e40af"
           anchorX="center"
           anchorY="middle"
-          font="/fonts/helvetiker_regular.typeface.json"
           outlineWidth={0.02}
           outlineColor="#000000"
         >
