@@ -67,10 +67,10 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Star Wars inspired colors
-				imperial: 'hsl(var(--imperial))',
-				sith: 'hsl(var(--sith))',
-				'tie-blue': 'hsl(var(--tie-blue))',
+				// Cars 404 inspired colors
+				'cars404-orange': 'hsl(var(--cars404-orange))',
+				'cars404-red': 'hsl(var(--cars404-red))',
+				'cars404-yellow': 'hsl(var(--cars404-yellow))',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -94,22 +94,21 @@ export default {
 						height: '0'
 					}
 				},
-				'hangar-fog': {
-					'0%, 100%': { opacity: '0.3', transform: 'translateX(0px) translateY(0px)' },
-					'25%': { opacity: '0.6', transform: 'translateX(20px) translateY(-10px)' },
-					'50%': { opacity: '0.4', transform: 'translateX(-15px) translateY(15px)' },
-					'75%': { opacity: '0.7', transform: 'translateX(25px) translateY(-5px)' }
-				},
-				'levitate': {
-					'0%, 100%': { transform: 'translateY(0px) rotateY(0deg)' },
-					'50%': { transform: 'translateY(-15px) rotateY(2deg)' }
+				'fade-in': {
+					from: {
+						opacity: '0',
+						transform: 'translateY(20px)'
+					},
+					to: {
+						opacity: '1',
+						transform: 'translateY(0)'
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
-				'hangar-fog': 'hangar-fog 8s ease-in-out infinite',
-				'levitate': 'levitate 4s ease-in-out infinite'
+				'fade-in': 'fade-in 0.8s ease-out forwards'
 			}
 		}
 	},

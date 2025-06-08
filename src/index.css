@@ -6,51 +6,51 @@
 /* Import Satoshi font */
 @import url('https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,600,700,800,900&display=swap');
 
-/* Star Wars-inspired design system */
+/* Light mode design system */
 @layer base {
   :root {
-    --background: 220 13% 8%;
-    --foreground: 0 0% 95%;
+    --background: 0 0% 98%;
+    --foreground: 0 0% 10%;
 
-    --card: 220 13% 12%;
-    --card-foreground: 0 0% 95%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 15%;
 
-    --popover: 220 13% 12%;
-    --popover-foreground: 0 0% 95%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 15%;
 
-    --primary: 215 100% 60%;
+    --primary: 25 95% 53%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 220 13% 18%;
-    --secondary-foreground: 0 0% 95%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 15%;
 
-    --muted: 220 13% 15%;
-    --muted-foreground: 0 0% 60%;
+    --muted: 0 0% 95%;
+    --muted-foreground: 0 0% 45%;
 
-    --accent: 0 72% 51%;
+    --accent: 12 76% 61%;
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 85% 60%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 13% 18%;
-    --input: 220 13% 18%;
-    --ring: 215 100% 60%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 25 95% 53%;
 
-    --imperial: 0 0% 85%;
-    --sith: 0 72% 51%;
-    --tie-blue: 215 100% 60%;
+    --cars404-orange: 25 95% 53%;
+    --cars404-red: 12 76% 61%;
+    --cars404-yellow: 45 93% 58%;
 
     --radius: 0.75rem;
 
-    --sidebar-background: 220 13% 8%;
-    --sidebar-foreground: 0 0% 95%;
-    --sidebar-primary: 215 100% 60%;
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 0 0% 10%;
+    --sidebar-primary: 25 95% 53%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 220 13% 18%;
-    --sidebar-accent-foreground: 0 0% 95%;
-    --sidebar-border: 220 13% 18%;
-    --sidebar-ring: 215 100% 60%;
+    --sidebar-accent: 0 0% 96%;
+    --sidebar-accent-foreground: 0 0% 15%;
+    --sidebar-border: 0 0% 90%;
+    --sidebar-ring: 25 95% 53%;
   }
 }
 
@@ -62,7 +62,7 @@
   body {
     @apply bg-background text-foreground;
     font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background: radial-gradient(ellipse at center, rgba(30, 30, 40, 1) 0%, rgba(15, 15, 20, 1) 100%);
+    background: linear-gradient(135deg, rgb(255, 255, 255) 0%, rgb(250, 250, 250) 100%);
     min-height: 100vh;
   }
 
@@ -72,128 +72,84 @@
 }
 
 /* Custom animations */
-@keyframes hangarFog {
-  0%, 100% { opacity: 0.3; transform: translateX(0px) translateY(0px); }
-  25% { opacity: 0.6; transform: translateX(20px) translateY(-10px); }
-  50% { opacity: 0.4; transform: translateX(-15px) translateY(15px); }
-  75% { opacity: 0.7; transform: translateX(25px) translateY(-5px); }
-}
-
-@keyframes levitate {
-  0%, 100% { transform: translateY(0px) rotateY(0deg); }
-  50% { transform: translateY(-15px) rotateY(2deg); }
-}
-
-@keyframes glowPulse {
-  0%, 100% { 
-    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3),
-                0 0 40px rgba(59, 130, 246, 0.1),
-                inset 0 0 20px rgba(59, 130, 246, 0.1);
-  }
-  50% { 
-    box-shadow: 0 0 30px rgba(59, 130, 246, 0.6),
-                0 0 60px rgba(59, 130, 246, 0.2),
-                inset 0 0 30px rgba(59, 130, 246, 0.2);
-  }
-}
-
 @keyframes slideInCinematic {
   from {
     opacity: 0;
-    transform: translateY(60px) scale(0.9);
-    filter: blur(10px);
+    transform: translateY(30px) scale(0.95);
   }
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
-    filter: blur(0px);
   }
 }
 
-@keyframes lensFlare {
-  0% { opacity: 0; transform: scale(0.8) rotate(0deg); }
-  50% { opacity: 1; transform: scale(1.2) rotate(180deg); }
-  100% { opacity: 0; transform: scale(0.8) rotate(360deg); }
-}
-
-.hangar-fog {
-  animation: hangarFog 8s ease-in-out infinite;
-}
-
-.levitate {
-  animation: levitate 4s ease-in-out infinite;
-}
-
-.glow-pulse {
-  animation: glowPulse 3s ease-in-out infinite;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .cinematic-enter {
-  animation: slideInCinematic 1.2s ease-out;
+  animation: slideInCinematic 1.2s ease-out forwards;
 }
 
-.lens-flare {
-  animation: lensFlare 2s ease-in-out;
+.fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
 }
 
-/* Star Wars inspired glass morphism */
-.hangar-glass {
-  background: rgba(30, 30, 40, 0.85);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 
-    0 8px 32px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+/* Clean design elements */
+.clean-card {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
-.imperial-panel {
+.gradient-bg {
   background: linear-gradient(135deg, 
-    rgba(40, 40, 50, 0.9) 0%, 
-    rgba(25, 25, 35, 0.95) 100%);
-  backdrop-filter: blur(15px);
-  border: 1px solid rgba(136, 136, 136, 0.2);
-  box-shadow: 
-    0 4px 20px rgba(0, 0, 0, 0.4),
-    inset 0 1px 0 rgba(136, 136, 136, 0.1);
+    hsl(var(--cars404-orange)) 0%, 
+    hsl(var(--cars404-red)) 50%,
+    hsl(var(--cars404-yellow)) 100%);
 }
 
 /* Typography enhancements */
-.imperial-title {
+.brand-title {
   font-family: 'Satoshi', sans-serif;
   font-weight: 800;
-  letter-spacing: 0.05em;
-  text-shadow: 
-    0 0 10px rgba(59, 130, 246, 0.5),
-    0 0 20px rgba(59, 130, 246, 0.3),
-    0 0 30px rgba(59, 130, 246, 0.1);
+  letter-spacing: 0.02em;
 }
 
-.sith-glow {
-  color: hsl(var(--accent));
-  text-shadow: 
-    0 0 10px rgba(220, 38, 38, 0.8),
-    0 0 20px rgba(220, 38, 38, 0.4),
-    0 0 30px rgba(220, 38, 38, 0.2);
+.team-card {
+  background: white;
+  border: 1px solid hsl(var(--border));
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
-.tie-glow {
-  color: hsl(var(--primary));
-  text-shadow: 
-    0 0 10px rgba(59, 130, 246, 0.8),
-    0 0 20px rgba(59, 130, 246, 0.4),
-    0 0 30px rgba(59, 130, 246, 0.2);
+.team-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+/* Remove all glow effects */
+.no-glow {
+  box-shadow: none !important;
+  text-shadow: none !important;
 }
 
 /* Hover effects */
-.hover-lift-heavy {
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+.hover-lift {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.hover-lift-heavy:hover {
-  transform: translateY(-12px) scale(1.02);
-  box-shadow: 
-    0 20px 60px rgba(0, 0, 0, 0.4),
-    0 0 40px rgba(59, 130, 246, 0.2);
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
 }
 
 /* Scrollbar styling */
@@ -202,46 +158,14 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(30, 30, 40, 0.5);
+  background: rgba(0, 0, 0, 0.05);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, 
-    hsl(var(--primary)), 
-    hsl(var(--accent)));
+  background: hsl(var(--primary));
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, 
-    hsl(var(--primary)), 
-    hsl(var(--accent)));
-  filter: brightness(1.2);
-}
-
-/* Particle effects */
-.hangar-particles {
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  background: rgba(136, 136, 136, 0.6);
-  border-radius: 50%;
-  animation: particles 20s linear infinite;
-}
-
-@keyframes particles {
-  0% { 
-    opacity: 0; 
-    transform: translateY(100vh) translateX(0px) scale(0);
-  }
-  10% { 
-    opacity: 1; 
-  }
-  90% { 
-    opacity: 1; 
-  }
-  100% { 
-    opacity: 0; 
-    transform: translateY(-100vh) translateX(50px) scale(1);
-  }
+  background: hsl(var(--accent));
 }
