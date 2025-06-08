@@ -6,26 +6,26 @@
 /* Import Satoshi font */
 @import url('https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,600,700,800,900&display=swap');
 
-/* Light mode design system */
+/* Light mode design system inspired by ThinkDon'tTrip */
 @layer base {
   :root {
-    --background: 0 0% 98%;
-    --foreground: 0 0% 10%;
+    --background: 0 0% 99%;
+    --foreground: 0 0% 8%;
 
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 15%;
+    --card-foreground: 0 0% 10%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 15%;
+    --popover-foreground: 0 0% 10%;
 
     --primary: 25 95% 53%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 0 0% 96%;
-    --secondary-foreground: 0 0% 15%;
+    --secondary-foreground: 0 0% 10%;
 
     --muted: 0 0% 95%;
-    --muted-foreground: 0 0% 45%;
+    --muted-foreground: 0 0% 40%;
 
     --accent: 12 76% 61%;
     --accent-foreground: 0 0% 100%;
@@ -40,17 +40,9 @@
     --cars404-orange: 25 95% 53%;
     --cars404-red: 12 76% 61%;
     --cars404-yellow: 45 93% 58%;
+    --cars404-beige: 40 20% 95%;
 
-    --radius: 0.75rem;
-
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 0 0% 10%;
-    --sidebar-primary: 25 95% 53%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 0 0% 96%;
-    --sidebar-accent-foreground: 0 0% 15%;
-    --sidebar-border: 0 0% 90%;
-    --sidebar-ring: 25 95% 53%;
+    --radius: 0.5rem;
   }
 }
 
@@ -62,8 +54,9 @@
   body {
     @apply bg-background text-foreground;
     font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, rgb(255, 255, 255) 0%, rgb(250, 250, 250) 100%);
+    background: linear-gradient(135deg, rgb(255, 255, 255) 0%, rgb(252, 250, 248) 100%);
     min-height: 100vh;
+    overflow-x: hidden;
   }
 
   html {
@@ -71,19 +64,19 @@
   }
 }
 
-/* Custom animations */
-@keyframes slideInCinematic {
+/* Clean animations - no glow effects */
+@keyframes slideInClean {
   from {
     opacity: 0;
-    transform: translateY(30px) scale(0.95);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translateY(0);
   }
 }
 
-@keyframes fadeIn {
+@keyframes fadeInStable {
   from {
     opacity: 0;
   }
@@ -92,69 +85,107 @@
   }
 }
 
-.cinematic-enter {
-  animation: slideInCinematic 1.2s ease-out forwards;
+.clean-enter {
+  animation: slideInClean 0.8s ease-out forwards;
 }
 
-.fade-in {
-  animation: fadeIn 0.8s ease-out forwards;
+.fade-in-stable {
+  animation: fadeInStable 0.6s ease-out forwards;
+  opacity: 1; /* Ensure text stays visible */
 }
 
-/* Clean design elements */
-.clean-card {
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+/* Clean card design - no heavy containers */
+.floating-card {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  transition: all 0.3s ease;
 }
 
-.gradient-bg {
-  background: linear-gradient(135deg, 
-    hsl(var(--cars404-orange)) 0%, 
-    hsl(var(--cars404-red)) 50%,
-    hsl(var(--cars404-yellow)) 100%);
+.floating-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* Typography enhancements */
+/* Typography - Satoshi global */
 .brand-title {
   font-family: 'Satoshi', sans-serif;
   font-weight: 800;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
 }
 
+.headline-large {
+  font-family: 'Satoshi', sans-serif;
+  font-weight: 700;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.body-light {
+  font-family: 'Satoshi', sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+/* Team card styling */
 .team-card {
   background: white;
-  border: 1px solid hsl(var(--border));
-  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
   overflow: hidden;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
 }
 
 .team-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.12);
 }
 
 /* Remove all glow effects */
-.no-glow {
+* {
   box-shadow: none !important;
   text-shadow: none !important;
 }
 
-/* Hover effects */
-.hover-lift {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+.floating-card, .team-card {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06) !important;
 }
 
-.hover-lift:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+.floating-card:hover, .team-card:hover {
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.12) !important;
 }
 
-/* Scrollbar styling */
+/* Clean gradient backgrounds */
+.warm-gradient {
+  background: linear-gradient(135deg, 
+    hsl(var(--cars404-orange)) 0%, 
+    hsl(var(--cars404-yellow)) 100%);
+}
+
+/* Ensure text stays visible */
+.stable-text {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Audio controls */
+.audio-controls {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 8px;
+}
+
+/* Clean scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -163,9 +194,5 @@
 
 ::-webkit-scrollbar-thumb {
   background: hsl(var(--primary));
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--accent));
+  border-radius: 3px;
 }

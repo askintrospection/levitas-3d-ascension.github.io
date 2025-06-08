@@ -57,20 +57,11 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				sidebar: {
-					DEFAULT: 'hsl(var(--sidebar-background))',
-					foreground: 'hsl(var(--sidebar-foreground))',
-					primary: 'hsl(var(--sidebar-primary))',
-					'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-					accent: 'hsl(var(--sidebar-accent))',
-					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-					border: 'hsl(var(--sidebar-border))',
-					ring: 'hsl(var(--sidebar-ring))'
-				},
-				// Cars 404 inspired colors
+				// Clean Cars 404 inspired colors
 				'cars404-orange': 'hsl(var(--cars404-orange))',
 				'cars404-red': 'hsl(var(--cars404-red))',
 				'cars404-yellow': 'hsl(var(--cars404-yellow))',
+				'cars404-beige': 'hsl(var(--cars404-beige))',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -94,10 +85,10 @@ export default {
 						height: '0'
 					}
 				},
-				'fade-in': {
+				'fade-in-stable': {
 					from: {
 						opacity: '0',
-						transform: 'translateY(20px)'
+						transform: 'translateY(10px)'
 					},
 					to: {
 						opacity: '1',
@@ -108,7 +99,7 @@ export default {
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
-				'fade-in': 'fade-in 0.8s ease-out forwards'
+				'fade-in-stable': 'fade-in-stable 0.6s ease-out forwards'
 			}
 		}
 	},
