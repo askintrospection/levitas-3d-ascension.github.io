@@ -1,7 +1,7 @@
-
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CinematicIntro } from '../components/CinematicIntro';
+import { MinimalistBackground } from '../components/MinimalistBackground';
 import { ChevronDown, Zap, Shield, Cpu } from 'lucide-react';
 
 const Index = () => {
@@ -29,10 +29,11 @@ const Index = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
-            className="min-h-screen"
+            className="min-h-screen relative"
           >
+            <MinimalistBackground />
             {/* Hero Section */}
-            <section className="min-h-screen flex flex-col items-center justify-center px-6 pt-24">
+            <section className="min-h-screen flex flex-col items-center justify-center px-6 pt-24 relative z-10">
               <motion.div
                 className="text-center max-w-6xl mx-auto"
                 initial={{ opacity: 0, y: 30 }}
@@ -97,7 +98,7 @@ const Index = () => {
             </section>
 
             {/* Mission Section */}
-            <section className="py-32 px-6">
+            <section className="py-32 px-6 relative z-10">
               <div className="container mx-auto">
                 <motion.div
                   className="text-center mb-20"
@@ -159,7 +160,7 @@ const Index = () => {
             </section>
 
             {/* Call to Action */}
-            <section className="py-32 px-6">
+            <section className="py-32 px-6 relative z-10">
               <motion.div
                 className="container mx-auto text-center"
                 initial={{ opacity: 0, y: 30 }}

@@ -1,5 +1,5 @@
-
 import { motion } from 'framer-motion';
+import { MinimalistBackground } from '../components/MinimalistBackground';
 
 const Team = () => {
   const teamMembers = [
@@ -36,8 +36,9 @@ const Team = () => {
   ];
 
   return (
-    <div className="min-h-screen pt-32 pb-20 px-6">
-      <div className="container mx-auto">
+    <div className="min-h-screen pt-32 pb-20 px-6 relative">
+      <MinimalistBackground />
+      <div className="container mx-auto relative z-10">
         <motion.div
           className="text-center mb-20"
           initial={{ opacity: 0, y: 30 }}

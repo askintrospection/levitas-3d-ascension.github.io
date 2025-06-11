@@ -1,29 +1,30 @@
-
 import { motion } from 'framer-motion';
 import { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Environment, Stars } from '@react-three/drei';
 import { Car3D } from '../components/Car3D';
+import { MinimalistBackground } from '../components/MinimalistBackground';
 
 const Car = () => {
   return (
-    <div className="min-h-screen pt-24 pb-12 px-6">
-      <div className="container mx-auto">
+    <div className="min-h-screen pt-24 pb-12 px-6 relative">
+      <MinimalistBackground />
+      <div className="container mx-auto relative z-10">
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="text-5xl font-bold mb-6 neon-text">Our F1 Car</h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <h1 className="text-5xl font-bold mb-6 brand-title text-foreground stable-text">Our F1 Car</h1>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto stable-text">
             Engineering excellence meets aerodynamic perfection in our championship-winning design.
           </p>
         </motion.div>
 
         {/* Interactive 3D Car Display */}
         <motion.div
-          className="h-96 glass rounded-xl mb-16 overflow-hidden"
+          className="h-96 floating-card rounded-xl mb-16 overflow-hidden"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.2 }}
@@ -59,7 +60,7 @@ const Car = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          <h2 className="text-3xl font-bold text-center mb-12 neon-text">Technical Specifications</h2>
+          <h2 className="text-3xl font-bold text-center mb-12 brand-title text-foreground stable-text">Technical Specifications</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               { label: 'Weight', value: '65g', desc: 'Optimized for minimum weight' },
@@ -69,15 +70,15 @@ const Car = () => {
             ].map((spec, index) => (
               <motion.div
                 key={index}
-                className="glass p-6 rounded-xl text-center hover-lift"
+                className="floating-card p-6 rounded-xl text-center"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
-                <div className="text-3xl font-bold text-primary mb-2 neon-text">{spec.value}</div>
-                <div className="text-lg font-semibold mb-2">{spec.label}</div>
-                <div className="text-sm text-muted-foreground">{spec.desc}</div>
+                <div className="text-3xl font-bold text-primary mb-2 brand-title stable-text">{spec.value}</div>
+                <div className="text-lg font-semibold mb-2 stable-text">{spec.label}</div>
+                <div className="text-sm text-muted-foreground stable-text">{spec.desc}</div>
               </motion.div>
             ))}
           </div>
@@ -90,7 +91,7 @@ const Car = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
         >
-          <h2 className="text-3xl font-bold text-center mb-12 neon-text">Design Features</h2>
+          <h2 className="text-3xl font-bold text-center mb-12 brand-title text-foreground stable-text">Design Features</h2>
           <div className="grid lg:grid-cols-2 gap-12">
             <div className="space-y-8">
               {[
@@ -109,14 +110,14 @@ const Car = () => {
               ].map((feature, index) => (
                 <motion.div
                   key={index}
-                  className="glass p-6 rounded-xl"
+                  className="floating-card p-6 rounded-xl"
                   initial={{ opacity: 0, x: -50 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.8, delay: index * 0.2 }}
                   viewport={{ once: true }}
                 >
-                  <h3 className="text-xl font-bold mb-3 text-primary">{feature.title}</h3>
-                  <p className="text-muted-foreground">{feature.desc}</p>
+                  <h3 className="text-xl font-bold mb-3 text-primary stable-text">{feature.title}</h3>
+                  <p className="text-muted-foreground stable-text">{feature.desc}</p>
                 </motion.div>
               ))}
             </div>
@@ -138,14 +139,14 @@ const Car = () => {
               ].map((feature, index) => (
                 <motion.div
                   key={index}
-                  className="glass p-6 rounded-xl"
+                  className="floating-card p-6 rounded-xl"
                   initial={{ opacity: 0, x: 50 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.8, delay: index * 0.2 }}
                   viewport={{ once: true }}
                 >
-                  <h3 className="text-xl font-bold mb-3 text-primary">{feature.title}</h3>
-                  <p className="text-muted-foreground">{feature.desc}</p>
+                  <h3 className="text-xl font-bold mb-3 text-primary stable-text">{feature.title}</h3>
+                  <p className="text-muted-foreground stable-text">{feature.desc}</p>
                 </motion.div>
               ))}
             </div>
@@ -158,8 +159,8 @@ const Car = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }}
         >
-          <div className="glass-dark p-12 rounded-xl text-center">
-            <h2 className="text-3xl font-bold mb-8 neon-text">Championship Performance</h2>
+          <div className="floating-card p-12 rounded-xl text-center">
+            <h2 className="text-3xl font-bold mb-8 brand-title text-foreground stable-text">Championship Performance</h2>
             <div className="grid md:grid-cols-3 gap-8">
               {[
                 { metric: 'Track Records', value: '3', desc: 'Regional competition victories' },
@@ -167,9 +168,9 @@ const Car = () => {
                 { metric: 'Design Awards', value: '2', desc: 'Engineering excellence recognition' }
               ].map((stat, index) => (
                 <div key={index} className="text-center">
-                  <div className="text-4xl font-bold text-accent mb-2 neon-text-purple">{stat.value}</div>
-                  <div className="text-lg font-semibold mb-1">{stat.metric}</div>
-                  <div className="text-sm text-muted-foreground">{stat.desc}</div>
+                  <div className="text-4xl font-bold text-accent mb-2 brand-title stable-text">{stat.value}</div>
+                  <div className="text-lg font-semibold mb-1 stable-text">{stat.metric}</div>
+                  <div className="text-sm text-muted-foreground stable-text">{stat.desc}</div>
                 </div>
               ))}
             </div>

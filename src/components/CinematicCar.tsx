@@ -1,4 +1,3 @@
-
 import { useRef, useEffect } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
@@ -6,6 +5,13 @@ import * as THREE from 'three';
 export const CinematicCar = ({ phase }: { phase: number }) => {
   const groupRef = useRef<THREE.Group>(null);
   const carRef = useRef<THREE.Mesh>(null);
+  const coneRef = useRef<THREE.Mesh>(null);
+
+  useEffect(() => {
+    if (coneRef.current) {
+      coneRef.current.rotation.z = Math.PI / 2;
+    }
+  }, []);
 
   useFrame((state) => {
     if (!groupRef.current) return;
@@ -62,8 +68,8 @@ export const CinematicCar = ({ phase }: { phase: number }) => {
       </mesh>
       
       {/* Front nose cone */}
-      <mesh position={[3.0, 0, 0]} castShadow>
-        <coneGeometry args={[0.3, 1.2, 8]} rotation={[0, 0, Math.PI/2]} />
+      <mesh ref={coneRef} position={[3.0, 0, 0]} castShadow>
+        <coneGeometry args={[0.3, 1.2, 8]} />
         <meshStandardMaterial 
           color="#ff6b35" 
           metalness={0.8}
