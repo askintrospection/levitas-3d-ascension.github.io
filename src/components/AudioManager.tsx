@@ -14,9 +14,13 @@ export const AudioManager = ({ isPlaying, volume = 0.2 }: AudioManagerProps) => 
       audioRef.current.volume = volume;
       
       if (isPlaying) {
-        audioRef.current.play().catch(() => {
-          // Auto-play blocked, that's okay
-        });
+        const playPromise = audioRef.current.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {
+            // Auto-play blocked, that's okay
+            console.log('Audio autoplay was prevented');
+          });
+        }
       } else {
         audioRef.current.pause();
       }
@@ -31,8 +35,9 @@ export const AudioManager = ({ isPlaying, volume = 0.2 }: AudioManagerProps) => 
       style={{ display: 'none' }}
     >
       <source src="/song.mp3" type="audio/mpeg" />
-      {/* Fallback for browsers that don't support MP3 */}
       <source src="/song.wav" type="audio/wav" />
+      <source src="/song.ogg" type="audio/ogg" />
+      Your browser does not support the audio element.
     </audio>
   );
 };

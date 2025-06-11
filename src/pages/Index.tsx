@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CinematicIntro } from '../components/CinematicIntro';
@@ -40,14 +41,21 @@ const Index = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
               >
-                <motion.h1 
-                  className="headline-large mb-8 stable-text text-foreground"
+                <motion.div 
+                  className="mb-8"
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.4, duration: 0.8 }}
                 >
-                  Engineering Excellence
-                </motion.h1>
+                  <img 
+                    src="/lovable-uploads/4a8fc42c-1769-44d1-8f2c-f5f425457b5e.png" 
+                    alt="Levitas"
+                    className="h-24 mx-auto object-contain mb-4"
+                  />
+                  <h1 className="text-4xl font-bold stable-text text-foreground">
+                    Engineering Excellence
+                  </h1>
+                </motion.div>
                 
                 <motion.p 
                   className="text-2xl body-light text-muted-foreground mb-12 max-w-3xl mx-auto stable-text"

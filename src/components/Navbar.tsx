@@ -40,7 +40,7 @@ export const Navbar = ({ onToggleAudio, isMuted }: NavbarProps) => {
       transition={{ duration: 0.8, ease: "easeOut" }}
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
-        {/* Team Branding - Side by Side */}
+        {/* Team Branding */}
         <Link to="/" className="flex items-center space-x-6 group">
           <motion.div 
             className="w-12 h-12 warm-gradient rounded-lg flex items-center justify-center"
@@ -50,12 +50,20 @@ export const Navbar = ({ onToggleAudio, isMuted }: NavbarProps) => {
             <Car className="w-6 h-6 text-white" />
           </motion.div>
           <div className="flex items-center space-x-4">
-            <div className="flex flex-col">
-              <span className="text-2xl font-bold brand-title text-foreground">LEVITAS</span>
+            <div className="flex flex-col items-start">
+              <img 
+                src="/lovable-uploads/4a8fc42c-1769-44d1-8f2c-f5f425457b5e.png" 
+                alt="Levitas"
+                className="h-8 object-contain"
+              />
             </div>
             <div className="h-8 w-px bg-border"></div>
-            <div className="flex flex-col">
-              <span className="text-lg font-semibold text-foreground">STEM RACING</span>
+            <div className="flex items-center space-x-2">
+              <img 
+                src="/lovable-uploads/7cb26c52-e8f3-4c84-98e2-ecf579a94c7a.png" 
+                alt="STEM Racing"
+                className="h-6 object-contain"
+              />
             </div>
           </div>
         </Link>

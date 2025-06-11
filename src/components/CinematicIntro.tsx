@@ -83,7 +83,8 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
           muted={isMuted}
           preload="auto"
         >
-          <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmMeCjuVz/LNfiwGJnbD7N+TQwoXXrPn5KlXGQZBnNvz0XkpBCQ=" type="audio/wav" />
+          <source src="/song.mp3" type="audio/mpeg" />
+          <source src="/song.wav" type="audio/wav" />
         </audio>
 
         {/* Audio Controls */}
@@ -106,16 +107,32 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
           >
             <div className="text-center max-w-md">
               <motion.div
-                className="mb-8"
+                className="mb-8 flex items-center justify-center space-x-6"
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ duration: 1, ease: "easeOut" }}
               >
-                <h1 className="text-4xl font-bold text-white mb-2 brand-title">
-                  LEVITAS
-                </h1>
-                <p className="text-lg text-gray-300 tracking-wider">
-                  STEM Racing | National Finals 2025
+                <img 
+                  src="/lovable-uploads/4a8fc42c-1769-44d1-8f2c-f5f425457b5e.png" 
+                  alt="Levitas"
+                  className="h-16 object-contain"
+                />
+              </motion.div>
+              
+              <motion.div
+                className="mb-8 flex items-center justify-center space-x-3"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.3 }}
+              >
+                <img 
+                  src="/lovable-uploads/7cb26c52-e8f3-4c84-98e2-ecf579a94c7a.png" 
+                  alt="STEM Racing"
+                  className="h-8 object-contain"
+                />
+                <div className="h-6 w-px bg-gray-600"></div>
+                <p className="text-lg text-gray-300 tracking-wider font-bold">
+                  National Finals 2025
                 </p>
               </motion.div>
               
@@ -172,7 +189,7 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
                 }}
                 transition={{ duration: 0.8, ease: "easeInOut" }}
               >
-                CARS 404
+                Cars 404
               </motion.div>
             </div>
           </motion.div>
@@ -201,26 +218,37 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
             }}
             transition={{ duration: 1.5 }}
           >
-            <motion.h1 
-              className="text-6xl font-bold text-white mb-4 brand-title"
+            <motion.div 
+              className="mb-6"
               animate={{ 
-                textShadow: phase >= 5 ? [
-                  "0 0 10px #ff6b35",
-                  "0 0 20px #ff6b35",
-                  "0 0 10px #ff6b35"
-                ] : "none"
+                scale: phase >= 5 ? [1, 1.05, 1] : 1
               }}
-              transition={{ duration: 2, repeat: Infinity }}
-            >
-              LEVITAS
-            </motion.h1>
-            <motion.p 
-              className="text-xl text-gray-300 tracking-wider"
-              animate={{ scale: [1, 1.05, 1] }}
               transition={{ duration: 3, repeat: Infinity }}
             >
-              CARS 404 | National Finals 2025
-            </motion.p>
+              <img 
+                src="/lovable-uploads/4a8fc42c-1769-44d1-8f2c-f5f425457b5e.png" 
+                alt="Levitas"
+                className="h-20 mx-auto object-contain"
+                style={{
+                  filter: phase >= 5 ? 'drop-shadow(0 0 20px #ff6b35)' : 'none'
+                }}
+              />
+            </motion.div>
+            <motion.div 
+              className="flex items-center justify-center space-x-3"
+              animate={{ scale: [1, 1.02, 1] }}
+              transition={{ duration: 3, repeat: Infinity, delay: 0.5 }}
+            >
+              <img 
+                src="/lovable-uploads/7cb26c52-e8f3-4c84-98e2-ecf579a94c7a.png" 
+                alt="STEM Racing"
+                className="h-6 object-contain"
+              />
+              <div className="h-4 w-px bg-gray-400"></div>
+              <p className="text-xl text-gray-300 tracking-wider font-bold">
+                National Finals 2025
+              </p>
+            </motion.div>
           </motion.div>
         )}
 
