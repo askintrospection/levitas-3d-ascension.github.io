@@ -47,14 +47,29 @@ const Index = () => {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.4, duration: 0.8 }}
                 >
-                  <img 
-                    src="/lovable-uploads/4a8fc42c-1769-44d1-8f2c-f5f425457b5e.png" 
-                    alt="Levitas"
-                    className="h-24 mx-auto object-contain mb-4"
-                  />
-                  <h1 className="text-4xl font-bold stable-text text-foreground">
+                  <div className="flex items-center justify-center space-x-4 mb-4">
+                    <img 
+                      src="/levitas_logo.png" 
+                      alt="Levitas Logo"
+                      className="h-20 w-20 object-contain"
+                    />
+                    <h1 className="text-6xl font-bold stable-text text-foreground">
+                      Levitas
+                    </h1>
+                  </div>
+                  <div className="flex items-center justify-center space-x-3 mb-6">
+                    <img 
+                      src="/stemracing_logo.png" 
+                      alt="STEM Racing Logo"
+                      className="h-6 w-6 object-contain"
+                    />
+                    <span className="text-xl font-semibold text-muted-foreground">STEM Racing</span>
+                    <div className="h-4 w-px bg-border"></div>
+                    <span className="text-xl text-muted-foreground">National Finals 2025</span>
+                  </div>
+                  <h2 className="text-4xl font-bold stable-text text-foreground">
                     Engineering Excellence
-                  </h1>
+                  </h2>
                 </motion.div>
                 
                 <motion.p 
@@ -63,7 +78,7 @@ const Index = () => {
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.6, duration: 0.8 }}
                 >
-                  Cars 404 represents the pinnacle of innovation in competitive racing technology. 
+                  Levitas represents the pinnacle of innovation in competitive racing technology. 
                   We push boundaries through precision engineering and relentless pursuit of perfection.
                 </motion.p>
 
@@ -120,7 +135,7 @@ const Index = () => {
                   </h2>
                   <p className="text-xl body-light text-muted-foreground max-w-4xl mx-auto leading-relaxed stable-text">
                     To forge the future of motorsport through precision engineering, cutting-edge technology, 
-                    and relentless pursuit of perfection. Cars 404 represents the apex of innovation 
+                    and relentless pursuit of perfection. Levitas represents the apex of innovation 
                     in competitive racing excellence.
                   </p>
                 </motion.div>
@@ -178,7 +193,7 @@ const Index = () => {
               >
                 <div className="floating-card p-16 rounded-2xl max-w-4xl mx-auto">
                   <h2 className="text-4xl font-bold mb-8 brand-title text-foreground stable-text">
-                    Join Cars 404
+                    Join Levitas
                   </h2>
                   <p className="text-xl body-light text-muted-foreground mb-12 max-w-3xl mx-auto stable-text">
                     Experience the cutting edge of racing technology. Witness precision engineering 

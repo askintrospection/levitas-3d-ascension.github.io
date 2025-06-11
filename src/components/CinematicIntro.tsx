@@ -17,6 +17,17 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
   const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
+    // Start audio immediately when component mounts
+    if (audioRef.current && !isMuted) {
+      audioRef.current.volume = 0.3;
+      const playPromise = audioRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          console.log('Audio autoplay was prevented');
+        });
+      }
+    }
+
     // Loading sequence
     const loadingInterval = setInterval(() => {
       setLoadingProgress(prev => {
@@ -40,6 +51,11 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
     const timer4 = setTimeout(() => setPhase(5), 9000);
     const timer5 = setTimeout(() => {
       setPhase(6);
+      // Stop audio before completing
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0;
+      }
       setTimeout(onComplete, 2000);
     }, 11000);
 
@@ -50,22 +66,24 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
       clearTimeout(timer3);
       clearTimeout(timer4);
       clearTimeout(timer5);
+      // Cleanup audio
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0;
+      }
     };
-  }, [onComplete]);
-
-  useEffect(() => {
-    if (audioRef.current && !isMuted) {
-      audioRef.current.volume = 0.3;
-      audioRef.current.play().catch(() => {
-        // Auto-play might be blocked
-      });
-    }
-  }, [isMuted]);
+  }, [onComplete, isMuted]);
 
   const toggleMute = () => {
     setIsMuted(!isMuted);
     if (audioRef.current) {
-      audioRef.current.muted = !isMuted;
+      if (!isMuted) {
+        audioRef.current.pause();
+      } else {
+        audioRef.current.play().catch(() => {
+          console.log('Audio play failed');
+        });
+      }
     }
   };
 
@@ -80,7 +98,6 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
         <audio
           ref={audioRef}
           loop
-          muted={isMuted}
           preload="auto"
         >
           <source src="/song.mp3" type="audio/mpeg" />
@@ -112,11 +129,14 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
                 animate={{ scale: 1 }}
                 transition={{ duration: 1, ease: "easeOut" }}
               >
-                <img 
-                  src="/lovable-uploads/4a8fc42c-1769-44d1-8f2c-f5f425457b5e.png" 
-                  alt="Levitas"
-                  className="h-16 object-contain"
-                />
+                <div className="flex items-center space-x-3">
+                  <img 
+                    src="/levitas_logo.png" 
+                    alt="Levitas Logo"
+                    className="h-12 w-12 object-contain"
+                  />
+                  <h1 className="text-4xl font-bold text-white">Levitas</h1>
+                </div>
               </motion.div>
               
               <motion.div
@@ -126,10 +146,11 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
                 transition={{ delay: 0.3 }}
               >
                 <img 
-                  src="/lovable-uploads/7cb26c52-e8f3-4c84-98e2-ecf579a94c7a.png" 
-                  alt="STEM Racing"
-                  className="h-8 object-contain"
+                  src="/stemracing_logo.png" 
+                  alt="STEM Racing Logo"
+                  className="h-6 w-6 object-contain"
                 />
+                <span className="text-lg text-gray-300 tracking-wider font-bold">STEM Racing</span>
                 <div className="h-6 w-px bg-gray-600"></div>
                 <p className="text-lg text-gray-300 tracking-wider font-bold">
                   National Finals 2025
@@ -219,20 +240,21 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
             transition={{ duration: 1.5 }}
           >
             <motion.div 
-              className="mb-6"
+              className="mb-6 flex items-center justify-center space-x-3"
               animate={{ 
                 scale: phase >= 5 ? [1, 1.05, 1] : 1
               }}
               transition={{ duration: 3, repeat: Infinity }}
             >
               <img 
-                src="/lovable-uploads/4a8fc42c-1769-44d1-8f2c-f5f425457b5e.png" 
-                alt="Levitas"
-                className="h-20 mx-auto object-contain"
+                src="/levitas_logo.png" 
+                alt="Levitas Logo"
+                className="h-16 w-16 object-contain"
                 style={{
                   filter: phase >= 5 ? 'drop-shadow(0 0 20px #ff6b35)' : 'none'
                 }}
               />
+              <h1 className="text-4xl font-bold text-white">Levitas</h1>
             </motion.div>
             <motion.div 
               className="flex items-center justify-center space-x-3"
@@ -240,10 +262,11 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
               transition={{ duration: 3, repeat: Infinity, delay: 0.5 }}
             >
               <img 
-                src="/lovable-uploads/7cb26c52-e8f3-4c84-98e2-ecf579a94c7a.png" 
-                alt="STEM Racing"
-                className="h-6 object-contain"
+                src="/stemracing_logo.png" 
+                alt="STEM Racing Logo"
+                className="h-4 w-4 object-contain"
               />
+              <span className="text-lg text-gray-300 tracking-wider font-bold">STEM Racing</span>
               <div className="h-4 w-px bg-gray-400"></div>
               <p className="text-xl text-gray-300 tracking-wider font-bold">
                 National Finals 2025

@@ -50,20 +50,22 @@ export const Navbar = ({ onToggleAudio, isMuted }: NavbarProps) => {
             <Car className="w-6 h-6 text-white" />
           </motion.div>
           <div className="flex items-center space-x-4">
-            <div className="flex flex-col items-start">
+            <div className="flex items-center space-x-2">
               <img 
-                src="/lovable-uploads/4a8fc42c-1769-44d1-8f2c-f5f425457b5e.png" 
-                alt="Levitas"
-                className="h-8 object-contain"
+                src="/levitas_logo.png" 
+                alt="Levitas Logo"
+                className="h-8 w-8 object-contain"
               />
+              <span className="text-xl font-bold text-foreground">Levitas</span>
             </div>
             <div className="h-8 w-px bg-border"></div>
             <div className="flex items-center space-x-2">
               <img 
-                src="/lovable-uploads/7cb26c52-e8f3-4c84-98e2-ecf579a94c7a.png" 
-                alt="STEM Racing"
-                className="h-6 object-contain"
+                src="/stemracing_logo.png" 
+                alt="STEM Racing Logo"
+                className="h-6 w-6 object-contain"
               />
+              <span className="text-lg font-semibold text-foreground">STEM Racing</span>
             </div>
           </div>
         </Link>
