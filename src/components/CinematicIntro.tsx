@@ -116,10 +116,10 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
           onCanPlay={() => console.log('Audio can play')}
           onError={(e) => console.log('Audio error:', e)}
         >
-          <source src="/song.mp3" type="audio/mpeg" />
           <source src="./song.mp3" type="audio/mpeg" />
-          <source src="/song.wav" type="audio/wav" />
+          <source src="/song.mp3" type="audio/mpeg" />
           <source src="./song.wav" type="audio/wav" />
+          <source src="/song.wav" type="audio/wav" />
         </audio>
 
         {/* Audio Controls */}
@@ -149,18 +149,13 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
               >
                 <div className="flex items-center space-x-3">
                   <img 
-                    src="/levitas_logo.png" 
+                    src="./levitas_logo.png" 
                     alt="Levitas Logo"
                     className="h-12 w-12 object-contain"
                     onError={(e) => {
-                      console.log('Levitas logo failed to load from /levitas_logo.png');
-                      // Try alternative paths
+                      console.log('Levitas logo failed to load from ./levitas_logo.png');
                       const target = e.currentTarget as HTMLImageElement;
-                      if (target.src.includes('/levitas_logo.png')) {
-                        target.src = './levitas_logo.png';
-                      } else {
-                        target.style.display = 'none';
-                      }
+                      target.src = '/levitas_logo.png';
                     }}
                     onLoad={() => console.log('Levitas logo loaded successfully')}
                   />
@@ -175,18 +170,13 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
                 transition={{ delay: 0.3 }}
               >
                 <img 
-                  src="/stemracing_logo.png" 
+                  src="./stemracing_logo.png" 
                   alt="STEM Racing Logo"
                   className="h-6 w-6 object-contain"
                   onError={(e) => {
-                    console.log('STEM Racing logo failed to load from /stemracing_logo.png');
-                    // Try alternative paths
+                    console.log('STEM Racing logo failed to load from ./stemracing_logo.png');
                     const target = e.currentTarget as HTMLImageElement;
-                    if (target.src.includes('/stemracing_logo.png')) {
-                      target.src = './stemracing_logo.png';
-                    } else {
-                      target.style.display = 'none';
-                    }
+                    target.src = '/stemracing_logo.png';
                   }}
                   onLoad={() => console.log('STEM Racing logo loaded successfully')}
                 />
@@ -284,7 +274,7 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
               transition={{ duration: 3, repeat: Infinity }}
             >
               <img 
-                src="/levitas_logo.png" 
+                src="./levitas_logo.png" 
                 alt="Levitas Logo"
                 className="h-16 w-16 object-contain"
                 style={{
@@ -293,11 +283,7 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
                 onError={(e) => {
                   console.log('Final Levitas logo failed to load');
                   const target = e.currentTarget as HTMLImageElement;
-                  if (target.src.includes('/levitas_logo.png')) {
-                    target.src = './levitas_logo.png';
-                  } else {
-                    target.style.display = 'none';
-                  }
+                  target.src = '/levitas_logo.png';
                 }}
               />
               <h1 className="text-4xl font-bold text-white">Levitas</h1>
@@ -308,17 +294,13 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
               transition={{ duration: 3, repeat: Infinity, delay: 0.5 }}
             >
               <img 
-                src="/stemracing_logo.png" 
+                src="./stemracing_logo.png" 
                 alt="STEM Racing Logo"
                 className="h-4 w-4 object-contain"
                 onError={(e) => {
                   console.log('Final STEM Racing logo failed to load');
                   const target = e.currentTarget as HTMLImageElement;
-                  if (target.src.includes('/stemracing_logo.png')) {
-                    target.src = './stemracing_logo.png';
-                  } else {
-                    target.style.display = 'none';
-                  }
+                  target.src = '/stemracing_logo.png';
                 }}
               />
               <span className="text-lg text-gray-300 tracking-wider font-bold">STEM Racing</span>
