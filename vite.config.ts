@@ -6,7 +6,7 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: mode === 'production' ? '/levitas-3d-ascension.github.io/' : '/',
+  base: mode === 'production' ? 'levitas-3d-ascension.github.io' : '/',
   server: {
     host: "::",
     port: 8080,
