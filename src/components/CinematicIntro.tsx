@@ -106,7 +106,7 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
 
         {/* Audio Controls */}
         <motion.button
-          className="audio-controls"
+          className="absolute top-4 right-4 bg-white/20 backdrop-blur-sm text-white p-3 rounded-full hover:bg-white/30 transition-colors z-60"
           onClick={toggleMute}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -134,6 +134,10 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
                     src="/levitas_logo.png" 
                     alt="Levitas Logo"
                     className="h-12 w-12 object-contain"
+                    onError={(e) => {
+                      console.log('Levitas logo failed to load');
+                      e.currentTarget.style.display = 'none';
+                    }}
                   />
                   <h1 className="text-4xl font-bold text-white">Levitas</h1>
                 </div>
@@ -149,6 +153,10 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
                   src="/stemracing_logo.png" 
                   alt="STEM Racing Logo"
                   className="h-6 w-6 object-contain"
+                  onError={(e) => {
+                    console.log('STEM Racing logo failed to load');
+                    e.currentTarget.style.display = 'none';
+                  }}
                 />
                 <span className="text-lg text-gray-300 tracking-wider font-bold">STEM Racing</span>
                 <div className="h-6 w-px bg-gray-600"></div>
@@ -179,7 +187,7 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
         {/* Crazy Glitch Transition */}
         {phase === 1 && (
           <motion.div
-            className="absolute inset-0 bg-black"
+            className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-800"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -253,6 +261,10 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
                 style={{
                   filter: phase >= 5 ? 'drop-shadow(0 0 20px #ff6b35)' : 'none'
                 }}
+                onError={(e) => {
+                  console.log('Final Levitas logo failed to load');
+                  e.currentTarget.style.display = 'none';
+                }}
               />
               <h1 className="text-4xl font-bold text-white">Levitas</h1>
             </motion.div>
@@ -265,6 +277,10 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
                 src="/stemracing_logo.png" 
                 alt="STEM Racing Logo"
                 className="h-4 w-4 object-contain"
+                onError={(e) => {
+                  console.log('Final STEM Racing logo failed to load');
+                  e.currentTarget.style.display = 'none';
+                }}
               />
               <span className="text-lg text-gray-300 tracking-wider font-bold">STEM Racing</span>
               <div className="h-4 w-px bg-gray-400"></div>

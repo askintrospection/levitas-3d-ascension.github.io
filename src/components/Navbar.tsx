@@ -55,6 +55,11 @@ export const Navbar = ({ onToggleAudio, isMuted }: NavbarProps) => {
                 src="/levitas_logo.png" 
                 alt="Levitas Logo"
                 className="h-8 w-8 object-contain"
+                onError={(e) => {
+                  console.log('Navbar Levitas logo failed to load from /levitas_logo.png');
+                  e.currentTarget.style.display = 'none';
+                }}
+                onLoad={() => console.log('Navbar Levitas logo loaded successfully')}
               />
               <span className="text-xl font-bold text-foreground">Levitas</span>
             </div>
@@ -64,6 +69,11 @@ export const Navbar = ({ onToggleAudio, isMuted }: NavbarProps) => {
                 src="/stemracing_logo.png" 
                 alt="STEM Racing Logo"
                 className="h-6 w-6 object-contain"
+                onError={(e) => {
+                  console.log('Navbar STEM Racing logo failed to load from /stemracing_logo.png');
+                  e.currentTarget.style.display = 'none';
+                }}
+                onLoad={() => console.log('Navbar STEM Racing logo loaded successfully')}
               />
               <span className="text-lg font-semibold text-foreground">STEM Racing</span>
             </div>
