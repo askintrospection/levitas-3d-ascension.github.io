@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CinematicIntro } from '../components/CinematicIntro';
@@ -10,6 +9,7 @@ const Index = () => {
   const [showContent, setShowContent] = useState(false);
 
   const handleIntroComplete = () => {
+    console.log('Intro completed, transitioning to main content');
     setShowIntro(false);
     setTimeout(() => setShowContent(true), 500);
   };
@@ -52,6 +52,15 @@ const Index = () => {
                       src="/levitas_logo.png" 
                       alt="Levitas Logo"
                       className="h-20 w-20 object-contain"
+                      onError={(e) => {
+                        console.log('Main page Levitas logo failed to load');
+                        const target = e.currentTarget as HTMLImageElement;
+                        if (target.src.includes('/levitas_logo.png')) {
+                          target.src = './levitas_logo.png';
+                        } else {
+                          target.style.display = 'none';
+                        }
+                      }}
                     />
                     <h1 className="text-6xl font-bold stable-text text-foreground">
                       Levitas
@@ -62,6 +71,15 @@ const Index = () => {
                       src="/stemracing_logo.png" 
                       alt="STEM Racing Logo"
                       className="h-6 w-6 object-contain"
+                      onError={(e) => {
+                        console.log('Main page STEM Racing logo failed to load');
+                        const target = e.currentTarget as HTMLImageElement;
+                        if (target.src.includes('/stemracing_logo.png')) {
+                          target.src = './stemracing_logo.png';
+                        } else {
+                          target.style.display = 'none';
+                        }
+                      }}
                     />
                     <span className="text-xl font-semibold text-muted-foreground">STEM Racing</span>
                     <div className="h-4 w-px bg-border"></div>

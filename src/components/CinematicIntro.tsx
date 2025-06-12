@@ -17,14 +17,20 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
   const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
+    console.log('CinematicIntro mounted, starting audio...');
+    
     // Start audio immediately when component mounts
     if (audioRef.current && !isMuted) {
       audioRef.current.volume = 0.3;
       const playPromise = audioRef.current.play();
       if (playPromise !== undefined) {
-        playPromise.catch(() => {
-          console.log('Audio autoplay was prevented');
-        });
+        playPromise
+          .then(() => {
+            console.log('Audio started successfully');
+          })
+          .catch((error) => {
+            console.log('Audio autoplay was prevented:', error);
+          });
       }
     }
 
@@ -53,10 +59,14 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
       setPhase(6);
       // Stop audio before completing
       if (audioRef.current) {
+        console.log('Stopping audio before transition');
         audioRef.current.pause();
         audioRef.current.currentTime = 0;
       }
-      setTimeout(onComplete, 2000);
+      setTimeout(() => {
+        console.log('Calling onComplete');
+        onComplete();
+      }, 2000);
     }, 11000);
 
     return () => {
@@ -68,6 +78,7 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
       clearTimeout(timer5);
       // Cleanup audio
       if (audioRef.current) {
+        console.log('Cleaning up audio');
         audioRef.current.pause();
         audioRef.current.currentTime = 0;
       }
@@ -79,10 +90,12 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
     if (audioRef.current) {
       if (!isMuted) {
         audioRef.current.pause();
+        console.log('Audio muted');
       } else {
-        audioRef.current.play().catch(() => {
-          console.log('Audio play failed');
+        audioRef.current.play().catch((error) => {
+          console.log('Audio play failed:', error);
         });
+        console.log('Audio unmuted');
       }
     }
   };
@@ -94,14 +107,19 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
         exit={{ opacity: 0 }}
         transition={{ duration: 1.5 }}
       >
-        {/* Audio */}
+        {/* Audio with multiple source formats for better compatibility */}
         <audio
           ref={audioRef}
           loop
           preload="auto"
+          onLoadStart={() => console.log('Audio loading started')}
+          onCanPlay={() => console.log('Audio can play')}
+          onError={(e) => console.log('Audio error:', e)}
         >
           <source src="/song.mp3" type="audio/mpeg" />
+          <source src="./song.mp3" type="audio/mpeg" />
           <source src="/song.wav" type="audio/wav" />
+          <source src="./song.wav" type="audio/wav" />
         </audio>
 
         {/* Audio Controls */}
@@ -135,9 +153,16 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
                     alt="Levitas Logo"
                     className="h-12 w-12 object-contain"
                     onError={(e) => {
-                      console.log('Levitas logo failed to load');
-                      e.currentTarget.style.display = 'none';
+                      console.log('Levitas logo failed to load from /levitas_logo.png');
+                      // Try alternative paths
+                      const target = e.currentTarget as HTMLImageElement;
+                      if (target.src.includes('/levitas_logo.png')) {
+                        target.src = './levitas_logo.png';
+                      } else {
+                        target.style.display = 'none';
+                      }
                     }}
+                    onLoad={() => console.log('Levitas logo loaded successfully')}
                   />
                   <h1 className="text-4xl font-bold text-white">Levitas</h1>
                 </div>
@@ -154,9 +179,16 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
                   alt="STEM Racing Logo"
                   className="h-6 w-6 object-contain"
                   onError={(e) => {
-                    console.log('STEM Racing logo failed to load');
-                    e.currentTarget.style.display = 'none';
+                    console.log('STEM Racing logo failed to load from /stemracing_logo.png');
+                    // Try alternative paths
+                    const target = e.currentTarget as HTMLImageElement;
+                    if (target.src.includes('/stemracing_logo.png')) {
+                      target.src = './stemracing_logo.png';
+                    } else {
+                      target.style.display = 'none';
+                    }
                   }}
+                  onLoad={() => console.log('STEM Racing logo loaded successfully')}
                 />
                 <span className="text-lg text-gray-300 tracking-wider font-bold">STEM Racing</span>
                 <div className="h-6 w-px bg-gray-600"></div>
@@ -192,7 +224,6 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-            {/* Matrix-style glitch effect */}
             <motion.div
               className="absolute inset-0 bg-gradient-to-r from-transparent via-green-500 to-transparent opacity-20"
               animate={{ 
@@ -202,7 +233,6 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
               transition={{ duration: 0.3, ease: "easeInOut" }}
             />
             
-            {/* Scan lines */}
             <motion.div
               className="absolute inset-0 bg-gradient-to-b from-transparent via-white to-transparent opacity-10"
               animate={{ y: [-100, window.innerHeight + 100] }}
@@ -236,7 +266,6 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
           </motion.div>
         )}
 
-        {/* Final Brand Overlay */}
         {phase >= 4 && (
           <motion.div
             className="absolute bottom-20 left-1/2 transform -translate-x-1/2 text-center z-20"
@@ -263,7 +292,12 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
                 }}
                 onError={(e) => {
                   console.log('Final Levitas logo failed to load');
-                  e.currentTarget.style.display = 'none';
+                  const target = e.currentTarget as HTMLImageElement;
+                  if (target.src.includes('/levitas_logo.png')) {
+                    target.src = './levitas_logo.png';
+                  } else {
+                    target.style.display = 'none';
+                  }
                 }}
               />
               <h1 className="text-4xl font-bold text-white">Levitas</h1>
@@ -279,7 +313,12 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
                 className="h-4 w-4 object-contain"
                 onError={(e) => {
                   console.log('Final STEM Racing logo failed to load');
-                  e.currentTarget.style.display = 'none';
+                  const target = e.currentTarget as HTMLImageElement;
+                  if (target.src.includes('/stemracing_logo.png')) {
+                    target.src = './stemracing_logo.png';
+                  } else {
+                    target.style.display = 'none';
+                  }
                 }}
               />
               <span className="text-lg text-gray-300 tracking-wider font-bold">STEM Racing</span>
