@@ -49,31 +49,31 @@ const Index = () => {
                 >
                   <div className="flex items-center justify-center space-x-4 mb-4">
                     <img 
-                      src="./levitas_logo.png" 
+                      src="/levitas_logo.png" 
                       alt="Levitas Logo"
                       className="h-20 w-20 object-contain"
                       onError={(e) => {
                         console.log('Main page Levitas logo failed to load');
                         const target = e.currentTarget as HTMLImageElement;
-                        target.src = '/levitas_logo.png';
+                        target.src = './levitas_logo.png';
                       }}
                     />
-                    <h1 className="text-6xl font-bold stable-text text-foreground">
+                    <h1 className="text-6xl levitas-font">
                       Levitas
                     </h1>
                   </div>
                   <div className="flex items-center justify-center space-x-3 mb-6">
                     <img 
-                      src="./stemracing_logo.png" 
+                      src="/stemracing_logo.png" 
                       alt="STEM Racing Logo"
                       className="h-6 w-6 object-contain"
                       onError={(e) => {
                         console.log('Main page STEM Racing logo failed to load');
                         const target = e.currentTarget as HTMLImageElement;
-                        target.src = '/stemracing_logo.png';
+                        target.src = './stemracing_logo.png';
                       }}
                     />
-                    <span className="text-xl font-semibold text-muted-foreground">STEM Racing</span>
+                    <span className="text-xl stem-racing-font">STEM Racing</span>
                     <div className="h-4 w-px bg-border"></div>
                     <span className="text-xl text-muted-foreground">National Finals 2025</span>
                   </div>

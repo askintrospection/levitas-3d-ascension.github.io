@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Volume2, VolumeX } from 'lucide-react';
@@ -149,17 +148,17 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
               >
                 <div className="flex items-center space-x-3">
                   <img 
-                    src="./levitas_logo.png" 
+                    src="/levitas_logo.png" 
                     alt="Levitas Logo"
                     className="h-12 w-12 object-contain"
                     onError={(e) => {
-                      console.log('Levitas logo failed to load from ./levitas_logo.png');
+                      console.log('Levitas logo failed to load from /levitas_logo.png');
                       const target = e.currentTarget as HTMLImageElement;
-                      target.src = '/levitas_logo.png';
+                      target.src = './levitas_logo.png';
                     }}
                     onLoad={() => console.log('Levitas logo loaded successfully')}
                   />
-                  <h1 className="text-4xl font-bold text-white">Levitas</h1>
+                  <h1 className="text-4xl levitas-font text-white">Levitas</h1>
                 </div>
               </motion.div>
               
@@ -170,17 +169,17 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
                 transition={{ delay: 0.3 }}
               >
                 <img 
-                  src="./stemracing_logo.png" 
+                  src="/stemracing_logo.png" 
                   alt="STEM Racing Logo"
                   className="h-6 w-6 object-contain"
                   onError={(e) => {
-                    console.log('STEM Racing logo failed to load from ./stemracing_logo.png');
+                    console.log('STEM Racing logo failed to load from /stemracing_logo.png');
                     const target = e.currentTarget as HTMLImageElement;
-                    target.src = '/stemracing_logo.png';
+                    target.src = './stemracing_logo.png';
                   }}
                   onLoad={() => console.log('STEM Racing logo loaded successfully')}
                 />
-                <span className="text-lg text-gray-300 tracking-wider font-bold">STEM Racing</span>
+                <span className="text-lg stem-racing-font text-white">STEM Racing</span>
                 <div className="h-6 w-px bg-gray-600"></div>
                 <p className="text-lg text-gray-300 tracking-wider font-bold">
                   National Finals 2025
@@ -274,7 +273,7 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
               transition={{ duration: 3, repeat: Infinity }}
             >
               <img 
-                src="./levitas_logo.png" 
+                src="/levitas_logo.png" 
                 alt="Levitas Logo"
                 className="h-16 w-16 object-contain"
                 style={{
@@ -283,10 +282,10 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
                 onError={(e) => {
                   console.log('Final Levitas logo failed to load');
                   const target = e.currentTarget as HTMLImageElement;
-                  target.src = '/levitas_logo.png';
+                  target.src = './levitas_logo.png';
                 }}
               />
-              <h1 className="text-4xl font-bold text-white">Levitas</h1>
+              <h1 className="text-4xl levitas-font text-white">Levitas</h1>
             </motion.div>
             <motion.div 
               className="flex items-center justify-center space-x-3"
@@ -294,16 +293,16 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
               transition={{ duration: 3, repeat: Infinity, delay: 0.5 }}
             >
               <img 
-                src="./stemracing_logo.png" 
+                src="/stemracing_logo.png" 
                 alt="STEM Racing Logo"
                 className="h-4 w-4 object-contain"
                 onError={(e) => {
                   console.log('Final STEM Racing logo failed to load');
                   const target = e.currentTarget as HTMLImageElement;
-                  target.src = '/stemracing_logo.png';
+                  target.src = './stemracing_logo.png';
                 }}
               />
-              <span className="text-lg text-gray-300 tracking-wider font-bold">STEM Racing</span>
+              <span className="text-lg stem-racing-font text-white">STEM Racing</span>
               <div className="h-4 w-px bg-gray-400"></div>
               <p className="text-xl text-gray-300 tracking-wider font-bold">
                 National Finals 2025

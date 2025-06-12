@@ -6,6 +6,10 @@
 /* Import Satoshi font */
 @import url('https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,600,700,800,900&display=swap');
 
+/* Custom fonts for branding */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap');
+
 /* Light mode design system inspired by ThinkDon'tTrip */
 @layer base {
   :root {
@@ -127,6 +131,26 @@
   font-family: 'Satoshi', sans-serif;
   font-weight: 400;
   line-height: 1.6;
+}
+
+/* Custom brand fonts */
+.levitas-font {
+  font-family: 'Orbitron', monospace;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  background: linear-gradient(45deg, #ff6b35, #ffa500, #ffff00);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-transform: uppercase;
+}
+
+.stem-racing-font {
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #000;
+  text-transform: uppercase;
 }
 
 /* Team card styling */
