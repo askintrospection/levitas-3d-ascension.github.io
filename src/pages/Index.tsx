@@ -77,13 +77,13 @@ const Index = () => {
                     <div className="h-4 w-px bg-border"></div>
                     <span className="text-xl text-muted-foreground">National Finals 2025</span>
                   </div>
-                  <h2 className="text-4xl font-bold stable-text text-foreground">
+                  <h2 className="text-5xl font-bold stable-text text-foreground">
                     Engineering Excellence
                   </h2>
                 </motion.div>
                 
                 <motion.p 
-                  className="text-2xl body-light text-muted-foreground mb-12 max-w-3xl mx-auto stable-text"
+                  className="text-xl body-light text-muted-foreground mb-12 max-w-3xl mx-auto stable-text"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.6, duration: 0.8 }}
@@ -98,13 +98,13 @@ const Index = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.8, duration: 0.8 }}
                 >
-                  <div className="floating-card px-8 py-4">
+                  <div className="bg-card border border-border px-8 py-4 rounded-xl">
                     <span className="text-lg font-semibold text-primary stable-text">SPEED</span>
                   </div>
-                  <div className="floating-card px-8 py-4">
+                  <div className="bg-card border border-border px-8 py-4 rounded-xl">
                     <span className="text-lg font-semibold text-primary stable-text">PRECISION</span>
                   </div>
-                  <div className="floating-card px-8 py-4">
+                  <div className="bg-card border border-border px-8 py-4 rounded-xl">
                     <span className="text-lg font-semibold text-primary stable-text">VICTORY</span>
                   </div>
                 </motion.div>
@@ -122,7 +122,7 @@ const Index = () => {
                   transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                   className="flex flex-col items-center space-y-2"
                 >
-                  <div className="floating-card p-3 rounded-full">
+                  <div className="bg-card border border-border p-3 rounded-full">
                     <ChevronDown className="w-6 h-6 text-primary" />
                   </div>
                   <span className="text-xs text-muted-foreground font-medium tracking-wider stable-text">EXPLORE</span>
@@ -171,7 +171,7 @@ const Index = () => {
                   ].map((feature, index) => (
                     <motion.div
                       key={index}
-                      className="floating-card p-8 text-center"
+                      className="bg-card border border-border p-8 text-center rounded-xl"
                       initial={{ opacity: 0, y: 30 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.8, delay: index * 0.2 }}
@@ -201,7 +201,7 @@ const Index = () => {
                 transition={{ duration: 0.8 }}
                 viewport={{ once: true }}
               >
-                <div className="floating-card p-16 rounded-2xl max-w-4xl mx-auto">
+                <div className="bg-card border border-border p-16 rounded-2xl max-w-4xl mx-auto">
                   <h2 className="text-4xl font-bold mb-8 brand-title text-foreground stable-text">
                     Join Levitas
                   </h2>
@@ -210,7 +210,7 @@ const Index = () => {
                     that defies conventional limitations.
                   </p>
                   <motion.button
-                    className="warm-gradient text-white px-12 py-4 rounded-lg font-semibold text-lg"
+                    className="primary-button"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.98 }}
                     onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}

@@ -10,35 +10,35 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap');
 
-/* Light mode design system inspired by ThinkDon'tTrip */
+/* Clean modern design system */
 @layer base {
   :root {
-    --background: 0 0% 99%;
-    --foreground: 0 0% 8%;
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
 
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 10%;
+    --card-foreground: 0 0% 3.9%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 10%;
+    --popover-foreground: 0 0% 3.9%;
 
     --primary: 25 95% 53%;
-    --primary-foreground: 0 0% 100%;
+    --primary-foreground: 0 0% 98%;
 
-    --secondary: 0 0% 96%;
-    --secondary-foreground: 0 0% 10%;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
 
-    --muted: 0 0% 95%;
-    --muted-foreground: 0 0% 40%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
 
     --accent: 12 76% 61%;
-    --accent-foreground: 0 0% 100%;
+    --accent-foreground: 0 0% 9%;
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 90%;
-    --input: 0 0% 90%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
     --ring: 25 95% 53%;
 
     --cars404-orange: 25 95% 53%;
@@ -46,7 +46,7 @@
     --cars404-yellow: 45 93% 58%;
     --cars404-beige: 40 20% 95%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
   }
 }
 
@@ -58,7 +58,7 @@
   body {
     @apply bg-background text-foreground;
     font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, rgb(255, 255, 255) 0%, rgb(252, 250, 248) 100%);
+    background: linear-gradient(135deg, rgb(255, 255, 255) 0%, rgb(250, 250, 250) 100%);
     min-height: 100vh;
     overflow-x: hidden;
   }
@@ -68,7 +68,7 @@
   }
 }
 
-/* Clean animations - no glow effects */
+/* Clean animations */
 @keyframes slideInClean {
   from {
     opacity: 0;
@@ -95,28 +95,28 @@
 
 .fade-in-stable {
   animation: fadeInStable 0.6s ease-out forwards;
-  opacity: 1; /* Ensure text stays visible */
+  opacity: 1;
 }
 
-/* Clean card design - no heavy containers */
+/* Modern card design */
 .floating-card {
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
   border-radius: 12px;
   transition: all 0.3s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .floating-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* Typography - Satoshi global */
+/* Typography */
 .brand-title {
   font-family: 'Satoshi', sans-serif;
   font-weight: 800;
-  letter-spacing: 0.01em;
+  letter-spacing: -0.01em;
 }
 
 .headline-large {
@@ -155,31 +155,17 @@
 
 /* Team card styling */
 .team-card {
-  background: white;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
   border-radius: 16px;
   overflow: hidden;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .team-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.12);
-}
-
-/* Remove all glow effects */
-* {
-  box-shadow: none !important;
-  text-shadow: none !important;
-}
-
-.floating-card, .team-card {
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06) !important;
-}
-
-.floating-card:hover, .team-card:hover {
-  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.12) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 /* Clean gradient backgrounds */
@@ -201,8 +187,8 @@
   top: 20px;
   right: 20px;
   z-index: 100;
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
   border-radius: 8px;
   padding: 8px;
 }
@@ -213,10 +199,24 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.05);
+  background: hsl(var(--muted));
 }
 
 ::-webkit-scrollbar-thumb {
   background: hsl(var(--primary));
   border-radius: 3px;
+}
+
+/* Modern button styles */
+.modern-button {
+  @apply px-6 py-3 rounded-lg font-semibold transition-all duration-200;
+  @apply hover:scale-105 active:scale-95;
+}
+
+.primary-button {
+  @apply modern-button warm-gradient text-white;
+}
+
+.secondary-button {
+  @apply modern-button border border-border text-foreground hover:bg-secondary;
 }

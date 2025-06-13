@@ -1,5 +1,6 @@
+
 import { motion } from 'framer-motion';
-import { Rocket, Layout, LayoutDashboard } from 'lucide-react';
+import { Check, Rocket, Layout, LayoutDashboard } from 'lucide-react';
 import { MinimalistBackground } from '../components/MinimalistBackground';
 
 const Sponsorship = () => {
@@ -13,21 +14,123 @@ const Sponsorship = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="text-5xl font-bold mb-6 brand-title text-foreground stable-text">Partnership Opportunities</h1>
+          <h1 className="text-6xl font-bold mb-6 brand-title text-foreground stable-text">Pricing</h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto stable-text">
             Join us in our mission to push the boundaries of engineering excellence. 
-            Partner with Cars 404 and be part of the next generation of automotive innovation.
+            Partner with Levitas and be part of the next generation of automotive innovation.
           </p>
         </motion.div>
 
-        {/* Value Proposition */}
+        {/* Sponsorship Tiers - New Format */}
         <motion.section
           className="mb-16"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <h2 className="text-3xl font-bold text-center mb-12 brand-title text-foreground stable-text">Why Partner With Us?</h2>
+          <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {[
+              {
+                tier: 'Silver Plan',
+                price: '$500',
+                period: '/season',
+                features: [
+                  'Logo on car body',
+                  'Website acknowledgment',
+                  'Social media mentions',
+                  'Competition updates',
+                  'Basic security features'
+                ],
+                buttonText: 'Get Started',
+                buttonStyle: 'border border-border text-foreground hover:bg-secondary'
+              },
+              {
+                tier: 'Gold Plan',
+                price: '$1,000',
+                period: '/season',
+                features: [
+                  'Prominent logo placement',
+                  'Portfolio feature',
+                  'Press release inclusion',
+                  'Team presentation mentions',
+                  'Merchandise branding',
+                  'Advanced security features'
+                ],
+                buttonText: 'Get Started',
+                buttonStyle: 'warm-gradient text-white',
+                popular: true
+              },
+              {
+                tier: 'Platinum Plan',
+                price: '$2,500',
+                period: '/season',
+                features: [
+                  'Primary sponsor status',
+                  'Car naming rights',
+                  'Exclusive partnership benefits',
+                  'Direct team collaboration',
+                  'Competition hospitality',
+                  'Advanced security features'
+                ],
+                buttonText: 'Get Started',
+                buttonStyle: 'border border-border text-foreground hover:bg-secondary'
+              }
+            ].map((tier, index) => (
+              <motion.div
+                key={index}
+                className={`bg-card border border-border rounded-2xl p-8 relative ${
+                  tier.popular ? 'ring-2 ring-primary border-primary/20' : ''
+                }`}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: index * 0.1 }}
+                viewport={{ once: true }}
+              >
+                {tier.popular && (
+                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                    <span className="bg-primary text-white px-4 py-1 rounded-full text-sm font-semibold">
+                      Standard Plan
+                    </span>
+                  </div>
+                )}
+                
+                <div className="mb-8">
+                  <h3 className="text-lg font-medium text-muted-foreground mb-4 stable-text">{tier.tier}</h3>
+                  <div className="flex items-baseline">
+                    <span className="text-5xl font-bold text-foreground stable-text">{tier.price}</span>
+                    <span className="text-muted-foreground ml-2 stable-text">{tier.period}</span>
+                  </div>
+                </div>
+                
+                <ul className="space-y-4 mb-8">
+                  {tier.features.map((feature, featureIndex) => (
+                    <li key={featureIndex} className="flex items-center">
+                      <Check className="w-5 h-5 text-primary mr-3 flex-shrink-0" />
+                      <span className="text-muted-foreground stable-text">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+                
+                <motion.button
+                  className={`w-full py-3 px-6 rounded-lg font-semibold transition-all duration-300 ${tier.buttonStyle}`}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  {tier.buttonText}
+                </motion.button>
+              </motion.div>
+            ))}
+          </div>
+        </motion.section>
+
+        {/* Value Proposition */}
+        <motion.section
+          className="mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+        >
+          <h2 className="text-4xl font-bold text-center mb-12 brand-title text-foreground stable-text">Why Partner With Us?</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
@@ -48,7 +151,7 @@ const Sponsorship = () => {
             ].map((benefit, index) => (
               <motion.div
                 key={index}
-                className="floating-card p-8 rounded-xl text-center"
+                className="bg-card border border-border rounded-xl p-8 text-center"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: index * 0.1 }}
@@ -62,136 +165,14 @@ const Sponsorship = () => {
           </div>
         </motion.section>
 
-        {/* Sponsorship Tiers */}
+        {/* Partnership Impact */}
         <motion.section
-          className="mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-        >
-          <h2 className="text-3xl font-bold text-center mb-12 brand-title text-foreground stable-text">Sponsorship Packages</h2>
-          <div className="grid lg:grid-cols-3 gap-8">
-            {[
-              {
-                tier: 'Silver',
-                price: '$500',
-                features: [
-                  'Logo on car body',
-                  'Website acknowledgment',
-                  'Social media mentions',
-                  'Competition updates'
-                ],
-                color: 'from-slate-400 to-slate-600'
-              },
-              {
-                tier: 'Gold',
-                price: '$1,000',
-                features: [
-                  'Prominent logo placement',
-                  'Portfolio feature',
-                  'Press release inclusion',
-                  'Team presentation mentions',
-                  'Merchandise branding'
-                ],
-                color: 'from-yellow-400 to-yellow-600',
-                popular: true
-              },
-              {
-                tier: 'Platinum',
-                price: '$2,500',
-                features: [
-                  'Primary sponsor status',
-                  'Car naming rights',
-                  'Exclusive partnership benefits',
-                  'Direct team collaboration',
-                  'Competition hospitality',
-                  'Annual performance report'
-                ],
-                color: 'from-primary to-accent'
-              }
-            ].map((tier, index) => (
-              <motion.div
-                key={index}
-                className={`floating-card border-2 border-border p-8 rounded-xl relative ${
-                  tier.popular ? 'ring-2 ring-primary border-primary/20' : ''
-                }`}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                {tier.popular && (
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <span className="bg-primary text-white px-4 py-1 rounded-full text-sm font-semibold">
-                      Most Popular
-                    </span>
-                  </div>
-                )}
-                
-                <div className="text-center mb-6">
-                  <h3 className="text-2xl font-bold mb-2 stable-text">{tier.tier}</h3>
-                  <div className={`text-4xl font-bold bg-gradient-to-r ${tier.color} bg-clip-text text-transparent`}>
-                    {tier.price}
-                  </div>
-                </div>
-                
-                <ul className="space-y-3 mb-8">
-                  {tier.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-center">
-                      <div className="w-2 h-2 bg-primary rounded-full mr-3"></div>
-                      <span className="text-muted-foreground stable-text">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                
-                <motion.button
-                  className={`w-full py-3 rounded-lg font-semibold transition-all duration-300 ${
-                    tier.popular
-                      ? 'warm-gradient text-white'
-                      : 'border border-primary text-primary hover:warm-gradient hover:text-white'
-                  }`}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  Choose {tier.tier}
-                </motion.button>
-              </motion.div>
-            ))}
-          </div>
-        </motion.section>
-
-        {/* Custom Partnerships */}
-        <motion.section
-          className="mb-16"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
         >
-          <div className="floating-card p-12 rounded-xl text-center">
-            <h2 className="text-3xl font-bold mb-6 brand-title text-foreground stable-text">Custom Partnership Solutions</h2>
-            <p className="text-lg text-muted-foreground mb-8 max-w-3xl mx-auto stable-text">
-              Every partnership is unique. We work closely with our sponsors to create 
-              custom packages that align with your business objectives and marketing goals. 
-              Let's discuss how we can create a winning partnership together.
-            </p>
-            <motion.button
-              className="warm-gradient px-8 py-3 rounded-lg font-semibold text-white"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Discuss Custom Partnership
-            </motion.button>
-          </div>
-        </motion.section>
-
-        {/* ROI Information */}
-        <motion.section
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-        >
-          <h2 className="text-3xl font-bold text-center mb-12 brand-title text-foreground stable-text">Partnership Impact</h2>
-          <div className="grid md:grid-cols-3 gap-8">
+          <h2 className="text-4xl font-bold text-center mb-12 brand-title text-foreground stable-text">Partnership Impact</h2>
+          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             {[
               { metric: '10,000+', desc: 'Annual competition spectators' },
               { metric: '50,000+', desc: 'Digital reach across platforms' },
@@ -199,13 +180,13 @@ const Sponsorship = () => {
             ].map((stat, index) => (
               <motion.div
                 key={index}
-                className="floating-card p-6 rounded-xl text-center"
+                className="bg-card border border-border rounded-xl p-6 text-center"
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.8, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
-                <div className="text-3xl font-bold text-primary mb-2 brand-title stable-text">{stat.metric}</div>
+                <div className="text-4xl font-bold text-primary mb-2 brand-title stable-text">{stat.metric}</div>
                 <p className="text-muted-foreground stable-text">{stat.desc}</p>
               </motion.div>
             ))}
