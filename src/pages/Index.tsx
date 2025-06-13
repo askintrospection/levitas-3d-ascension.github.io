@@ -2,23 +2,16 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CinematicIntro } from '../components/CinematicIntro';
 import { MinimalistBackground } from '../components/MinimalistBackground';
-import { ChevronDown, Zap, Shield, Cpu, RotateCw, Move3D, Eye } from 'lucide-react';
+import { ChevronDown, Zap, Shield, Cpu } from 'lucide-react';
 
 const Index = () => {
   const [showIntro, setShowIntro] = useState(true);
   const [showContent, setShowContent] = useState(false);
-  const [carOrientation, setCarOrientation] = useState('front');
 
   const handleIntroComplete = () => {
     console.log('Intro completed, transitioning to main content');
     setShowIntro(false);
     setTimeout(() => setShowContent(true), 500);
-  };
-
-  const carImages = {
-    front: '/lovable-uploads/4a8fc42c-1769-44d1-8f2c-f5f425457b5e.png',
-    side: '/lovable-uploads/7cb26c52-e8f3-4c84-98e2-ecf579a94c7a.png',
-    rear: '/lovable-uploads/4a8fc42c-1769-44d1-8f2c-f5f425457b5e.png'
   };
 
   return (
@@ -125,7 +118,7 @@ const Index = () => {
               </motion.div>
             </section>
 
-            {/* F1 Car Section */}
+            {/* Video Showcase Section */}
             <section className="py-20 px-6 relative z-10">
               <div className="container mx-auto max-w-7xl">
                 <motion.div
@@ -139,12 +132,12 @@ const Index = () => {
                     Meet Levitas
                   </h2>
                   <p className="text-xl body-light text-muted-foreground max-w-4xl mx-auto leading-relaxed stable-text">
-                    Experience our cutting-edge F1 racing machine from every angle. 
-                    Choose your perspective and witness engineering excellence.
+                    Experience our cutting-edge F1 racing machine in action. 
+                    Witness engineering excellence through precision and innovation.
                   </p>
                 </motion.div>
 
-                {/* Car Display Container */}
+                {/* Video Display Container */}
                 <motion.div
                   className="relative mb-12"
                   initial={{ opacity: 0, scale: 0.9 }}
@@ -152,69 +145,24 @@ const Index = () => {
                   transition={{ duration: 0.8, delay: 0.2 }}
                   viewport={{ once: true }}
                 >
-                  {/* Car Image with Reflection */}
                   <div className="relative w-full max-w-6xl mx-auto">
                     <div className="relative bg-gradient-to-b from-background to-muted/20 rounded-3xl p-8 overflow-hidden">
-                      <AnimatePresence mode="wait">
-                        <motion.img
-                          key={carOrientation}
-                          src={carImages[carOrientation]}
-                          alt={`Levitas F1 Car - ${carOrientation} view`}
-                          className="w-full h-auto max-h-96 object-contain mx-auto drop-shadow-2xl"
-                          initial={{ opacity: 0, x: 20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          exit={{ opacity: 0, x: -20 }}
-                          transition={{ duration: 0.4, ease: "easeInOut" }}
-                        />
-                      </AnimatePresence>
+                      <div className="relative aspect-video w-full">
+                        <video
+                          className="w-full h-full object-cover rounded-2xl shadow-2xl"
+                          controls
+                          preload="metadata"
+                          poster="/placeholder.svg"
+                        >
+                          <source src="/edit.mp4" type="video/mp4" />
+                          Your browser does not support the video tag.
+                        </video>
+                      </div>
                       
                       {/* Reflection Effect */}
                       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-muted/30 to-transparent pointer-events-none"></div>
                     </div>
                   </div>
-
-                  {/* Floating Control Buttons */}
-                  <motion.div
-                    className="flex justify-center gap-8 mt-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.4 }}
-                    viewport={{ once: true }}
-                  >
-                    {[
-                      { key: 'front', label: 'Front View', icon: Eye },
-                      { key: 'side', label: 'Side View', icon: Move3D },
-                      { key: 'rear', label: 'Rear View', icon: RotateCw }
-                    ].map(({ key, label, icon: Icon }) => (
-                      <motion.button
-                        key={key}
-                        onClick={() => setCarOrientation(key)}
-                        className={`sci-fi-button group ${
-                          carOrientation === key ? 'active' : ''
-                        }`}
-                        whileHover={{ scale: 1.05, y: -2 }}
-                        whileTap={{ scale: 0.98 }}
-                        transition={{ type: "spring", stiffness: 400, damping: 15 }}
-                      >
-                        <div className="relative flex flex-col items-center space-y-2 px-6 py-4">
-                          <Icon className="w-5 h-5 transition-colors duration-300" />
-                          <span className="text-sm font-medium tracking-wider uppercase">
-                            {label}
-                          </span>
-                          
-                          {/* Active indicator */}
-                          {carOrientation === key && (
-                            <motion.div
-                              className="absolute -bottom-1 left-1/2 w-8 h-0.5 bg-accent"
-                              layoutId="activeIndicator"
-                              initial={false}
-                              style={{ x: "-50%" }}
-                            />
-                          )}
-                        </div>
-                      </motion.button>
-                    ))}
-                  </motion.div>
                 </motion.div>
               </div>
             </section>
