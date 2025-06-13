@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CinematicIntro } from '../components/CinematicIntro';
@@ -55,21 +54,9 @@ const Index = () => {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.4, duration: 0.8 }}
                 >
-                  <div className="flex items-center justify-center space-x-4 mb-4">
-                    <img 
-                      src="./levitas_logo.png" 
-                      alt="Levitas Logo"
-                      className="h-20 w-20 object-contain"
-                      onError={(e) => {
-                        console.log('Main page Levitas logo failed to load');
-                        const target = e.currentTarget as HTMLImageElement;
-                        target.src = '/levitas_logo.png';
-                      }}
-                    />
-                    <h1 className="text-6xl levitas-font">
-                      Levitas
-                    </h1>
-                  </div>
+                  <h1 className="text-6xl levitas-font mb-6">
+                    Levitas
+                  </h1>
                   <div className="flex items-center justify-center space-x-3 mb-6">
                     <img 
                       src="./stemracing_logo.png" 
