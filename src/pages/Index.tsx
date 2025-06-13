@@ -139,91 +139,94 @@ const Index = () => {
             </section>
 
             {/* F1 Car Section */}
-            <section className="py-32 px-6 relative z-10">
-              <div className="container mx-auto">
+            <section className="py-20 px-6 relative z-10">
+              <div className="container mx-auto max-w-7xl">
                 <motion.div
-                  className="text-center mb-20"
+                  className="text-center mb-16"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8 }}
                   viewport={{ once: true }}
                 >
-                  <h2 className="text-5xl font-bold mb-8 brand-title text-foreground stable-text">
+                  <h2 className="text-5xl font-bold mb-6 brand-title text-foreground stable-text">
                     Meet Levitas
                   </h2>
-                  <p className="text-xl body-light text-muted-foreground max-w-4xl mx-auto leading-relaxed stable-text mb-12">
+                  <p className="text-xl body-light text-muted-foreground max-w-4xl mx-auto leading-relaxed stable-text">
                     Experience our cutting-edge F1 racing machine from every angle. 
-                    Click the buttons below to explore different perspectives of engineering excellence.
+                    Choose your perspective and witness engineering excellence.
                   </p>
+                </motion.div>
 
-                  {/* Car Image */}
-                  <motion.div
-                    className="relative max-w-4xl mx-auto mb-12"
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.8, delay: 0.2 }}
-                    viewport={{ once: true }}
-                  >
-                    <motion.img
-                      key={carOrientation}
-                      src={carImages[carOrientation]}
-                      alt={`Levitas F1 Car - ${carOrientation} view`}
-                      className="w-full h-auto rounded-2xl shadow-2xl"
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.5 }}
-                    />
-                  </motion.div>
+                {/* Car Display Container */}
+                <motion.div
+                  className="relative mb-12"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                  viewport={{ once: true }}
+                >
+                  {/* Car Image with Reflection */}
+                  <div className="relative w-full max-w-6xl mx-auto">
+                    <div className="relative bg-gradient-to-b from-background to-muted/20 rounded-3xl p-8 overflow-hidden">
+                      <AnimatePresence mode="wait">
+                        <motion.img
+                          key={carOrientation}
+                          src={carImages[carOrientation]}
+                          alt={`Levitas F1 Car - ${carOrientation} view`}
+                          className="w-full h-auto max-h-96 object-contain mx-auto drop-shadow-2xl"
+                          initial={{ opacity: 0, x: 20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          exit={{ opacity: 0, x: -20 }}
+                          transition={{ duration: 0.4, ease: "easeInOut" }}
+                        />
+                      </AnimatePresence>
+                      
+                      {/* Reflection Effect */}
+                      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-muted/30 to-transparent pointer-events-none"></div>
+                    </div>
+                  </div>
 
-                  {/* Orientation Buttons */}
+                  {/* Floating Control Buttons */}
                   <motion.div
-                    className="flex justify-center gap-6"
+                    className="flex justify-center gap-8 mt-12"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.4 }}
                     viewport={{ once: true }}
                   >
-                    <motion.button
-                      onClick={() => setCarOrientation('front')}
-                      className={`flex items-center space-x-3 px-8 py-4 rounded-xl border transition-all duration-300 hover-panel ${
-                        carOrientation === 'front'
-                          ? 'bg-primary text-primary-foreground border-primary'
-                          : 'bg-card border-border text-foreground hover:border-primary'
-                      }`}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      <Eye className="w-5 h-5" />
-                      <span className="font-semibold">Front View</span>
-                    </motion.button>
-
-                    <motion.button
-                      onClick={() => setCarOrientation('side')}
-                      className={`flex items-center space-x-3 px-8 py-4 rounded-xl border transition-all duration-300 hover-panel ${
-                        carOrientation === 'side'
-                          ? 'bg-primary text-primary-foreground border-primary'
-                          : 'bg-card border-border text-foreground hover:border-primary'
-                      }`}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      <Move3D className="w-5 h-5" />
-                      <span className="font-semibold">Side View</span>
-                    </motion.button>
-
-                    <motion.button
-                      onClick={() => setCarOrientation('rear')}
-                      className={`flex items-center space-x-3 px-8 py-4 rounded-xl border transition-all duration-300 hover-panel ${
-                        carOrientation === 'rear'
-                          ? 'bg-primary text-primary-foreground border-primary'
-                          : 'bg-card border-border text-foreground hover:border-primary'
-                      }`}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      <RotateCw className="w-5 h-5" />
-                      <span className="font-semibold">Rear View</span>
-                    </motion.button>
+                    {[
+                      { key: 'front', label: 'Front View', icon: Eye },
+                      { key: 'side', label: 'Side View', icon: Move3D },
+                      { key: 'rear', label: 'Rear View', icon: RotateCw }
+                    ].map(({ key, label, icon: Icon }) => (
+                      <motion.button
+                        key={key}
+                        onClick={() => setCarOrientation(key)}
+                        className={`sci-fi-button group ${
+                          carOrientation === key ? 'active' : ''
+                        }`}
+                        whileHover={{ scale: 1.05, y: -2 }}
+                        whileTap={{ scale: 0.98 }}
+                        transition={{ type: "spring", stiffness: 400, damping: 15 }}
+                      >
+                        <div className="relative flex flex-col items-center space-y-2 px-6 py-4">
+                          <Icon className="w-5 h-5 transition-colors duration-300" />
+                          <span className="text-sm font-medium tracking-wider uppercase">
+                            {label}
+                          </span>
+                          
+                          {/* Active indicator */}
+                          {carOrientation === key && (
+                            <motion.div
+                              className="absolute -bottom-1 left-1/2 w-8 h-0.5 bg-accent"
+                              layoutId="activeIndicator"
+                              initial={false}
+                              style={{ x: "-50%" }}
+                            />
+                          )}
+                        </div>
+                      </motion.button>
+                    ))}
                   </motion.div>
                 </motion.div>
               </div>

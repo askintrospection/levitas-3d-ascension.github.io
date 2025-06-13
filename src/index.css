@@ -73,23 +73,6 @@
   cursor: none;
 }
 
-.cursor-custom::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 20px;
-  height: 20px;
-  background: radial-gradient(circle, hsl(var(--primary)) 0%, hsl(var(--primary)) 30%, transparent 70%);
-  border: 2px solid hsl(var(--primary));
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9999;
-  transform: translate(-50%, -50%);
-  transition: all 0.2s ease;
-  box-shadow: 0 0 10px hsl(var(--primary) / 0.5);
-}
-
 /* Hover Panel Effects */
 .hover-panel {
   transition: all 0.3s ease;
@@ -102,27 +85,35 @@
   border-color: hsl(var(--primary));
 }
 
-/* Interactive cursor states */
-.hover-panel:hover::before,
-button:hover::before,
-a:hover::before {
-  width: 30px;
-  height: 30px;
-  background: radial-gradient(circle, hsl(var(--accent)) 0%, hsl(var(--accent)) 40%, transparent 70%);
-  border-color: hsl(var(--accent));
-  box-shadow: 0 0 20px hsl(var(--accent) / 0.7);
-  animation: cursor-pulse 1s infinite;
+/* Sci-Fi Button Styles */
+.sci-fi-button {
+  @apply relative bg-card/80 backdrop-blur-md border border-border/50 rounded-xl text-foreground;
+  @apply transition-all duration-300 cursor-none;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 
+    0 4px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
-@keyframes cursor-pulse {
-  0%, 100% {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: translate(-50%, -50%) scale(1.1);
-    opacity: 0.8;
-  }
+.sci-fi-button:hover {
+  border-color: hsl(var(--primary) / 0.5);
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 
+    0 8px 40px rgba(0, 0, 0, 0.15),
+    0 0 20px hsl(var(--primary) / 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.sci-fi-button.active {
+  border-color: hsl(var(--accent));
+  background: rgba(255, 255, 255, 0.2);
+  color: hsl(var(--accent));
+  box-shadow: 
+    0 8px 40px rgba(0, 0, 0, 0.15),
+    0 0 30px hsl(var(--accent) / 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 
 /* Clean animations */
