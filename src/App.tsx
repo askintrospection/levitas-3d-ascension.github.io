@@ -7,6 +7,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Navbar } from "./components/Navbar";
 import { AudioManager } from "./components/AudioManager";
+import { CustomCursor } from "./components/CustomCursor";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Team from "./pages/Team";
@@ -32,7 +33,8 @@ function App() {
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <div className="relative min-h-screen">
+          <div className="relative min-h-screen cursor-custom">
+            <CustomCursor />
             <AudioManager isPlaying={audioPlaying && !isMuted} />
             <Navbar onToggleAudio={toggleAudio} isMuted={isMuted} />
             <Routes>

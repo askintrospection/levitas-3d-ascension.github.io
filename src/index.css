@@ -68,6 +68,63 @@
   }
 }
 
+/* Custom Sci-Fi Cursor */
+.cursor-custom {
+  cursor: none;
+}
+
+.cursor-custom::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle, hsl(var(--primary)) 0%, hsl(var(--primary)) 30%, transparent 70%);
+  border: 2px solid hsl(var(--primary));
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: all 0.2s ease;
+  box-shadow: 0 0 10px hsl(var(--primary) / 0.5);
+}
+
+/* Hover Panel Effects */
+.hover-panel {
+  transition: all 0.3s ease;
+  cursor: none;
+}
+
+.hover-panel:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  border-color: hsl(var(--primary));
+}
+
+/* Interactive cursor states */
+.hover-panel:hover::before,
+button:hover::before,
+a:hover::before {
+  width: 30px;
+  height: 30px;
+  background: radial-gradient(circle, hsl(var(--accent)) 0%, hsl(var(--accent)) 40%, transparent 70%);
+  border-color: hsl(var(--accent));
+  box-shadow: 0 0 20px hsl(var(--accent) / 0.7);
+  animation: cursor-pulse 1s infinite;
+}
+
+@keyframes cursor-pulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+    opacity: 0.8;
+  }
+}
+
 /* Clean animations */
 @keyframes slideInClean {
   from {
@@ -219,4 +276,22 @@
 
 .secondary-button {
   @apply modern-button border border-border text-foreground hover:bg-secondary;
+}
+
+/* Glassmorphism effect for modern UI */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Clean pricing cards */
+.pricing-card {
+  @apply bg-card border border-border rounded-2xl p-8 transition-all duration-300;
+  @apply hover:shadow-xl hover:border-primary hover:-translate-y-2;
+}
+
+.pricing-card.featured {
+  @apply border-primary shadow-lg scale-105;
+  background: linear-gradient(135deg, hsl(var(--card)) 0%, hsl(var(--primary) / 0.05) 100%);
 }

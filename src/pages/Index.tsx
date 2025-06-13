@@ -1,12 +1,14 @@
+
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CinematicIntro } from '../components/CinematicIntro';
 import { MinimalistBackground } from '../components/MinimalistBackground';
-import { ChevronDown, Zap, Shield, Cpu } from 'lucide-react';
+import { ChevronDown, Zap, Shield, Cpu, RotateCw, Move3D, Eye } from 'lucide-react';
 
 const Index = () => {
   const [showIntro, setShowIntro] = useState(true);
   const [showContent, setShowContent] = useState(false);
+  const [carOrientation, setCarOrientation] = useState('front');
 
   const handleIntroComplete = () => {
     console.log('Intro completed, transitioning to main content');
@@ -14,8 +16,14 @@ const Index = () => {
     setTimeout(() => setShowContent(true), 500);
   };
 
+  const carImages = {
+    front: '/lovable-uploads/4a8fc42c-1769-44d1-8f2c-f5f425457b5e.png',
+    side: '/lovable-uploads/7cb26c52-e8f3-4c84-98e2-ecf579a94c7a.png',
+    rear: '/lovable-uploads/4a8fc42c-1769-44d1-8f2c-f5f425457b5e.png'
+  };
+
   return (
-    <div className="relative min-h-screen">
+    <div className="relative min-h-screen cursor-custom">
       {/* Cinematic Intro */}
       <AnimatePresence>
         {showIntro && (
@@ -49,13 +57,13 @@ const Index = () => {
                 >
                   <div className="flex items-center justify-center space-x-4 mb-4">
                     <img 
-                      src="/levitas_logo.png" 
+                      src="./levitas_logo.png" 
                       alt="Levitas Logo"
                       className="h-20 w-20 object-contain"
                       onError={(e) => {
                         console.log('Main page Levitas logo failed to load');
                         const target = e.currentTarget as HTMLImageElement;
-                        target.src = './levitas_logo.png';
+                        target.src = '/levitas_logo.png';
                       }}
                     />
                     <h1 className="text-6xl levitas-font">
@@ -64,13 +72,13 @@ const Index = () => {
                   </div>
                   <div className="flex items-center justify-center space-x-3 mb-6">
                     <img 
-                      src="/stemracing_logo.png" 
+                      src="./stemracing_logo.png" 
                       alt="STEM Racing Logo"
                       className="h-6 w-6 object-contain"
                       onError={(e) => {
                         console.log('Main page STEM Racing logo failed to load');
                         const target = e.currentTarget as HTMLImageElement;
-                        target.src = './stemracing_logo.png';
+                        target.src = '/stemracing_logo.png';
                       }}
                     />
                     <span className="text-xl stem-racing-font">STEM Racing</span>
@@ -98,13 +106,13 @@ const Index = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.8, duration: 0.8 }}
                 >
-                  <div className="bg-card border border-border px-8 py-4 rounded-xl">
+                  <div className="bg-card border border-border px-8 py-4 rounded-xl hover-panel">
                     <span className="text-lg font-semibold text-primary stable-text">SPEED</span>
                   </div>
-                  <div className="bg-card border border-border px-8 py-4 rounded-xl">
+                  <div className="bg-card border border-border px-8 py-4 rounded-xl hover-panel">
                     <span className="text-lg font-semibold text-primary stable-text">PRECISION</span>
                   </div>
-                  <div className="bg-card border border-border px-8 py-4 rounded-xl">
+                  <div className="bg-card border border-border px-8 py-4 rounded-xl hover-panel">
                     <span className="text-lg font-semibold text-primary stable-text">VICTORY</span>
                   </div>
                 </motion.div>
@@ -122,12 +130,103 @@ const Index = () => {
                   transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                   className="flex flex-col items-center space-y-2"
                 >
-                  <div className="bg-card border border-border p-3 rounded-full">
+                  <div className="bg-card border border-border p-3 rounded-full hover-panel">
                     <ChevronDown className="w-6 h-6 text-primary" />
                   </div>
                   <span className="text-xs text-muted-foreground font-medium tracking-wider stable-text">EXPLORE</span>
                 </motion.div>
               </motion.div>
+            </section>
+
+            {/* F1 Car Section */}
+            <section className="py-32 px-6 relative z-10">
+              <div className="container mx-auto">
+                <motion.div
+                  className="text-center mb-20"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8 }}
+                  viewport={{ once: true }}
+                >
+                  <h2 className="text-5xl font-bold mb-8 brand-title text-foreground stable-text">
+                    Meet Levitas
+                  </h2>
+                  <p className="text-xl body-light text-muted-foreground max-w-4xl mx-auto leading-relaxed stable-text mb-12">
+                    Experience our cutting-edge F1 racing machine from every angle. 
+                    Click the buttons below to explore different perspectives of engineering excellence.
+                  </p>
+
+                  {/* Car Image */}
+                  <motion.div
+                    className="relative max-w-4xl mx-auto mb-12"
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                    viewport={{ once: true }}
+                  >
+                    <motion.img
+                      key={carOrientation}
+                      src={carImages[carOrientation]}
+                      alt={`Levitas F1 Car - ${carOrientation} view`}
+                      className="w-full h-auto rounded-2xl shadow-2xl"
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.5 }}
+                    />
+                  </motion.div>
+
+                  {/* Orientation Buttons */}
+                  <motion.div
+                    className="flex justify-center gap-6"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.4 }}
+                    viewport={{ once: true }}
+                  >
+                    <motion.button
+                      onClick={() => setCarOrientation('front')}
+                      className={`flex items-center space-x-3 px-8 py-4 rounded-xl border transition-all duration-300 hover-panel ${
+                        carOrientation === 'front'
+                          ? 'bg-primary text-primary-foreground border-primary'
+                          : 'bg-card border-border text-foreground hover:border-primary'
+                      }`}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <Eye className="w-5 h-5" />
+                      <span className="font-semibold">Front View</span>
+                    </motion.button>
+
+                    <motion.button
+                      onClick={() => setCarOrientation('side')}
+                      className={`flex items-center space-x-3 px-8 py-4 rounded-xl border transition-all duration-300 hover-panel ${
+                        carOrientation === 'side'
+                          ? 'bg-primary text-primary-foreground border-primary'
+                          : 'bg-card border-border text-foreground hover:border-primary'
+                      }`}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <Move3D className="w-5 h-5" />
+                      <span className="font-semibold">Side View</span>
+                    </motion.button>
+
+                    <motion.button
+                      onClick={() => setCarOrientation('rear')}
+                      className={`flex items-center space-x-3 px-8 py-4 rounded-xl border transition-all duration-300 hover-panel ${
+                        carOrientation === 'rear'
+                          ? 'bg-primary text-primary-foreground border-primary'
+                          : 'bg-card border-border text-foreground hover:border-primary'
+                      }`}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <RotateCw className="w-5 h-5" />
+                      <span className="font-semibold">Rear View</span>
+                    </motion.button>
+                  </motion.div>
+                </motion.div>
+              </div>
             </section>
 
             {/* Mission Section */}
