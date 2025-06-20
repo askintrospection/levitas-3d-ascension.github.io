@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CinematicIntro } from '../components/CinematicIntro';
@@ -132,8 +133,7 @@ const Index = () => {
                     Meet Levitas
                   </h2>
                   <p className="text-xl body-light text-muted-foreground max-w-4xl mx-auto leading-relaxed stable-text">
-                    Experience our cutting-edge F1 racing machine in action. 
-                    Witness engineering excellence through precision and innovation.
+                    Igniting innovation at every turn, Team Levitas is a premier STEM Racing force driven by precision engineering, bold creativity, and an unrelenting pursuit of excellence.
                   </p>
                 </motion.div>
 
@@ -178,12 +178,10 @@ const Index = () => {
                   viewport={{ once: true }}
                 >
                   <h2 className="text-5xl font-bold mb-8 brand-title text-foreground stable-text">
-                    Racing Innovation Division
+                    Our Mission
                   </h2>
                   <p className="text-xl body-light text-muted-foreground max-w-4xl mx-auto leading-relaxed stable-text">
-                    To forge the future of motorsport through precision engineering, cutting-edge technology, 
-                    and relentless pursuit of perfection. Levitas represents the apex of innovation 
-                    in competitive racing excellence.
+                    Our mission is to inspire and innovate through STEM. We aim to develop industry-relevant skills such as CAD modeling, computational fluid dynamics, finite element analysis, branding, and business management all within the structure of a competitive, team-oriented platform. With every project and prototype, we aim not only to compete, but to spark a lifelong passion for engineering excellence. All this includes not only focusing on achieving the trophy but the process of working in sustainable and meaningful ways.
                   </p>
                 </motion.div>
 
@@ -243,17 +241,18 @@ const Index = () => {
                     Join Levitas
                   </h2>
                   <p className="text-xl body-light text-muted-foreground mb-12 max-w-3xl mx-auto stable-text">
-                    Experience the cutting edge of racing technology. Witness precision engineering 
-                    that defies conventional limitations.
+                    Join Team Levitas on our journey of speed, innovation, and sustainability—where every follower helps us grow a greener future. For every new Instagram follow, we plant one tree, turning digital support into real-world impact.
                   </p>
-                  <motion.button
-                    className="primary-button"
+                  <motion.a
+                    href="https://www.instagram.com/levitas.racing/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="primary-button inline-block"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.98 }}
-                    onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                   >
-                    Explore Our Technology
-                  </motion.button>
+                    Follow @levitas.racing
+                  </motion.a>
                 </div>
               </motion.div>
             </section>

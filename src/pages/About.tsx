@@ -1,3 +1,4 @@
+
 import { motion } from 'framer-motion';
 import { MinimalistBackground } from '../components/MinimalistBackground';
 
@@ -12,10 +13,9 @@ const About = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="text-5xl font-bold mb-6 brand-title text-foreground stable-text">About Cars 404</h1>
+          <h1 className="text-5xl font-bold mb-6 brand-title text-foreground stable-text">About Levitas</h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto stable-text">
-            Named after the relentless pursuit of solutions to impossible challenges, Cars 404 embodies our 
-            philosophy of defying conventional limits through innovative engineering.
+            Team Levitas is a dynamic STEM racing team driven by a passion for innovation, precision engineering, and sustainable impact. Competing in the prestigious STEM Racing challenge, we design, analyze and manufacture high-performance miniature F1 cars using tools like CAD, CFD, and FEA. Our process is rooted in collaboration and experimentation, where every failure fuels our next breakthrough. Beyond engineering, we focus on branding, outreach, and environmental responsibility. At Levitas, we don't just build racecars, we build future-ready minds.
           </p>
         </motion.div>
 
@@ -27,13 +27,10 @@ const About = () => {
           >
             <h2 className="text-3xl font-bold mb-6 text-primary stable-text">Our Philosophy</h2>
             <p className="text-lg text-muted-foreground mb-6 stable-text">
-              At Cars 404, we believe that the future of motorsport lies not just in speed, 
-              but in the harmony of aerodynamics, materials science, and human ingenuity. 
-              Our team pushes the boundaries of what's possible in F1 in Schools competition.
+              At Team Levitas, we believe that true innovation comes from a mix of curiosity, teamwork, and a willingness to learn from every mistake. We don't just build fast cars, we explore ideas, test boundaries, and grow as individuals along the way. Each team member brings something unique, and it's that blend of perspectives that helps us turn problems into creative solutions. We take pride in putting real thought and effort into every part of the process, from design sketches to final testing.
             </p>
             <p className="text-lg text-muted-foreground stable-text">
-              Every curve of our car, every line of code in our simulations, and every 
-              strategic decision is guided by our commitment to excellence and innovation.
+              But for us, it's about more than just winning races. We care deeply about the kind of impact we make on our environment, our community and each other. That's why we've committed to planting a tree for every new follower, turning support into something meaningful. Levitas is about learning, growing, and building something bigger than ourselves, together.
             </p>
           </motion.div>
 
@@ -43,17 +40,17 @@ const About = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <h3 className="text-2xl font-bold mb-6 brand-title text-foreground stable-text">Competition Goals</h3>
+            <h3 className="text-2xl font-bold mb-6 brand-title text-foreground stable-text">What makes us different</h3>
             <ul className="space-y-4">
               {[
-                'Fastest car design optimization',
-                'Outstanding engineering portfolio',
-                'Professional presentation excellence',
-                'Innovative marketing strategy',
-                'Sustainable engineering practices'
+                'Every curve, cut, and contour on our car is driven by data and future-proof thinking and not just speed.',
+                'We test in simulations, analyze failures, and redesign before even hitting the track. The race starts in our minds.',
+                'We don\'t just go green, we grow green. One follower equals one tree, turning digital support into real change.',
+                'Our car tells a story of progress. From early sketches to final builds, every stage reflects our learning journey.',
+                'We treat mistakes like blueprints. Every misstep helps us innovate smarter and build better.'
               ].map((goal, index) => (
-                <li key={index} className="flex items-center">
-                  <div className="w-2 h-2 bg-primary rounded-full mr-3"></div>
+                <li key={index} className="flex items-start">
+                  <div className="w-2 h-2 bg-primary rounded-full mr-3 mt-2 flex-shrink-0"></div>
                   <span className="text-foreground stable-text">{goal}</span>
                 </li>
               ))}
