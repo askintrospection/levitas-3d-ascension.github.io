@@ -5,7 +5,7 @@ import { MinimalistBackground } from '../components/MinimalistBackground';
 
 const Sponsorship = () => {
   const handleGetStarted = () => {
-    window.location.href = 'mailto:sponsor@levitas.in?subject=Sponsorship Inquiry&body=Hello Team Levitas,%0D%0A%0D%0AI am interested in learning more about your sponsorship opportunities.%0D%0A%0D%0APlease provide more details.%0D%0A%0D%0AThank you!';
+    window.location.href = 'mailto:sponsorship@levitas.in?subject=Sponsorship Inquiry&body=Hello Team Levitas,%0D%0A%0D%0AI am interested in learning more about your sponsorship opportunities.%0D%0A%0D%0APlease provide more details.%0D%0A%0D%0AThank you!';
   };
 
   return (

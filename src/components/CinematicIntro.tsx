@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Volume2, VolumeX } from 'lucide-react';
@@ -56,17 +57,17 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
     const timer4 = setTimeout(() => setPhase(5), 9000);
     const timer5 = setTimeout(() => {
       setPhase(6);
-      // Stop audio before completing
-      if (audioRef.current) {
-        console.log('Stopping audio before transition');
-        audioRef.current.pause();
-        audioRef.current.currentTime = 0;
-      }
+      // Stop audio much later, closer to the end
       setTimeout(() => {
+        if (audioRef.current) {
+          console.log('Stopping audio before transition');
+          audioRef.current.pause();
+          audioRef.current.currentTime = 0;
+        }
         console.log('Calling onComplete');
         onComplete();
-      }, 2000);
-    }, 11000);
+      }, 1500); // Reduced delay before stopping audio
+    }, 12500); // Increased total time from 11000 to 12500
 
     return () => {
       clearInterval(loadingInterval);
