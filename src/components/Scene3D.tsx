@@ -76,86 +76,203 @@ const CinematicCamera = ({ phase, onPhaseComplete }: { phase: number; onPhaseCom
   return null;
 };
 
-const StudioEnvironment = () => {
+const F1Environment = () => {
+  const meshRef = useRef<THREE.Mesh>(null);
+  
+  useFrame((state) => {
+    if (meshRef.current) {
+      meshRef.current.rotation.y += 0.002;
+    }
+  });
+
   return (
     <>
-      {/* Studio floor with reflection */}
+      {/* Racing track floor with dynamic pattern */}
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -1, 0]} receiveShadow>
-        <planeGeometry args={[50, 50]} />
+        <planeGeometry args={[100, 100]} />
         <meshStandardMaterial 
-          color="#1a1a1a"
-          metalness={0.3}
-          roughness={0.7}
+          color="#0a0a0a"
+          metalness={0.8}
+          roughness={0.2}
           envMapIntensity={0.5}
         />
       </mesh>
-      
-      {/* Studio backdrop with gradient */}
-      <mesh position={[0, 5, -20]} receiveShadow>
-        <planeGeometry args={[60, 25]} />
+
+      {/* Racing stripes on floor */}
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.99, 0]}>
+        <planeGeometry args={[2, 100]} />
         <meshStandardMaterial 
-          color="#2a2a2a"
-          metalness={0.1}
-          roughness={0.9}
+          color="#ff6b35"
+          emissive="#ff6b35"
+          emissiveIntensity={0.2}
+        />
+      </mesh>
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[4, -0.99, 0]}>
+        <planeGeometry args={[0.5, 100]} />
+        <meshStandardMaterial 
+          color="#ffffff"
+          emissive="#ffffff"
+          emissiveIntensity={0.1}
+        />
+      </mesh>
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[-4, -0.99, 0]}>
+        <planeGeometry args={[0.5, 100]} />
+        <meshStandardMaterial 
+          color="#ffffff"
+          emissive="#ffffff"
+          emissiveIntensity={0.1}
         />
       </mesh>
 
-      {/* Side walls */}
-      <mesh position={[-25, 5, 0]} rotation={[0, Math.PI/2, 0]} receiveShadow>
-        <planeGeometry args={[40, 25]} />
-        <meshStandardMaterial color="#1a1a1a" metalness={0.1} roughness={0.9} />
+      {/* Dynamic backdrop with racing gradient */}
+      <mesh position={[0, 15, -40]} receiveShadow>
+        <planeGeometry args={[120, 40]} />
+        <meshStandardMaterial 
+          color="#ff6b35"
+          emissive="#ff3300"
+          emissiveIntensity={0.3}
+        />
       </mesh>
-      
-      <mesh position={[25, 5, 0]} rotation={[0, -Math.PI/2, 0]} receiveShadow>
-        <planeGeometry args={[40, 25]} />
-        <meshStandardMaterial color="#1a1a1a" metalness={0.1} roughness={0.9} />
-      </mesh>
+
+      {/* Floating energy rings */}
+      {Array.from({ length: 8 }).map((_, i) => (
+        <mesh 
+          key={i}
+          ref={i === 0 ? meshRef : undefined}
+          position={[
+            Math.cos(i * Math.PI / 4) * 20,
+            5 + Math.sin(i * 0.7) * 3,
+            Math.sin(i * Math.PI / 4) * 20
+          ]}
+          rotation={[Math.PI / 2, 0, i * Math.PI / 4]}
+        >
+          <torusGeometry args={[3, 0.1, 16, 100]} />
+          <meshStandardMaterial 
+            color="#ffaa00"
+            emissive="#ffaa00"
+            emissiveIntensity={0.5}
+            transparent
+            opacity={0.7}
+          />
+        </mesh>
+      ))}
+
+      {/* Speed particles effect */}
+      {Array.from({ length: 50 }).map((_, i) => (
+        <mesh 
+          key={i}
+          position={[
+            (Math.random() - 0.5) * 80,
+            Math.random() * 20,
+            (Math.random() - 0.5) * 80
+          ]}
+        >
+          <sphereGeometry args={[0.05]} />
+          <meshStandardMaterial 
+            color={Math.random() > 0.5 ? "#ff6b35" : "#ffaa00"}
+            emissive={Math.random() > 0.5 ? "#ff6b35" : "#ffaa00"}
+            emissiveIntensity={0.8}
+          />
+        </mesh>
+      ))}
+
+      {/* Racing barriers */}
+      {Array.from({ length: 12 }).map((_, i) => (
+        <group key={i} position={[0, 0, -15 + i * 5]}>
+          <mesh position={[15, 0.5, 0]}>
+            <boxGeometry args={[1, 1, 3]} />
+            <meshStandardMaterial 
+              color="#ff0000"
+              emissive="#ff0000"
+              emissiveIntensity={0.2}
+            />
+          </mesh>
+          <mesh position={[-15, 0.5, 0]}>
+            <boxGeometry args={[1, 1, 3]} />
+            <meshStandardMaterial 
+              color="#ff0000"
+              emissive="#ff0000"
+              emissiveIntensity={0.2}
+            />
+          </mesh>
+        </group>
+      ))}
     </>
   );
 };
 
-const DramaticLighting = () => {
+const DynamicF1Lighting = () => {
+  const lightRef = useRef<THREE.DirectionalLight>(null);
+  
+  useFrame((state) => {
+    if (lightRef.current) {
+      lightRef.current.position.x = Math.cos(state.clock.elapsedTime * 0.5) * 15;
+      lightRef.current.position.z = Math.sin(state.clock.elapsedTime * 0.5) * 15;
+    }
+  });
+
   return (
     <>
-      {/* Key light with dramatic angle */}
+      {/* Main dynamic racing light */}
       <directionalLight 
+        ref={lightRef}
         position={[10, 15, 5]} 
-        intensity={1.5} 
+        intensity={2} 
         color="#ffffff"
         castShadow
         shadow-mapSize-width={4096}
         shadow-mapSize-height={4096}
         shadow-camera-far={50}
-        shadow-camera-left={-15}
-        shadow-camera-right={15}
-        shadow-camera-top={15}
-        shadow-camera-bottom={-15}
+        shadow-camera-left={-25}
+        shadow-camera-right={25}
+        shadow-camera-top={25}
+        shadow-camera-bottom={-25}
       />
       
-      {/* Rim lighting */}
+      {/* Racing themed rim lighting */}
       <directionalLight 
         position={[-8, 8, -10]} 
-        intensity={0.8} 
+        intensity={1.5} 
         color="#ff6b35"
       />
       
-      {/* Fill lights */}
-      <pointLight position={[5, 3, 10]} color="#ffffff" intensity={0.4} distance={20} />
-      <pointLight position={[-5, 3, 10]} color="#ffaa00" intensity={0.3} distance={15} />
-      
-      {/* Ambient with slight warm tint */}
-      <ambientLight intensity={0.2} color="#ffeedd" />
-      
-      {/* Spot lights for dramatic effect */}
+      {/* Stadium-style spotlights */}
       <spotLight
-        position={[0, 10, 0]}
-        angle={0.3}
-        penumbra={0.5}
-        intensity={0.8}
-        color="#ffffff"
+        position={[0, 20, 15]}
+        angle={0.4}
+        penumbra={0.3}
+        intensity={1.2}
+        color="#ffaa00"
         target-position={[0, 0, 0]}
         castShadow
       />
+      <spotLight
+        position={[15, 20, 0]}
+        angle={0.4}
+        penumbra={0.3}
+        intensity={1.2}
+        color="#ff6b35"
+        target-position={[0, 0, 0]}
+        castShadow
+      />
+      <spotLight
+        position={[-15, 20, 0]}
+        angle={0.4}
+        penumbra={0.3}
+        intensity={1.2}
+        color="#ffff00"
+        target-position={[0, 0, 0]}
+        castShadow
+      />
+      
+      {/* Atmospheric lighting */}
+      <ambientLight intensity={0.3} color="#ff8844" />
+      
+      {/* Racing atmosphere fill lights */}
+      <pointLight position={[10, 5, 10]} color="#ff6b35" intensity={0.8} distance={30} />
+      <pointLight position={[-10, 5, 10]} color="#ffaa00" intensity={0.8} distance={30} />
+      <pointLight position={[10, 5, -10]} color="#ffff00" intensity={0.6} distance={25} />
+      <pointLight position={[-10, 5, -10]} color="#ff3300" intensity={0.6} distance={25} />
     </>
   );
 };
@@ -188,13 +305,13 @@ export const Scene3D = ({ phase }: { phase: number }) => {
         powerPreference: "high-performance"
       }}
     >
-      <color attach="background" args={['#000000']} />
+      <color attach="background" args={['#0a0510']} />
       
-      {/* Dramatic studio lighting */}
-      <DramaticLighting />
+      {/* Dynamic F1 racing lighting */}
+      <DynamicF1Lighting />
       
-      {/* Studio environment */}
-      <StudioEnvironment />
+      {/* F1 racing environment */}
+      <F1Environment />
       
       {/* F1 Car */}
       <Suspense fallback={<LoadingFallback />}>
@@ -222,8 +339,8 @@ export const Scene3D = ({ phase }: { phase: number }) => {
         onPhaseComplete={handlePhaseComplete}
       />
       
-      {/* Environmental lighting */}
-      <Environment preset="studio" />
+      {/* Racing environment lighting */}
+      <Environment preset="sunset" />
     </Canvas>
   );
 };
