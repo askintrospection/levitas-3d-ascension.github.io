@@ -1,37 +1,38 @@
+
 import { motion } from 'framer-motion';
 import { MinimalistBackground } from '../components/MinimalistBackground';
 
 const Team = () => {
   const teamMembers = [
     {
-      name: "Team Member",
-      role: "Lead Engineer",
-      image: "/placeholder.svg"
+      name: "Lakshay Bhati",
+      role: "Team Manager / Design Engineer",
+      image: "/lakshya.png"
     },
     {
-      name: "Team Member",
-      role: "Design Specialist", 
-      image: "/placeholder.svg"
+      name: "Kushagra Sethia",
+      role: "Strategy & Resource Lead", 
+      image: "/kushagra.png"
     },
     {
-      name: "Team Member",
-      role: "Project Manager",
-      image: "/placeholder.svg"
+      name: "Ishani Verma",
+      role: "Graphic Designer / Co-leader",
+      image: "/ishani.png"
     },
     {
-      name: "Team Member",
-      role: "Systems Analyst",
-      image: "/placeholder.svg"
+      name: "Aayam Bansal",
+      role: "Manufacturing Engineer",
+      image: "/aayam.png"
     },
     {
-      name: "Team Member",
-      role: "Test Engineer",
-      image: "/placeholder.svg"
+      name: "Naisha Kapoor",
+      role: "Social Media Manager",
+      image: "/naisha.png"
     },
     {
-      name: "Team Member",
-      role: "Technology Lead",
-      image: "/placeholder.svg"
+      name: "Aadit Arora",
+      role: "Sponsorship Manager",
+      image: "/aadit.png"
     }
   ];
 
@@ -47,7 +48,7 @@ const Team = () => {
         >
           <h1 className="text-5xl font-bold mb-8 brand-title text-foreground stable-text">Meet the Team</h1>
           <p className="text-xl body-light text-muted-foreground max-w-3xl mx-auto stable-text">
-            The brilliant minds behind Cars 404 - where engineering excellence meets creative innovation.
+            The brilliant minds behind Levitas - where engineering excellence meets creative innovation.
           </p>
         </motion.div>
 
@@ -62,12 +63,12 @@ const Team = () => {
               transition={{ duration: 0.8, delay: index * 0.1 }}
             >
               {/* Photo Section */}
-              <div className="aspect-square bg-gradient-to-br from-orange-50 to-yellow-50 flex items-center justify-center p-8">
-                <div className="w-32 h-32 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center">
-                  <span className="text-3xl font-bold text-white stable-text">
-                    {member.name.split(' ').map(n => n[0]).join('')}
-                  </span>
-                </div>
+              <div className="aspect-square bg-gradient-to-br from-orange-50 to-yellow-50 flex items-center justify-center p-4">
+                <img 
+                  src={member.image} 
+                  alt={member.name}
+                  className="w-full h-full object-cover rounded-lg"
+                />
               </div>
               
               {/* Info Section */}
@@ -77,7 +78,7 @@ const Team = () => {
                 
                 <div className="warm-gradient text-white p-4 rounded-lg">
                   <p className="font-semibold text-sm stable-text">
-                    Cars 404 | National Finals 2025
+                    Levitas | National Finals 2025
                   </p>
                 </div>
               </div>

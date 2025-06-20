@@ -4,6 +4,10 @@ import { Check, Rocket, Layout, LayoutDashboard } from 'lucide-react';
 import { MinimalistBackground } from '../components/MinimalistBackground';
 
 const Sponsorship = () => {
+  const handleGetStarted = () => {
+    window.location.href = 'mailto:sponsor@levitas.in?subject=Sponsorship Inquiry&body=Hello Team Levitas,%0D%0A%0D%0AI am interested in learning more about your sponsorship opportunities.%0D%0A%0D%0APlease provide more details.%0D%0A%0D%0AThank you!';
+  };
+
   return (
     <div className="min-h-screen pt-24 pb-12 px-6 relative">
       <MinimalistBackground />
@@ -32,7 +36,7 @@ const Sponsorship = () => {
             {[
               {
                 tier: 'Silver Plan',
-                price: '$500',
+                price: '₹10,000',
                 period: '/season',
                 features: [
                   'Logo on car body',
@@ -46,7 +50,7 @@ const Sponsorship = () => {
               },
               {
                 tier: 'Gold Plan',
-                price: '$1,000',
+                price: '₹19,999',
                 period: '/season',
                 features: [
                   'Prominent logo placement',
@@ -62,7 +66,7 @@ const Sponsorship = () => {
               },
               {
                 tier: 'Platinum Plan',
-                price: '$2,500',
+                price: '₹30,000',
                 period: '/season',
                 features: [
                   'Primary sponsor status',
@@ -112,7 +116,8 @@ const Sponsorship = () => {
                 </ul>
                 
                 <motion.button
-                  className={`w-full py-3 px-6 rounded-lg font-semibold transition-all duration-300 ${tier.buttonStyle}`}
+                  onClick={handleGetStarted}
+                  className={`w-full py-3 px-6 rounded-lg font-semibold transition-all duration-300 cursor-pointer ${tier.buttonStyle}`}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >

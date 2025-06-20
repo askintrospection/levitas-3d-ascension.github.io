@@ -12,8 +12,8 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Handle form submission here
+    const mailtoLink = `mailto:team@levitas.in?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`)}`;
+    window.location.href = mailtoLink;
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -140,15 +140,15 @@ const Contact = () => {
               <div className="space-y-4">
                 <div>
                   <h4 className="font-semibold mb-1">Team Manager</h4>
-                  <p className="text-muted-foreground">manager@levitas-f1.com</p>
+                  <p className="text-muted-foreground">manager@levitas.in</p>
                 </div>
                 <div>
                   <h4 className="font-semibold mb-1">Sponsorship Inquiries</h4>
-                  <p className="text-muted-foreground">sponsors@levitas-f1.com</p>
+                  <p className="text-muted-foreground">sponsor@levitas.in</p>
                 </div>
                 <div>
                   <h4 className="font-semibold mb-1">Media Relations</h4>
-                  <p className="text-muted-foreground">media@levitas-f1.com</p>
+                  <p className="text-muted-foreground">media@levitas.in</p>
                 </div>
               </div>
             </div>
@@ -158,9 +158,8 @@ const Contact = () => {
               <h3 className="text-xl font-bold mb-6 text-primary">Upcoming Events</h3>
               <div className="space-y-4">
                 {[
-                  { event: 'Regional Championship', date: 'March 15, 2024', location: 'TBD' },
-                  { event: 'National Finals', date: 'May 20, 2024', location: 'TBD' },
-                  { event: 'World Championships', date: 'August 10, 2024', location: 'TBD' }
+                  { event: 'National Finals', date: 'July 2025', location: 'Noida' },
+                  { event: 'Internationals', date: 'September 2025', location: 'To be announced' }
                 ].map((event, index) => (
                   <div key={index} className="border-l-2 border-primary pl-4">
                     <h4 className="font-semibold">{event.event}</h4>
@@ -176,13 +175,25 @@ const Contact = () => {
               <h3 className="text-xl font-bold mb-6 text-primary">Follow Our Journey</h3>
               <div className="space-y-3">
                 {[
-                  { platform: 'Instagram', handle: '@levitas_f1', desc: 'Behind the scenes content' },
-                  { platform: 'LinkedIn', handle: 'Levitas F1 Team', desc: 'Professional updates' },
-                  { platform: 'YouTube', handle: 'Levitas F1', desc: 'Design process videos' }
+                  { 
+                    platform: 'Instagram', 
+                    handle: '@levitas.racing', 
+                    desc: 'Behind the scenes content',
+                    link: 'https://www.instagram.com/levitas.racing/'
+                  },
+                  { 
+                    platform: 'LinkedIn', 
+                    handle: 'Levitas F1 Team', 
+                    desc: 'Professional updates',
+                    link: 'https://www.linkedin.com/company/levitasf1/'
+                  }
                 ].map((social, index) => (
-                  <motion.div
+                  <motion.a
                     key={index}
-                    className="flex items-center justify-between p-3 bg-background/50 rounded-lg hover:bg-primary/10 transition-colors cursor-pointer"
+                    href={social.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-between p-3 bg-background/50 rounded-lg hover:bg-primary/10 transition-colors cursor-pointer block"
                     whileHover={{ x: 5 }}
                   >
                     <div>
@@ -192,7 +203,7 @@ const Contact = () => {
                     <div className="text-xs text-muted-foreground text-right">
                       {social.desc}
                     </div>
-                  </motion.div>
+                  </motion.a>
                 ))}
               </div>
             </div>
