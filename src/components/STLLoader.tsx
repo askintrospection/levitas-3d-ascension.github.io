@@ -1,4 +1,5 @@
 
+
 import { useRef, Suspense } from 'react';
 import { useFrame, useLoader } from '@react-three/fiber';
 import { STLLoader as ThreeSTLLoader } from 'three-stdlib';
@@ -31,7 +32,7 @@ export const STLLoader = ({ phase }: { phase: number }) => {
       groupRef.current.position.y = Math.sin(t * 0.4) * 0.1;
       groupRef.current.rotation.y = t * 0.2;
     } else if (phase >= 3) {
-      // Final positioning
+      // Final positioning - centered
       groupRef.current.position.x = 0;
       groupRef.current.position.y = 0;
       groupRef.current.rotation.y = 0;
@@ -39,7 +40,7 @@ export const STLLoader = ({ phase }: { phase: number }) => {
   });
 
   return (
-    <group ref={groupRef} position={[-20, 0, 0]} scale={[0.1, 0.1, 0.1]}>
+    <group ref={groupRef} position={[0, 0, 0]} scale={[0.1, 0.1, 0.1]}>
       <mesh geometry={geometry} castShadow receiveShadow>
         <meshStandardMaterial 
           color="#ff6b35"
@@ -55,3 +56,4 @@ export const STLLoader = ({ phase }: { phase: number }) => {
     </group>
   );
 };
+
