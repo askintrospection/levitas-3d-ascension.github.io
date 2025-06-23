@@ -1,7 +1,8 @@
+
 import { Suspense, useRef, useEffect, useState } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { OrbitControls, Environment, Text, PerspectiveCamera } from '@react-three/drei';
-import { STLCar } from './STLCar';
+import { STLCar } from './STLLoader';
 import * as THREE from 'three';
 
 const CinematicCamera = ({ phase, onPhaseComplete }: { phase: number; onPhaseComplete: (phase: number) => void }) => {

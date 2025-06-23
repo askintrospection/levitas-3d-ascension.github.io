@@ -1,8 +1,9 @@
+
 import { motion } from 'framer-motion';
 import { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Environment, Stars } from '@react-three/drei';
-import { Car3D } from '../components/Car3D';
+import { RealisticF1Car } from '../components/RealisticF1Car';
 import { MinimalistBackground } from '../components/MinimalistBackground';
 
 const Car = () => {
@@ -16,6 +17,13 @@ const Car = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
+          <div className="flex items-center justify-center mb-6">
+            <img 
+              src="/lovable-uploads/13539e01-a337-4dff-9eea-5b0d04909982.png"
+              alt="Levitas"
+              className="h-16 object-contain"
+            />
+          </div>
           <h1 className="text-5xl font-bold mb-6 brand-title text-foreground stable-text">Our F1 Car</h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto stable-text">
             Engineering excellence meets aerodynamic perfection in our championship-winning design.
@@ -38,7 +46,7 @@ const Car = () => {
             <Stars radius={100} depth={50} count={5000} factor={4} saturation={0} fade />
             
             <Suspense fallback={null}>
-              <Car3D introComplete={true} />
+              <RealisticF1Car introComplete={true} />
             </Suspense>
             
             <OrbitControls 
