@@ -1,14 +1,14 @@
 
 import { useRef, Suspense } from 'react';
 import { useFrame, useLoader } from '@react-three/fiber';
-import { STLLoader } from 'three-stdlib';
+import { STLLoader as ThreeSTLLoader } from 'three-stdlib';
 import * as THREE from 'three';
 
-export const STLCar = ({ phase }: { phase: number }) => {
+export const STLLoader = ({ phase }: { phase: number }) => {
   const groupRef = useRef<THREE.Group>(null);
   
   // Load the STL file
-  const geometry = useLoader(STLLoader, '/car_model.stl');
+  const geometry = useLoader(ThreeSTLLoader, '/car_model.stl');
 
   useFrame((state) => {
     if (!groupRef.current) return;
