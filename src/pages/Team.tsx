@@ -1,4 +1,3 @@
-
 import { motion } from 'framer-motion';
 import { MinimalistBackground } from '../components/MinimalistBackground';
 
@@ -7,12 +6,12 @@ const Team = () => {
     {
       name: "Lakshay Bhati",
       role: "Team Manager / Design Engineer",
-      image: "/lovable-uploads/e9e72990-d881-4602-91cf-e1bbcdc973a0.png"
+      image: "/lovable-uploads/74c4ad86-ea91-4a26-a9fc-426af8fc529c.png"
     },
     {
       name: "Kushagra Sethia",
       role: "Strategy & Resource Lead", 
-      image: "/lovable-uploads/ef5d9b82-fef1-498b-8e24-9b1a46952c44.png"
+      image: "/lovable-uploads/552358ef-f370-416e-a014-a40ca7cbfb6e.png"
     },
     {
       name: "Ishani Verma",
@@ -22,7 +21,7 @@ const Team = () => {
     {
       name: "Aayam Bansal",
       role: "Manufacturing Engineer",
-      image: "/lovable-uploads/552358ef-f370-416e-a014-a40ca7cbfb6e.png"
+      image: "/lovable-uploads/ef5d9b82-fef1-498b-8e24-9b1a46952c44.png"
     },
     {
       name: "Naisha Kapoor",
@@ -32,7 +31,7 @@ const Team = () => {
     {
       name: "Aadit Arora",
       role: "Sponsorship Manager",
-      image: "/lovable-uploads/74c4ad86-ea91-4a26-a9fc-426af8fc529c.png"
+      image: "/lovable-uploads/e9e72990-d881-4602-91cf-e1bbcdc973a0.png"
     }
   ];
 
