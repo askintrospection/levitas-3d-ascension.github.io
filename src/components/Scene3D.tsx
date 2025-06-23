@@ -1,7 +1,7 @@
 import { Suspense, useRef, useEffect, useState } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { OrbitControls, Environment, Text, PerspectiveCamera } from '@react-three/drei';
-import { RealisticF1Car } from './RealisticF1Car';
+import { STLLoader } from './STLLoader';
 import * as THREE from 'three';
 
 const CinematicCamera = ({ phase, onPhaseComplete }: { phase: number; onPhaseComplete: (phase: number) => void }) => {
@@ -34,14 +34,14 @@ const CinematicCamera = ({ phase, onPhaseComplete }: { phase: number; onPhaseCom
         camera.position.x = 3 + Math.cos(p * Math.PI) * 2;
         camera.position.z = 2 + Math.sin(p * Math.PI) * 2;
         camera.position.y = 1;
-        camera.lookAt(2, 0, 0);
+        camera.lookAt(0, 0, 0);
       } else {
         // Move to rear wing - improved visibility
         const p = (progress - 0.5) * 2;
         camera.position.x = -4 + Math.cos(p * Math.PI + Math.PI) * 3;
         camera.position.z = Math.sin(p * Math.PI + Math.PI) * 3;
         camera.position.y = 2 + p * 1;
-        camera.lookAt(-2, 0.8, 0);
+        camera.lookAt(0, 0, 0);
       }
       
     } else if (phase === 1 && elapsed >= 6) {
@@ -55,7 +55,7 @@ const CinematicCamera = ({ phase, onPhaseComplete }: { phase: number; onPhaseCom
       camera.position.x = Math.cos(progress * Math.PI * 2) * 10;
       camera.position.z = Math.sin(progress * Math.PI * 2) * 10;
       camera.position.y = 5 + Math.sin(progress * Math.PI * 2) * 2;
-      camera.lookAt(0, 1, 0);
+      camera.lookAt(0, 0, 0);
       
     } else if (phase === 2 && elapsed >= 9) {
       onPhaseComplete(3);
@@ -68,7 +68,7 @@ const CinematicCamera = ({ phase, onPhaseComplete }: { phase: number; onPhaseCom
       camera.position.x = 8 * (1 - easeOut) + 6 * easeOut;
       camera.position.z = 8 * (1 - easeOut) + 8 * easeOut;
       camera.position.y = 5;
-      camera.lookAt(0, 1, 0);
+      camera.lookAt(0, 0, 0);
     }
   });
 
@@ -299,10 +299,10 @@ export const Scene3D = ({ phase }: { phase: number }) => {
       
       <F1Environment />
       
-      {/* Using RealisticF1Car - the good one from the edit */}
+      {/* Using STLLoader - properly centered */}
       <Suspense fallback={<LoadingFallback />}>
         <group position={[0, 0, 0]} scale={[1.2, 1.2, 1.2]}>
-          <RealisticF1Car introComplete={true} />
+          <STLLoader phase={3} />
         </group>
       </Suspense>
       
@@ -314,7 +314,7 @@ export const Scene3D = ({ phase }: { phase: number }) => {
           minDistance={8}
           maxDistance={25}
           autoRotate={false}
-          target={[0, 1, 0]}
+          target={[0, 0, 0]}
           dampingFactor={0.08}
           enableDamping
         />
