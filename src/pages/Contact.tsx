@@ -1,3 +1,4 @@
+
 import { motion } from 'framer-motion';
 import { Mail, MapPin, Calendar, Instagram, Linkedin } from 'lucide-react';
 import { MinimalistBackground } from '../components/MinimalistBackground';
@@ -40,8 +41,8 @@ const Contact = () => {
               </div>
               <h3 className="text-xl font-bold mb-2 text-foreground stable-text">Email</h3>
               <p className="text-muted-foreground stable-text">
-                <a href="mailto:sponsor@levitas.in" className="hover:underline">
-                  sponsor@levitas.in
+                <a href="mailto:sponsorship@levitas.in" className="hover:underline">
+                  sponsorship@levitas.in
                 </a>
               </p>
             </div>
@@ -53,7 +54,7 @@ const Contact = () => {
               </div>
               <h3 className="text-xl font-bold mb-2 text-foreground stable-text">Location</h3>
               <p className="text-muted-foreground stable-text">
-                VIT Chennai, Tamil Nadu
+                Gurgaon, India
               </p>
             </div>
 

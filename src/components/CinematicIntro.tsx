@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Volume2, VolumeX } from 'lucide-react';
@@ -170,17 +169,20 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
                 transition={{ delay: 0.3 }}
               >
                 <img 
-                  src="/stemracing_logo.png" 
+                  src="/lovable-uploads/c61fdbb5-2ca2-42ff-b0e6-7d7a00e87980.png"
                   alt="STEM Racing Logo"
                   className="h-6 w-6 object-contain"
                   onError={(e) => {
-                    console.log('STEM Racing logo failed to load from /stemracing_logo.png');
+                    console.log('STEM Racing logo failed to load');
                     const target = e.currentTarget as HTMLImageElement;
-                    target.src = './stemracing_logo.png';
+                    target.src = '/stemracing_logo.png';
                   }}
                   onLoad={() => console.log('STEM Racing logo loaded successfully')}
                 />
-                <span className="text-lg stem-racing-font text-white">STEM Racing</span>
+                <div className="flex flex-col">
+                  <span className="text-lg stem-racing-font-white leading-none">STEM</span>
+                  <span className="text-lg stem-racing-font-white leading-none">RACING</span>
+                </div>
                 <div className="h-6 w-px bg-gray-600"></div>
                 <p className="text-lg text-gray-300 tracking-wider font-bold">
                   National Finals 2025
@@ -294,16 +296,19 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
               transition={{ duration: 3, repeat: Infinity, delay: 0.5 }}
             >
               <img 
-                src="/stemracing_logo.png" 
+                src="/lovable-uploads/c61fdbb5-2ca2-42ff-b0e6-7d7a00e87980.png"
                 alt="STEM Racing Logo"
                 className="h-4 w-4 object-contain"
                 onError={(e) => {
                   console.log('Final STEM Racing logo failed to load');
                   const target = e.currentTarget as HTMLImageElement;
-                  target.src = './stemracing_logo.png';
+                  target.src = '/stemracing_logo.png';
                 }}
               />
-              <span className="text-lg stem-racing-font text-white">STEM Racing</span>
+              <div className="flex flex-col">
+                <span className="text-lg stem-racing-font-white leading-none">STEM</span>
+                <span className="text-lg stem-racing-font-white leading-none">RACING</span>
+              </div>
               <div className="h-4 w-px bg-gray-400"></div>
               <p className="text-xl text-gray-300 tracking-wider font-bold">
                 National Finals 2025

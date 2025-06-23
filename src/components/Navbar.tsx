@@ -67,17 +67,20 @@ export const Navbar = ({ onToggleAudio, isMuted }: NavbarProps) => {
             <div className="h-8 w-px bg-border"></div>
             <div className="flex items-center space-x-2">
               <img 
-                src="/stemracing_logo.png" 
+                src="/lovable-uploads/c61fdbb5-2ca2-42ff-b0e6-7d7a00e87980.png"
                 alt="STEM Racing Logo"
                 className="h-6 w-6 object-contain"
                 onError={(e) => {
-                  console.log('Navbar STEM Racing logo failed to load from /stemracing_logo.png');
+                  console.log('Navbar STEM Racing logo failed to load');
                   const target = e.currentTarget as HTMLImageElement;
-                  target.src = './stemracing_logo.png';
+                  target.src = '/stemracing_logo.png';
                 }}
                 onLoad={() => console.log('Navbar STEM Racing logo loaded successfully')}
               />
-              <span className="text-lg stem-racing-font">STEM Racing</span>
+              <div className="flex flex-col">
+                <span className="text-sm stem-racing-font leading-none">STEM</span>
+                <span className="text-sm stem-racing-font leading-none">RACING</span>
+              </div>
             </div>
           </div>
         </Link>

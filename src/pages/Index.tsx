@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CinematicIntro } from '../components/CinematicIntro';
@@ -53,7 +52,7 @@ const Index = () => {
                   </h1>
                   <div className="flex items-center justify-center space-x-3 mb-6">
                     <img 
-                      src="./stemracing_logo.png" 
+                      src="/lovable-uploads/c61fdbb5-2ca2-42ff-b0e6-7d7a00e87980.png"
                       alt="STEM Racing Logo"
                       className="h-6 w-6 object-contain"
                       onError={(e) => {
@@ -62,7 +61,10 @@ const Index = () => {
                         target.src = '/stemracing_logo.png';
                       }}
                     />
-                    <span className="text-xl stem-racing-font">STEM Racing</span>
+                    <div className="flex flex-col">
+                      <span className="text-lg stem-racing-font leading-none">STEM</span>
+                      <span className="text-lg stem-racing-font leading-none">RACING</span>
+                    </div>
                     <div className="h-4 w-px bg-border"></div>
                     <span className="text-xl text-muted-foreground">National Finals 2025</span>
                   </div>
