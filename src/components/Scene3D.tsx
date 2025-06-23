@@ -1,8 +1,7 @@
-
 import { Suspense, useRef, useEffect, useState } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { OrbitControls, Environment, Text, PerspectiveCamera } from '@react-three/drei';
-import { CinematicCar } from './CinematicCar';
+import { STLCar } from './STLCar';
 import * as THREE from 'three';
 
 const CinematicCamera = ({ phase, onPhaseComplete }: { phase: number; onPhaseComplete: (phase: number) => void }) => {
@@ -313,9 +312,9 @@ export const Scene3D = ({ phase }: { phase: number }) => {
       {/* F1 racing environment */}
       <F1Environment />
       
-      {/* F1 Car */}
+      {/* F1 Car - using STL model */}
       <Suspense fallback={<LoadingFallback />}>
-        <CinematicCar phase={cinematicPhase} />
+        <STLCar phase={cinematicPhase} />
       </Suspense>
       
       {/* Interactive controls after cinematic */}

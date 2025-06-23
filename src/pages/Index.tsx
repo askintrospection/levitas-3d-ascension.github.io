@@ -47,19 +47,23 @@ const Index = () => {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.4, duration: 0.8 }}
                 >
-                  <h1 className="text-6xl levitas-font mb-6">
-                    Levitas
-                  </h1>
+                  <div className="flex items-center justify-center space-x-3 mb-6">
+                    <img 
+                      src="/lovable-uploads/62eac2a5-b39a-4c5c-9f9f-5726d0960f61.png"
+                      alt="Levitas Logo"
+                      className="h-16 w-16 object-contain"
+                    />
+                    <img 
+                      src="/lovable-uploads/13539e01-a337-4dff-9eea-5b0d04909982.png"
+                      alt="Levitas Text"
+                      className="h-12 object-contain"
+                    />
+                  </div>
                   <div className="flex items-center justify-center space-x-3 mb-6">
                     <img 
                       src="/lovable-uploads/c61fdbb5-2ca2-42ff-b0e6-7d7a00e87980.png"
                       alt="STEM Racing Logo"
                       className="h-6 w-6 object-contain"
-                      onError={(e) => {
-                        console.log('Main page STEM Racing logo failed to load');
-                        const target = e.currentTarget as HTMLImageElement;
-                        target.src = '/stemracing_logo.png';
-                      }}
                     />
                     <div className="flex flex-col">
                       <span className="text-lg stem-racing-font leading-none">STEM</span>

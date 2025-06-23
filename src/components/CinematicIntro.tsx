@@ -65,8 +65,8 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
         }
         console.log('Calling onComplete');
         onComplete();
-      }, 1500); // Reduced delay before stopping audio
-    }, 12500); // Increased total time from 11000 to 12500
+      }, 2000);
+    }, 13500);
 
     return () => {
       clearInterval(loadingInterval);
@@ -148,17 +148,15 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
               >
                 <div className="flex items-center space-x-3">
                   <img 
-                    src="/levitas_logo.png" 
+                    src="/lovable-uploads/62eac2a5-b39a-4c5c-9f9f-5726d0960f61.png"
                     alt="Levitas Logo"
                     className="h-12 w-12 object-contain"
-                    onError={(e) => {
-                      console.log('Levitas logo failed to load from /levitas_logo.png');
-                      const target = e.currentTarget as HTMLImageElement;
-                      target.src = './levitas_logo.png';
-                    }}
-                    onLoad={() => console.log('Levitas logo loaded successfully')}
                   />
-                  <h1 className="text-4xl levitas-font text-white">Levitas</h1>
+                  <img 
+                    src="/lovable-uploads/13539e01-a337-4dff-9eea-5b0d04909982.png"
+                    alt="Levitas Text"
+                    className="h-8 object-contain"
+                  />
                 </div>
               </motion.div>
               
@@ -172,12 +170,6 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
                   src="/lovable-uploads/c61fdbb5-2ca2-42ff-b0e6-7d7a00e87980.png"
                   alt="STEM Racing Logo"
                   className="h-6 w-6 object-contain"
-                  onError={(e) => {
-                    console.log('STEM Racing logo failed to load');
-                    const target = e.currentTarget as HTMLImageElement;
-                    target.src = '/stemracing_logo.png';
-                  }}
-                  onLoad={() => console.log('STEM Racing logo loaded successfully')}
                 />
                 <div className="flex flex-col">
                   <span className="text-lg stem-racing-font-white leading-none">STEM</span>
@@ -276,19 +268,18 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
               transition={{ duration: 3, repeat: Infinity }}
             >
               <img 
-                src="/levitas_logo.png" 
+                src="/lovable-uploads/62eac2a5-b39a-4c5c-9f9f-5726d0960f61.png"
                 alt="Levitas Logo"
                 className="h-16 w-16 object-contain"
                 style={{
                   filter: phase >= 5 ? 'drop-shadow(0 0 20px #ff6b35)' : 'none'
                 }}
-                onError={(e) => {
-                  console.log('Final Levitas logo failed to load');
-                  const target = e.currentTarget as HTMLImageElement;
-                  target.src = './levitas_logo.png';
-                }}
               />
-              <h1 className="text-4xl levitas-font text-white">Levitas</h1>
+              <img 
+                src="/lovable-uploads/13539e01-a337-4dff-9eea-5b0d04909982.png"
+                alt="Levitas Text"
+                className="h-10 object-contain"
+              />
             </motion.div>
             <motion.div 
               className="flex items-center justify-center space-x-3"
@@ -299,11 +290,6 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
                 src="/lovable-uploads/c61fdbb5-2ca2-42ff-b0e6-7d7a00e87980.png"
                 alt="STEM Racing Logo"
                 className="h-4 w-4 object-contain"
-                onError={(e) => {
-                  console.log('Final STEM Racing logo failed to load');
-                  const target = e.currentTarget as HTMLImageElement;
-                  target.src = '/stemracing_logo.png';
-                }}
               />
               <div className="flex flex-col">
                 <span className="text-lg stem-racing-font-white leading-none">STEM</span>

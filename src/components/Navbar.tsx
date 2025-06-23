@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -52,17 +51,15 @@ export const Navbar = ({ onToggleAudio, isMuted }: NavbarProps) => {
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-2">
               <img 
-                src="/levitas_logo.png" 
+                src="/lovable-uploads/62eac2a5-b39a-4c5c-9f9f-5726d0960f61.png"
                 alt="Levitas Logo"
                 className="h-8 w-8 object-contain"
-                onError={(e) => {
-                  console.log('Navbar Levitas logo failed to load from /levitas_logo.png');
-                  const target = e.currentTarget as HTMLImageElement;
-                  target.src = './levitas_logo.png';
-                }}
-                onLoad={() => console.log('Navbar Levitas logo loaded successfully')}
               />
-              <span className="text-xl levitas-font">Levitas</span>
+              <img 
+                src="/lovable-uploads/13539e01-a337-4dff-9eea-5b0d04909982.png"
+                alt="Levitas Text"
+                className="h-6 object-contain"
+              />
             </div>
             <div className="h-8 w-px bg-border"></div>
             <div className="flex items-center space-x-2">
@@ -70,12 +67,6 @@ export const Navbar = ({ onToggleAudio, isMuted }: NavbarProps) => {
                 src="/lovable-uploads/c61fdbb5-2ca2-42ff-b0e6-7d7a00e87980.png"
                 alt="STEM Racing Logo"
                 className="h-6 w-6 object-contain"
-                onError={(e) => {
-                  console.log('Navbar STEM Racing logo failed to load');
-                  const target = e.currentTarget as HTMLImageElement;
-                  target.src = '/stemracing_logo.png';
-                }}
-                onLoad={() => console.log('Navbar STEM Racing logo loaded successfully')}
               />
               <div className="flex flex-col">
                 <span className="text-sm stem-racing-font leading-none">STEM</span>

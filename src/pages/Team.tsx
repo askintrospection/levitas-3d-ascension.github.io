@@ -7,32 +7,32 @@ const Team = () => {
     {
       name: "Lakshay Bhati",
       role: "Team Manager / Design Engineer",
-      image: "/lakshya.png"
+      image: "/lovable-uploads/e9e72990-d881-4602-91cf-e1bbcdc973a0.png"
     },
     {
       name: "Kushagra Sethia",
       role: "Strategy & Resource Lead", 
-      image: "/kushagra.png"
+      image: "/lovable-uploads/ef5d9b82-fef1-498b-8e24-9b1a46952c44.png"
     },
     {
       name: "Ishani Verma",
       role: "Graphic Designer / Co-leader",
-      image: "/ishani.png"
+      image: "/lovable-uploads/391ed31a-4fb4-408d-a9ba-8c4203c3116e.png"
     },
     {
       name: "Aayam Bansal",
       role: "Manufacturing Engineer",
-      image: "/aayam.png"
+      image: "/lovable-uploads/552358ef-f370-416e-a014-a40ca7cbfb6e.png"
     },
     {
       name: "Naisha Kapoor",
       role: "Social Media Manager",
-      image: "/naisha.png"
+      image: "/lovable-uploads/bad0e490-2aae-4d5b-94d3-a3ecf27ab964.png"
     },
     {
       name: "Aadit Arora",
       role: "Sponsorship Manager",
-      image: "/aadit.png"
+      image: "/lovable-uploads/74c4ad86-ea91-4a26-a9fc-426af8fc529c.png"
     }
   ];
 
@@ -76,9 +76,20 @@ const Team = () => {
                 <p className="text-sm font-medium text-muted-foreground mb-2 stable-text">{member.role}</p>
                 <h3 className="text-xl font-bold mb-4 text-foreground stable-text">{member.name}</h3>
                 
-                <div className="warm-gradient text-white p-4 rounded-lg">
+                <div className="warm-gradient text-white p-4 rounded-lg flex items-center justify-center space-x-3">
+                  <img 
+                    src="/lovable-uploads/62eac2a5-b39a-4c5c-9f9f-5726d0960f61.png"
+                    alt="Levitas Logo"
+                    className="h-6 w-6 object-contain"
+                  />
+                  <img 
+                    src="/lovable-uploads/13539e01-a337-4dff-9eea-5b0d04909982.png"
+                    alt="Levitas Text"
+                    className="h-4 object-contain"
+                  />
+                  <div className="h-4 w-px bg-white/50"></div>
                   <p className="font-semibold text-sm stable-text">
-                    Levitas | National Finals 2025
+                    National Finals 2025
                   </p>
                 </div>
               </div>

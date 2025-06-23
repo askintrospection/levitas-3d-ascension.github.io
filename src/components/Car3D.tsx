@@ -1,12 +1,29 @@
 
 import { useRef, useEffect } from 'react';
-import { useFrame } from '@react-three/fiber';
-import { useGLTF, Text } from '@react-three/drei';
+import { useFrame, useLoader } from '@react-three/fiber';
+import { STLLoader } from 'three/examples/jsm/loaders/STLLoader';
 import * as THREE from 'three';
 
 export const Car3D = ({ introComplete }: { introComplete: boolean }) => {
   const groupRef = useRef<THREE.Group>(null);
-  const carRef = useRef<THREE.Mesh>(null);
+  const meshRef = useRef<THREE.Mesh>(null);
+
+  // Load the STL model
+  const geometry = useLoader(STLLoader, '/car_model.stl');
+
+  useEffect(() => {
+    if (meshRef.current && geometry) {
+      // Center the geometry
+      geometry.computeBoundingBox();
+      const center = new THREE.Vector3();
+      geometry.boundingBox?.getCenter(center);
+      geometry.translate(-center.x, -center.y, -center.z);
+      
+      // Scale the model appropriately
+      const scale = 1.5; // Adjust as needed for the car page
+      geometry.scale(scale, scale, scale);
+    }
+  }, [geometry]);
 
   useFrame((state) => {
     if (groupRef.current && introComplete) {
@@ -15,73 +32,20 @@ export const Car3D = ({ introComplete }: { introComplete: boolean }) => {
     }
   });
 
-  // Create a simple F1 car using basic geometries
   return (
     <group ref={groupRef} position={[0, 0, 0]}>
-      {/* Car body */}
-      <mesh ref={carRef} position={[0, 0, 0]}>
-        <boxGeometry args={[4, 0.5, 1.5]} />
+      <mesh ref={meshRef} geometry={geometry} castShadow receiveShadow>
         <meshStandardMaterial 
-          color="#0066ff" 
+          color="#ff6b35" 
           metalness={0.8}
           roughness={0.2}
-          emissive="#001166"
-          emissiveIntensity={0.2}
+          envMapIntensity={1.0}
         />
       </mesh>
       
-      {/* Cockpit */}
-      <mesh position={[0.5, 0.3, 0]}>
-        <boxGeometry args={[1.5, 0.6, 1]} />
-        <meshStandardMaterial 
-          color="#003399" 
-          metalness={0.9}
-          roughness={0.1}
-          transparent
-          opacity={0.8}
-        />
-      </mesh>
-      
-      {/* Front wing */}
-      <mesh position={[2.2, -0.1, 0]}>
-        <boxGeometry args={[0.2, 0.1, 2]} />
-        <meshStandardMaterial 
-          color="#0088ff" 
-          metalness={0.7}
-          roughness={0.3}
-        />
-      </mesh>
-      
-      {/* Rear wing */}
-      <mesh position={[-2, 0.5, 0]}>
-        <boxGeometry args={[0.3, 0.8, 1.8]} />
-        <meshStandardMaterial 
-          color="#0088ff" 
-          metalness={0.7}
-          roughness={0.3}
-        />
-      </mesh>
-      
-      {/* Wheels */}
-      {[
-        [-1.5, -0.3, 0.8],
-        [-1.5, -0.3, -0.8],
-        [1.5, -0.3, 0.8],
-        [1.5, -0.3, -0.8],
-      ].map((position, index) => (
-        <mesh key={index} position={position as [number, number, number]}>
-          <cylinderGeometry args={[0.3, 0.3, 0.2, 16]} />
-          <meshStandardMaterial 
-            color="#111111" 
-            metalness={0.5}
-            roughness={0.8}
-          />
-        </mesh>
-      ))}
-      
-      {/* Glowing effects */}
-      <pointLight position={[0, 0, 0]} color="#0066ff" intensity={0.5} distance={10} />
-      <pointLight position={[2, 0, 0]} color="#00aaff" intensity={0.3} distance={5} />
+      {/* Lighting effects */}
+      <pointLight position={[0, 0, 0]} color="#ff6b35" intensity={0.5} distance={10} />
+      <pointLight position={[2, 0, 0]} color="#ffaa00" intensity={0.3} distance={5} />
     </group>
   );
 };
