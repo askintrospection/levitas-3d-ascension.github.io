@@ -113,14 +113,14 @@ const Index = () => {
               viewport={{ once: true }}
             >
               <h2 className="text-3xl md:text-5xl font-bold mb-4 md:mb-6 brand-title text-foreground stable-text">
-                Meet Levitas
+                F1 Racing Edit
               </h2>
               <p className="text-lg md:text-xl body-light text-muted-foreground max-w-4xl mx-auto leading-relaxed stable-text">
-                Igniting innovation at every turn, Team Levitas is a premier STEM Racing force driven by precision engineering, bold creativity, and an unrelenting pursuit of excellence.
+                Watch our high-speed F1 racing compilation showcasing the precision and power of competitive racing.
               </p>
             </motion.div>
 
-            {/* YouTube Video Link */}
+            {/* Embedded YouTube Video */}
             <motion.div
               className="relative mb-12"
               initial={{ opacity: 0, scale: 0.9 }}
@@ -130,39 +130,16 @@ const Index = () => {
             >
               <div className="relative w-full max-w-6xl mx-auto">
                 <div className="relative bg-gradient-to-b from-background to-muted/20 rounded-2xl md:rounded-3xl p-4 md:p-8 overflow-hidden">
-                  <motion.a
-                    href="https://youtu.be/t7MasX7pmuY?si=k5MCkUE8AEQavrUE"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="relative aspect-video w-full block group"
-                    whileHover={{ scale: 1.02 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <div className="w-full h-full bg-gradient-to-br from-primary/20 to-accent/20 rounded-xl md:rounded-2xl shadow-2xl flex items-center justify-center relative overflow-hidden">
-                      {/* Background pattern */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent"></div>
-                      
-                      {/* Play button and content */}
-                      <div className="relative z-10 text-center">
-                        <motion.div
-                          className="bg-primary/90 backdrop-blur-sm rounded-full p-4 md:p-6 mb-4 mx-auto w-fit group-hover:bg-primary transition-colors duration-300"
-                          whileHover={{ scale: 1.1 }}
-                          transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                        >
-                          <Play className="w-8 h-8 md:w-12 md:h-12 text-white fill-white" />
-                        </motion.div>
-                        <h3 className="text-xl md:text-2xl font-bold text-foreground mb-2 stable-text">Watch Our Story</h3>
-                        <p className="text-sm md:text-base text-muted-foreground mb-2 stable-text">Levitas Racing Journey</p>
-                        <div className="flex items-center justify-center space-x-2 text-primary">
-                          <ExternalLink className="w-4 h-4" />
-                          <span className="text-sm font-medium">Watch on YouTube</span>
-                        </div>
-                      </div>
-                      
-                      {/* Hover effect overlay */}
-                      <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    </div>
-                  </motion.a>
+                  <div className="relative aspect-video w-full rounded-xl md:rounded-2xl overflow-hidden shadow-2xl">
+                    <iframe
+                      src="https://www.youtube.com/embed/t7MasX7pmuY?si=k5MCkUE8AEQavrUE&autoplay=1&mute=1"
+                      title="F1 Racing Edit"
+                      className="w-full h-full"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                    ></iframe>
+                  </div>
                   
                   {/* Reflection Effect */}
                   <div className="absolute bottom-0 left-0 right-0 h-16 md:h-32 bg-gradient-to-t from-muted/30 to-transparent pointer-events-none"></div>
