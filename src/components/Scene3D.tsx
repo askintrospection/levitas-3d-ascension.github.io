@@ -212,8 +212,8 @@ const DynamicF1Lighting = () => {
         intensity={2} 
         color="#ffffff"
         castShadow
-        shadow-mapSize-width={4096}
-        shadow-mapSize-height={4096}
+        shadow-mapSize-width={2048}
+        shadow-mapSize-height={2048}
         shadow-camera-far={50}
         shadow-camera-left={-25}
         shadow-camera-right={25}
@@ -275,6 +275,7 @@ const LoadingFallback = () => (
 export const Scene3D = ({ phase }: { phase: number }) => {
   const [cinematicPhase, setCinematicPhase] = useState(0);
   const [isComplete, setIsComplete] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handlePhaseComplete = (newPhase: number) => {
     setCinematicPhase(newPhase);
@@ -283,6 +284,46 @@ export const Scene3D = ({ phase }: { phase: number }) => {
     }
   };
 
+  const handleWebGLContextLost = (event: Event) => {
+    console.log('WebGL context lost, preventing default behavior');
+    event.preventDefault();
+    setError('WebGL context lost - reloading...');
+    
+    // Attempt to recover after a short delay
+    setTimeout(() => {
+      window.location.reload();
+    }, 2000);
+  };
+
+  const handleWebGLContextRestored = () => {
+    console.log('WebGL context restored');
+    setError(null);
+  };
+
+  useEffect(() => {
+    const canvas = document.querySelector('canvas');
+    if (canvas) {
+      canvas.addEventListener('webglcontextlost', handleWebGLContextLost);
+      canvas.addEventListener('webglcontextrestored', handleWebGLContextRestored);
+      
+      return () => {
+        canvas.removeEventListener('webglcontextlost', handleWebGLContextLost);
+        canvas.removeEventListener('webglcontextrestored', handleWebGLContextRestored);
+      };
+    }
+  }, []);
+
+  if (error) {
+    return (
+      <div className="absolute inset-0 flex items-center justify-center bg-black text-white">
+        <div className="text-center">
+          <p className="text-xl mb-4">{error}</p>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white mx-auto"></div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <Canvas
       className="absolute inset-0 z-10"
@@ -290,7 +331,14 @@ export const Scene3D = ({ phase }: { phase: number }) => {
       gl={{ 
         antialias: true, 
         alpha: true,
-        powerPreference: "high-performance"
+        powerPreference: "high-performance",
+        preserveDrawingBuffer: true,
+        failIfMajorPerformanceCaveat: false
+      }}
+      onCreated={({ gl }) => {
+        console.log('WebGL renderer created successfully');
+        gl.domElement.addEventListener('webglcontextlost', handleWebGLContextLost);
+        gl.domElement.addEventListener('webglcontextrestored', handleWebGLContextRestored);
       }}
     >
       <color attach="background" args={['#0a0510']} />
