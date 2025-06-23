@@ -102,53 +102,6 @@ const Index = () => {
           </motion.div>
         </section>
 
-        {/* Video Showcase Section */}
-        <section className="py-16 md:py-20 px-4 md:px-6 relative z-10">
-          <div className="container mx-auto max-w-7xl">
-            <motion.div
-              className="text-center mb-12 md:mb-16"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-3xl md:text-5xl font-bold mb-4 md:mb-6 brand-title text-foreground stable-text">
-                F1 Racing Edit
-              </h2>
-              <p className="text-lg md:text-xl body-light text-muted-foreground max-w-4xl mx-auto leading-relaxed stable-text">
-                Watch our high-speed F1 racing compilation showcasing the precision and power of competitive racing.
-              </p>
-            </motion.div>
-
-            {/* Embedded YouTube Video */}
-            <motion.div
-              className="relative mb-12"
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              viewport={{ once: true }}
-            >
-              <div className="relative w-full max-w-6xl mx-auto">
-                <div className="relative bg-gradient-to-b from-background to-muted/20 rounded-2xl md:rounded-3xl p-4 md:p-8 overflow-hidden">
-                  <div className="relative aspect-video w-full rounded-xl md:rounded-2xl overflow-hidden shadow-2xl">
-                    <iframe
-                      src="https://www.youtube.com/embed/t7MasX7pmuY?si=k5MCkUE8AEQavrUE&autoplay=1"
-                      title="F1 Racing Edit"
-                      className="w-full h-full"
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowFullScreen
-                    ></iframe>
-                  </div>
-                  
-                  {/* Reflection Effect */}
-                  <div className="absolute bottom-0 left-0 right-0 h-16 md:h-32 bg-gradient-to-t from-muted/30 to-transparent pointer-events-none"></div>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </section>
-
         {/* Mission Section */}
         <section className="py-24 md:py-32 px-4 md:px-6 relative z-10">
           <div className="container mx-auto">
