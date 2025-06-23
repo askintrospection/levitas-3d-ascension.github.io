@@ -1,3 +1,4 @@
+
 import { motion } from 'framer-motion';
 import { MinimalistBackground } from '../components/MinimalistBackground';
 
@@ -32,11 +33,6 @@ const Team = () => {
       name: "Aadit Arora",
       role: "Sponsorship Manager",
       image: "/lovable-uploads/e9e72990-d881-4602-91cf-e1bbcdc973a0.png"
-    },
-    {
-      name: "Akshar Yadav",
-      role: "Team Manager",
-      image: null
     }
   ];
 
@@ -56,6 +52,18 @@ const Team = () => {
           </p>
         </motion.div>
 
+        {/* Team Manager Box */}
+        <motion.div
+          className="flex justify-center mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          <div className="bg-card border border-border px-8 py-4 rounded-xl">
+            <p className="text-lg font-semibold text-primary stable-text">Team Manager - Akshar Yadav</p>
+          </div>
+        </motion.div>
+
         {/* Team Member Cards */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20 max-w-6xl mx-auto">
           {teamMembers.map((member, index) => (
@@ -64,7 +72,7 @@ const Team = () => {
               className="team-card"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: index * 0.1 }}
+              transition={{ duration: 0.8, delay: index * 0.1 + 0.4 }}
             >
               {/* Photo Section */}
               <div className="aspect-square bg-gradient-to-br from-orange-50 to-yellow-50 flex items-center justify-center p-4">
