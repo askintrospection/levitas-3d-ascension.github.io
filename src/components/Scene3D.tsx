@@ -299,9 +299,9 @@ export const Scene3D = ({ phase }: { phase: number }) => {
       
       <F1Environment />
       
-      {/* Using STLLoader - properly centered */}
+      {/* Using STLLoader - properly centered and smaller */}
       <Suspense fallback={<LoadingFallback />}>
-        <group position={[0, 0, 0]} scale={[1.2, 1.2, 1.2]}>
+        <group position={[0, 0, 0]} scale={[0.8, 0.8, 0.8]}>
           <STLLoader phase={3} />
         </group>
       </Suspense>

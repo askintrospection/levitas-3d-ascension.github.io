@@ -1,5 +1,4 @@
 
-
 import { useRef, Suspense } from 'react';
 import { useFrame, useLoader } from '@react-three/fiber';
 import { STLLoader as ThreeSTLLoader } from 'three-stdlib';
@@ -40,7 +39,7 @@ export const STLLoader = ({ phase }: { phase: number }) => {
   });
 
   return (
-    <group ref={groupRef} position={[0, 0, 0]} scale={[0.1, 0.1, 0.1]}>
+    <group ref={groupRef} position={[0, 0, 0]} scale={[0.08, 0.08, 0.08]}>
       <mesh geometry={geometry} castShadow receiveShadow>
         <meshStandardMaterial 
           color="#ff6b35"
@@ -56,4 +55,3 @@ export const STLLoader = ({ phase }: { phase: number }) => {
     </group>
   );
 };
-
