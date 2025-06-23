@@ -132,7 +132,7 @@ const Index = () => {
                 <div className="relative bg-gradient-to-b from-background to-muted/20 rounded-2xl md:rounded-3xl p-4 md:p-8 overflow-hidden">
                   <div className="relative aspect-video w-full rounded-xl md:rounded-2xl overflow-hidden shadow-2xl">
                     <iframe
-                      src="https://www.youtube.com/embed/t7MasX7pmuY?si=k5MCkUE8AEQavrUE&autoplay=1&mute=1"
+                      src="https://www.youtube.com/embed/t7MasX7pmuY?si=k5MCkUE8AEQavrUE&autoplay=1"
                       title="F1 Racing Edit"
                       className="w-full h-full"
                       frameBorder="0"

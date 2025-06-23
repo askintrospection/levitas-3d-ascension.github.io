@@ -32,6 +32,11 @@ const Team = () => {
       name: "Aadit Arora",
       role: "Sponsorship Manager",
       image: "/lovable-uploads/e9e72990-d881-4602-91cf-e1bbcdc973a0.png"
+    },
+    {
+      name: "Akshar Yadav",
+      role: "Team Manager",
+      image: null
     }
   ];
 
@@ -63,11 +68,19 @@ const Team = () => {
             >
               {/* Photo Section */}
               <div className="aspect-square bg-gradient-to-br from-orange-50 to-yellow-50 flex items-center justify-center p-4">
-                <img 
-                  src={member.image} 
-                  alt={member.name}
-                  className="w-full h-full object-cover rounded-lg"
-                />
+                {member.image ? (
+                  <img 
+                    src={member.image} 
+                    alt={member.name}
+                    className="w-full h-full object-cover rounded-lg"
+                  />
+                ) : (
+                  <div className="w-full h-full bg-gradient-to-br from-primary/10 to-accent/10 rounded-lg flex items-center justify-center">
+                    <span className="text-4xl font-bold text-muted-foreground">
+                      {member.name.split(' ').map(n => n[0]).join('')}
+                    </span>
+                  </div>
+                )}
               </div>
               
               {/* Info Section */}
