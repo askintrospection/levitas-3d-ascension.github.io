@@ -1,7 +1,8 @@
 
 import { useRef, useEffect } from 'react';
-import { useFrame, useLoader } from '@react-three/fiber';
-import { STLLoader } from 'three/examples/jsm/loaders/STLLoader';
+import { useFrame } from '@react-three/fiber';
+import { useLoader } from '@react-three/drei';
+import { STLLoader } from 'three/examples/jsm/loaders/STLLoader.js';
 import * as THREE from 'three';
 
 export const STLCar = ({ phase }: { phase: number }) => {

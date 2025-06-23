@@ -61,14 +61,10 @@ const Index = () => {
                   </div>
                   <div className="flex items-center justify-center space-x-3 mb-6">
                     <img 
-                      src="/lovable-uploads/c61fdbb5-2ca2-42ff-b0e6-7d7a00e87980.png"
+                      src="/lovable-uploads/d69fa71e-9825-443a-b765-e7bca5ff106d.png"
                       alt="STEM Racing Logo"
-                      className="h-6 w-6 object-contain"
+                      className="h-8 object-contain"
                     />
-                    <div className="flex flex-col">
-                      <span className="text-lg stem-racing-font leading-none">STEM</span>
-                      <span className="text-lg stem-racing-font leading-none">RACING</span>
-                    </div>
                     <div className="h-4 w-px bg-border"></div>
                     <span className="text-xl text-muted-foreground">National Finals 2025</span>
                   </div>

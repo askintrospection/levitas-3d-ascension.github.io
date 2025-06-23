@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -62,16 +63,12 @@ export const Navbar = ({ onToggleAudio, isMuted }: NavbarProps) => {
               />
             </div>
             <div className="h-8 w-px bg-border"></div>
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center">
               <img 
-                src="/lovable-uploads/c61fdbb5-2ca2-42ff-b0e6-7d7a00e87980.png"
+                src="/lovable-uploads/d69fa71e-9825-443a-b765-e7bca5ff106d.png"
                 alt="STEM Racing Logo"
-                className="h-6 w-6 object-contain"
+                className="h-8 object-contain"
               />
-              <div className="flex flex-col">
-                <span className="text-sm stem-racing-font leading-none">STEM</span>
-                <span className="text-sm stem-racing-font leading-none">RACING</span>
-              </div>
             </div>
           </div>
         </Link>
