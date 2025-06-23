@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Environment, Stars } from '@react-three/drei';
-import { RealisticF1Car } from '../components/RealisticF1Car';
+import { STLLoader } from '../components/STLLoader';
 import { MinimalistBackground } from '../components/MinimalistBackground';
 
 const Car = () => {
@@ -45,7 +45,7 @@ const Car = () => {
             <Stars radius={100} depth={50} count={5000} factor={4} saturation={0} fade />
             
             <Suspense fallback={null}>
-              <RealisticF1Car introComplete={true} />
+              <STLLoader phase={3} />
             </Suspense>
             
             <OrbitControls 

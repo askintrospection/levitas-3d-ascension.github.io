@@ -299,7 +299,7 @@ export const Scene3D = ({ phase }: { phase: number }) => {
       
       <F1Environment />
       
-      {/* Using RealisticF1Car instead of STLCar */}
+      {/* Using RealisticF1Car - the good one from the edit */}
       <Suspense fallback={<LoadingFallback />}>
         <group position={[0, 0, 0]} scale={[1.2, 1.2, 1.2]}>
           <RealisticF1Car introComplete={true} />
