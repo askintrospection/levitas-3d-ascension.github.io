@@ -1,4 +1,3 @@
-
 import { motion } from 'framer-motion';
 import { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
@@ -61,7 +60,6 @@ const Car = () => {
           </Canvas>
         </motion.div>
 
-        {/* Technical Specifications */}
         <motion.section
           className="mb-16"
           initial={{ opacity: 0, y: 30 }}
@@ -92,7 +90,6 @@ const Car = () => {
           </div>
         </motion.section>
 
-        {/* Design Features */}
         <motion.section
           className="mb-16"
           initial={{ opacity: 0, y: 30 }}
@@ -161,7 +158,6 @@ const Car = () => {
           </div>
         </motion.section>
 
-        {/* Performance Stats */}
         <motion.section
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}

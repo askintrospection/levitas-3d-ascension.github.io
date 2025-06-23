@@ -1,8 +1,7 @@
-
 import { Suspense, useRef, useEffect, useState } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { OrbitControls, Environment, Text, PerspectiveCamera } from '@react-three/drei';
-import { STLCar } from './STLLoader';
+import { RealisticF1Car } from './RealisticF1Car';
 import * as THREE from 'three';
 
 const CinematicCamera = ({ phase, onPhaseComplete }: { phase: number; onPhaseComplete: (phase: number) => void }) => {
@@ -13,63 +12,63 @@ const CinematicCamera = ({ phase, onPhaseComplete }: { phase: number; onPhaseCom
     const elapsed = (Date.now() - startTime) / 1000;
     
     if (phase === 0 && elapsed < 3) {
-      // Phase 1: Dramatic entry - car sliding in
+      // Phase 1: Dramatic entry - better angle to see car shape
       const progress = elapsed / 3;
       const easeOut = 1 - Math.pow(1 - progress, 3);
       
-      camera.position.x = -20 + easeOut * 15;
-      camera.position.y = 2 + Math.sin(progress * Math.PI) * 1;
-      camera.position.z = 8 - progress * 3;
-      camera.lookAt(-5 + progress * 5, 0, 0);
+      camera.position.x = -15 + easeOut * 12;
+      camera.position.y = 4 + Math.sin(progress * Math.PI) * 1;
+      camera.position.z = 10 - progress * 2;
+      camera.lookAt(-3 + progress * 3, 1, 0);
       
     } else if (phase === 0 && elapsed >= 3) {
       onPhaseComplete(1);
       
     } else if (phase === 1 && elapsed < 6) {
-      // Phase 2: Close-up details - tires, spoilers
+      // Phase 2: Close-up details - better angles to showcase details
       const progress = (elapsed - 3) / 3;
       
       if (progress < 0.5) {
-        // Focus on front tire
+        // Focus on front wing and nose - better angle
         const p = progress * 2;
-        camera.position.x = 2 + Math.cos(p * Math.PI) * 2;
-        camera.position.z = 1 + Math.sin(p * Math.PI) * 2;
-        camera.position.y = 0.5;
-        camera.lookAt(2, -0.3, 1);
+        camera.position.x = 3 + Math.cos(p * Math.PI) * 2;
+        camera.position.z = 2 + Math.sin(p * Math.PI) * 2;
+        camera.position.y = 1;
+        camera.lookAt(2, 0, 0);
       } else {
-        // Move to rear spoiler
+        // Move to rear wing - improved visibility
         const p = (progress - 0.5) * 2;
-        camera.position.x = -3 + Math.cos(p * Math.PI + Math.PI) * 3;
+        camera.position.x = -4 + Math.cos(p * Math.PI + Math.PI) * 3;
         camera.position.z = Math.sin(p * Math.PI + Math.PI) * 3;
-        camera.position.y = 1 + p * 1;
-        camera.lookAt(-2, 0.5, 0);
+        camera.position.y = 2 + p * 1;
+        camera.lookAt(-2, 0.8, 0);
       }
       
     } else if (phase === 1 && elapsed >= 6) {
       onPhaseComplete(2);
       
     } else if (phase === 2 && elapsed < 9) {
-      // Phase 3: Sweeping hero shot
+      // Phase 3: Sweeping hero shot - higher and more dynamic
       const progress = (elapsed - 6) / 3;
       const easeInOut = 0.5 * (1 + Math.sin(Math.PI * progress - Math.PI/2));
       
-      camera.position.x = Math.cos(progress * Math.PI * 2) * 8;
-      camera.position.z = Math.sin(progress * Math.PI * 2) * 8;
-      camera.position.y = 3 + Math.sin(progress * Math.PI) * 2;
-      camera.lookAt(0, 0, 0);
+      camera.position.x = Math.cos(progress * Math.PI * 2) * 10;
+      camera.position.z = Math.sin(progress * Math.PI * 2) * 10;
+      camera.position.y = 5 + Math.sin(progress * Math.PI * 2) * 2;
+      camera.lookAt(0, 1, 0);
       
     } else if (phase === 2 && elapsed >= 9) {
       onPhaseComplete(3);
       
     } else if (phase === 3) {
-      // Final position for transition
+      // Final position for transition - optimal viewing angle
       const progress = Math.min((elapsed - 9) / 2, 1);
       const easeOut = 1 - Math.pow(1 - progress, 2);
       
-      camera.position.x = 6 * (1 - easeOut);
-      camera.position.z = 12 * easeOut + 6 * (1 - easeOut);
-      camera.position.y = 4;
-      camera.lookAt(0, 0, 0);
+      camera.position.x = 8 * (1 - easeOut) + 6 * easeOut;
+      camera.position.z = 8 * (1 - easeOut) + 8 * easeOut;
+      camera.position.y = 5;
+      camera.lookAt(0, 1, 0);
     }
   });
 
@@ -87,7 +86,6 @@ const F1Environment = () => {
 
   return (
     <>
-      {/* Racing track floor with dynamic pattern */}
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -1, 0]} receiveShadow>
         <planeGeometry args={[100, 100]} />
         <meshStandardMaterial 
@@ -98,7 +96,6 @@ const F1Environment = () => {
         />
       </mesh>
 
-      {/* Racing stripes on floor */}
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.99, 0]}>
         <planeGeometry args={[2, 100]} />
         <meshStandardMaterial 
@@ -124,7 +121,6 @@ const F1Environment = () => {
         />
       </mesh>
 
-      {/* Dynamic backdrop with racing gradient */}
       <mesh position={[0, 15, -40]} receiveShadow>
         <planeGeometry args={[120, 40]} />
         <meshStandardMaterial 
@@ -134,7 +130,6 @@ const F1Environment = () => {
         />
       </mesh>
 
-      {/* Floating energy rings */}
       {Array.from({ length: 8 }).map((_, i) => (
         <mesh 
           key={i}
@@ -157,7 +152,6 @@ const F1Environment = () => {
         </mesh>
       ))}
 
-      {/* Speed particles effect */}
       {Array.from({ length: 50 }).map((_, i) => (
         <mesh 
           key={i}
@@ -176,7 +170,6 @@ const F1Environment = () => {
         </mesh>
       ))}
 
-      {/* Racing barriers */}
       {Array.from({ length: 12 }).map((_, i) => (
         <group key={i} position={[0, 0, -15 + i * 5]}>
           <mesh position={[15, 0.5, 0]}>
@@ -213,7 +206,6 @@ const DynamicF1Lighting = () => {
 
   return (
     <>
-      {/* Main dynamic racing light */}
       <directionalLight 
         ref={lightRef}
         position={[10, 15, 5]} 
@@ -229,14 +221,12 @@ const DynamicF1Lighting = () => {
         shadow-camera-bottom={-25}
       />
       
-      {/* Racing themed rim lighting */}
       <directionalLight 
         position={[-8, 8, -10]} 
         intensity={1.5} 
         color="#ff6b35"
       />
       
-      {/* Stadium-style spotlights */}
       <spotLight
         position={[0, 20, 15]}
         angle={0.4}
@@ -265,10 +255,8 @@ const DynamicF1Lighting = () => {
         castShadow
       />
       
-      {/* Atmospheric lighting */}
       <ambientLight intensity={0.3} color="#ff8844" />
       
-      {/* Racing atmosphere fill lights */}
       <pointLight position={[10, 5, 10]} color="#ff6b35" intensity={0.8} distance={30} />
       <pointLight position={[-10, 5, 10]} color="#ffaa00" intensity={0.8} distance={30} />
       <pointLight position={[10, 5, -10]} color="#ffff00" intensity={0.6} distance={25} />
@@ -307,18 +295,17 @@ export const Scene3D = ({ phase }: { phase: number }) => {
     >
       <color attach="background" args={['#0a0510']} />
       
-      {/* Dynamic F1 racing lighting */}
       <DynamicF1Lighting />
       
-      {/* F1 racing environment */}
       <F1Environment />
       
-      {/* F1 Car - using STL model */}
+      {/* Using RealisticF1Car instead of STLCar */}
       <Suspense fallback={<LoadingFallback />}>
-        <STLCar phase={cinematicPhase} />
+        <group position={[0, 0, 0]} scale={[1.2, 1.2, 1.2]}>
+          <RealisticF1Car introComplete={true} />
+        </group>
       </Suspense>
       
-      {/* Interactive controls after cinematic */}
       {isComplete && (
         <OrbitControls 
           enablePan={false}
@@ -327,19 +314,17 @@ export const Scene3D = ({ phase }: { phase: number }) => {
           minDistance={8}
           maxDistance={25}
           autoRotate={false}
-          target={[0, 0, 0]}
+          target={[0, 1, 0]}
           dampingFactor={0.08}
           enableDamping
         />
       )}
       
-      {/* Cinematic camera controller */}
       <CinematicCamera 
         phase={cinematicPhase} 
         onPhaseComplete={handlePhaseComplete}
       />
       
-      {/* Racing environment lighting */}
       <Environment preset="sunset" />
     </Canvas>
   );
