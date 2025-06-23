@@ -1,17 +1,15 @@
+
 import { motion } from 'framer-motion';
-import { Suspense } from 'react';
-import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Environment, Stars } from '@react-three/drei';
-import { STLLoader } from '../components/STLLoader';
 import { MinimalistBackground } from '../components/MinimalistBackground';
+import { ExternalLink, Zap, Shield, Cpu } from 'lucide-react';
 
 const Car = () => {
   return (
-    <div className="min-h-screen pt-24 pb-12 px-6 relative">
+    <div className="min-h-screen pt-16 md:pt-24 pb-12 px-4 md:px-6 relative">
       <MinimalistBackground />
       <div className="container mx-auto relative z-10">
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-12 md:mb-16"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -20,54 +18,43 @@ const Car = () => {
             <img 
               src="/lovable-uploads/13539e01-a337-4dff-9eea-5b0d04909982.png"
               alt="Levitas"
-              className="h-16 object-contain"
+              className="h-12 md:h-16 object-contain"
             />
           </div>
-          <h1 className="text-5xl font-bold mb-6 brand-title text-foreground stable-text">Our F1 Car</h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto stable-text">
+          <h1 className="text-3xl md:text-5xl font-bold mb-4 md:mb-6 brand-title text-foreground stable-text">Our F1 Car</h1>
+          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto stable-text">
             Engineering excellence meets aerodynamic perfection in our championship-winning design.
           </p>
         </motion.div>
 
-        {/* Interactive 3D Car Display */}
+        {/* Car Image Display */}
         <motion.div
-          className="h-96 floating-card rounded-xl mb-16 overflow-hidden"
+          className="mb-12 md:mb-16"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.2 }}
         >
-          <Canvas camera={{ position: [8, 3, 8], fov: 50 }}>
-            <color attach="background" args={['#0a0a0f']} />
-            <ambientLight intensity={0.4} />
-            <directionalLight position={[10, 10, 5]} intensity={1} />
-            <pointLight position={[-10, -10, -10]} color="#8b5cf6" intensity={0.5} />
-            
-            <Stars radius={100} depth={50} count={5000} factor={4} saturation={0} fade />
-            
-            <Suspense fallback={null}>
-              <STLLoader phase={3} />
-            </Suspense>
-            
-            <OrbitControls 
-              enablePan={false}
-              enableZoom={true}
-              enableRotate={true}
-              minDistance={3}
-              maxDistance={15}
-              autoRotate={true}
-              autoRotateSpeed={1}
-            />
-          </Canvas>
+          <div className="relative w-full max-w-4xl mx-auto">
+            <div className="bg-gradient-to-b from-background to-muted/20 rounded-2xl md:rounded-3xl p-4 md:p-8 overflow-hidden">
+              <div className="relative aspect-video w-full bg-gradient-to-br from-primary/10 to-accent/10 rounded-xl md:rounded-2xl flex items-center justify-center">
+                <div className="text-center">
+                  <Zap className="w-16 h-16 md:w-24 md:h-24 text-primary mx-auto mb-4" />
+                  <p className="text-lg md:text-xl font-semibold text-foreground stable-text">Levitas F1 Racing Car</p>
+                  <p className="text-sm md:text-base text-muted-foreground mt-2 stable-text">Championship Winning Design</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </motion.div>
 
         <motion.section
-          className="mb-16"
+          className="mb-12 md:mb-16"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          <h2 className="text-3xl font-bold text-center mb-12 brand-title text-foreground stable-text">Technical Specifications</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-12 brand-title text-foreground stable-text">Technical Specifications</h2>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
             {[
               { label: 'Weight', value: '65g', desc: 'Optimized for minimum weight' },
               { label: 'Length', value: '210mm', desc: 'Maximum regulation length' },
@@ -76,85 +63,64 @@ const Car = () => {
             ].map((spec, index) => (
               <motion.div
                 key={index}
-                className="floating-card p-6 rounded-xl text-center"
+                className="floating-card p-4 md:p-6 rounded-xl text-center"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
-                <div className="text-3xl font-bold text-primary mb-2 brand-title stable-text">{spec.value}</div>
-                <div className="text-lg font-semibold mb-2 stable-text">{spec.label}</div>
-                <div className="text-sm text-muted-foreground stable-text">{spec.desc}</div>
+                <div className="text-xl md:text-3xl font-bold text-primary mb-2 brand-title stable-text">{spec.value}</div>
+                <div className="text-sm md:text-lg font-semibold mb-2 stable-text">{spec.label}</div>
+                <div className="text-xs md:text-sm text-muted-foreground stable-text">{spec.desc}</div>
               </motion.div>
             ))}
           </div>
         </motion.section>
 
         <motion.section
-          className="mb-16"
+          className="mb-12 md:mb-16"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
         >
-          <h2 className="text-3xl font-bold text-center mb-12 brand-title text-foreground stable-text">Design Features</h2>
-          <div className="grid lg:grid-cols-2 gap-12">
-            <div className="space-y-8">
-              {[
-                {
-                  title: 'Advanced Aerodynamics',
-                  desc: 'Our front wing design incorporates multi-element configuration for optimal downforce distribution while minimizing drag.'
-                },
-                {
-                  title: 'Lightweight Construction', 
-                  desc: 'Carbon fiber composite body with strategic weight distribution ensures maximum performance within regulation limits.'
-                },
-                {
-                  title: 'Precision Engineering',
-                  desc: 'CNC machined components and 3D printed prototypes guarantee dimensional accuracy and surface finish quality.'
-                }
-              ].map((feature, index) => (
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-12 brand-title text-foreground stable-text">Design Features</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            {[
+              {
+                icon: Zap,
+                title: 'Advanced Aerodynamics',
+                desc: 'Multi-element wing configuration for optimal downforce distribution while minimizing drag.'
+              },
+              {
+                icon: Shield,
+                title: 'Lightweight Construction', 
+                desc: 'Carbon fiber composite body with strategic weight distribution for maximum performance.'
+              },
+              {
+                icon: Cpu,
+                title: 'Precision Engineering',
+                desc: 'CNC machined components and 3D printed prototypes guarantee dimensional accuracy.'
+              }
+            ].map((feature, index) => (
+              <motion.div
+                key={index}
+                className="floating-card p-4 md:p-6 rounded-xl text-center"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: index * 0.2 }}
+                viewport={{ once: true }}
+              >
                 <motion.div
-                  key={index}
-                  className="floating-card p-6 rounded-xl"
-                  initial={{ opacity: 0, x: -50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.8, delay: index * 0.2 }}
-                  viewport={{ once: true }}
+                  className="mb-4"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
                 >
-                  <h3 className="text-xl font-bold mb-3 text-primary stable-text">{feature.title}</h3>
-                  <p className="text-muted-foreground stable-text">{feature.desc}</p>
+                  <feature.icon className="w-8 h-8 md:w-12 md:h-12 text-primary mx-auto" />
                 </motion.div>
-              ))}
-            </div>
-
-            <div className="space-y-8">
-              {[
-                {
-                  title: 'CFD Analysis',
-                  desc: 'Computational Fluid Dynamics simulations optimize airflow patterns for maximum efficiency and minimal turbulence.'
-                },
-                {
-                  title: 'Wind Tunnel Testing',
-                  desc: 'Validated designs through extensive wind tunnel testing to ensure real-world performance matches simulation data.'
-                },
-                {
-                  title: 'Performance Optimization',
-                  desc: 'Iterative design process with continuous refinement based on track testing and competition feedback.'
-                }
-              ].map((feature, index) => (
-                <motion.div
-                  key={index}
-                  className="floating-card p-6 rounded-xl"
-                  initial={{ opacity: 0, x: 50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.8, delay: index * 0.2 }}
-                  viewport={{ once: true }}
-                >
-                  <h3 className="text-xl font-bold mb-3 text-primary stable-text">{feature.title}</h3>
-                  <p className="text-muted-foreground stable-text">{feature.desc}</p>
-                </motion.div>
-              ))}
-            </div>
+                <h3 className="text-lg md:text-xl font-bold mb-3 text-primary stable-text">{feature.title}</h3>
+                <p className="text-sm md:text-base text-muted-foreground stable-text">{feature.desc}</p>
+              </motion.div>
+            ))}
           </div>
         </motion.section>
 
@@ -163,17 +129,17 @@ const Car = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }}
         >
-          <div className="floating-card p-12 rounded-xl text-center">
-            <h2 className="text-3xl font-bold mb-8 brand-title text-foreground stable-text">Championship Performance</h2>
-            <div className="grid md:grid-cols-3 gap-8">
+          <div className="floating-card p-6 md:p-12 rounded-xl text-center">
+            <h2 className="text-2xl md:text-3xl font-bold mb-6 md:mb-8 brand-title text-foreground stable-text">Championship Performance</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
               {[
                 { metric: 'Track Records', value: '3', desc: 'Regional competition victories' },
                 { metric: 'Fastest Lap', value: '1.24s', desc: '20-meter track record time' },
                 { metric: 'Design Awards', value: '2', desc: 'Engineering excellence recognition' }
               ].map((stat, index) => (
                 <div key={index} className="text-center">
-                  <div className="text-4xl font-bold text-accent mb-2 brand-title stable-text">{stat.value}</div>
-                  <div className="text-lg font-semibold mb-1 stable-text">{stat.metric}</div>
+                  <div className="text-3xl md:text-4xl font-bold text-accent mb-2 brand-title stable-text">{stat.value}</div>
+                  <div className="text-base md:text-lg font-semibold mb-1 stable-text">{stat.metric}</div>
                   <div className="text-sm text-muted-foreground stable-text">{stat.desc}</div>
                 </div>
               ))}
