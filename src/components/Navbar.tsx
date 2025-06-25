@@ -52,12 +52,12 @@ export const Navbar = ({ onToggleAudio, isMuted }: NavbarProps) => {
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-2">
               <img 
-                src="/lovable-uploads/62eac2a5-b39a-4c5c-9f9f-5726d0960f61.png"
+                src="/lovable-uploads/f06a7d99-24b8-4815-ab63-4ab3edb0feeb.png"
                 alt="Levitas Logo"
                 className="h-8 w-8 object-contain"
               />
               <img 
-                src="/lovable-uploads/13539e01-a337-4dff-9eea-5b0d04909982.png"
+                src="/lovable-uploads/47b143d5-ab87-412a-a2af-626641192bb5.png"
                 alt="Levitas Text"
                 className="h-6 object-contain"
               />
