@@ -148,7 +148,7 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
               >
                 <div className="flex items-center space-x-3">
                   <img 
-                    src="/lovable-uploads/f06a7d99-24b8-4815-ab63-4ab3edb0feeb.png"
+                    src="/lovable-uploads/06c94ed1-7ecf-4770-a093-c653729d1e4f.png"
                     alt="Levitas Logo"
                     className="h-12 w-12 object-contain"
                   />
@@ -264,7 +264,7 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
               transition={{ duration: 3, repeat: Infinity }}
             >
               <img 
-                src="/lovable-uploads/f06a7d99-24b8-4815-ab63-4ab3edb0feeb.png"
+                src="/lovable-uploads/06c94ed1-7ecf-4770-a093-c653729d1e4f.png"
                 alt="Levitas Logo"
                 className="h-16 w-16 object-contain"
                 style={{

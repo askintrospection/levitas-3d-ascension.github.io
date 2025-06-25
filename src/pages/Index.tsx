@@ -30,7 +30,7 @@ const Index = () => {
             >
               <div className="flex flex-col md:flex-row items-center justify-center space-y-3 md:space-y-0 md:space-x-3 mb-4 md:mb-6">
                 <img 
-                  src="/lovable-uploads/f06a7d99-24b8-4815-ab63-4ab3edb0feeb.png"
+                  src="/lovable-uploads/06c94ed1-7ecf-4770-a093-c653729d1e4f.png"
                   alt="Levitas Logo"
                   className="h-12 md:h-16 w-12 md:w-16 object-contain"
                 />
