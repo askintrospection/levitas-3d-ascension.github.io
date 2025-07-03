@@ -1,12 +1,11 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Navbar } from "./components/Navbar";
-import { AudioManager } from "./components/AudioManager";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Team from "./pages/Team";
@@ -18,14 +17,6 @@ import NotFound from "./pages/NotFound";
 const queryClient = new QueryClient();
 
 function App() {
-  const [isMuted, setIsMuted] = useState(false);
-  const [audioPlaying, setAudioPlaying] = useState(true);
-
-  const toggleAudio = () => {
-    setIsMuted(!isMuted);
-    setAudioPlaying(!isMuted);
-  };
-
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
@@ -33,8 +24,7 @@ function App() {
         <Sonner />
         <BrowserRouter>
           <div className="relative min-h-screen">
-            <AudioManager isPlaying={audioPlaying && !isMuted} />
-            <Navbar onToggleAudio={toggleAudio} isMuted={isMuted} />
+            <Navbar />
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/about" element={<About />} />

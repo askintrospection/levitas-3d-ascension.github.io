@@ -2,14 +2,9 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Car, Volume2, VolumeX } from 'lucide-react';
+import { Car } from 'lucide-react';
 
-interface NavbarProps {
-  onToggleAudio?: () => void;
-  isMuted?: boolean;
-}
-
-export const Navbar = ({ onToggleAudio, isMuted }: NavbarProps) => {
+export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
 
@@ -67,7 +62,7 @@ export const Navbar = ({ onToggleAudio, isMuted }: NavbarProps) => {
               <img 
                 src="/lovable-uploads/dbddc9d8-1ff0-461e-87aa-94369873ec78.png"
                 alt="STEM Racing Logo"
-                className="h-8 object-contain"
+                className="h-16 object-contain"
               />
             </div>
           </div>
@@ -94,18 +89,6 @@ export const Navbar = ({ onToggleAudio, isMuted }: NavbarProps) => {
               </motion.div>
             </Link>
           ))}
-          
-          {/* Audio Toggle */}
-          {onToggleAudio && (
-            <motion.button
-              onClick={onToggleAudio}
-              className="ml-4 p-3 rounded-lg hover:bg-secondary/50 transition-colors stable-text"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              {isMuted ? <VolumeX size={20} /> : <Volume2 size={20} />}
-            </motion.button>
-          )}
         </div>
 
         {/* Mobile menu button */}
