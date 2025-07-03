@@ -148,12 +148,12 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
               >
                 <div className="flex items-center space-x-3">
                   <img 
-                    src="/lovable-uploads/06c94ed1-7ecf-4770-a093-c653729d1e4f.png"
+                    src="/lovable-uploads/a8441236-826e-48c8-83de-e6b6a1f96819.png"
                     alt="Levitas Logo"
                     className="h-12 w-12 object-contain"
                   />
                   <img 
-                    src="/lovable-uploads/47b143d5-ab87-412a-a2af-626641192bb5.png"
+                    src="/lovable-uploads/07a3e2f4-830d-4ac2-a1a7-1e609fbd3949.png"
                     alt="Levitas Text"
                     className="h-8 object-contain"
                   />
@@ -167,7 +167,7 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
                 transition={{ delay: 0.3 }}
               >
                 <img 
-                  src="/lovable-uploads/d69fa71e-9825-443a-b765-e7bca5ff106d.png"
+                  src="/lovable-uploads/dbddc9d8-1ff0-461e-87aa-94369873ec78.png"
                   alt="STEM Racing Logo"
                   className="h-8 object-contain"
                 />
@@ -264,7 +264,7 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
               transition={{ duration: 3, repeat: Infinity }}
             >
               <img 
-                src="/lovable-uploads/06c94ed1-7ecf-4770-a093-c653729d1e4f.png"
+                src="/lovable-uploads/a8441236-826e-48c8-83de-e6b6a1f96819.png"
                 alt="Levitas Logo"
                 className="h-16 w-16 object-contain"
                 style={{
@@ -272,7 +272,7 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
                 }}
               />
               <img 
-                src="/lovable-uploads/47b143d5-ab87-412a-a2af-626641192bb5.png"
+                src="/lovable-uploads/07a3e2f4-830d-4ac2-a1a7-1e609fbd3949.png"
                 alt="Levitas Text"
                 className="h-10 object-contain"
               />
@@ -283,7 +283,7 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
               transition={{ duration: 3, repeat: Infinity, delay: 0.5 }}
             >
               <img 
-                src="/lovable-uploads/d69fa71e-9825-443a-b765-e7bca5ff106d.png"
+                src="/lovable-uploads/dbddc9d8-1ff0-461e-87aa-94369873ec78.png"
                 alt="STEM Racing Logo"
                 className="h-8 object-contain"
               />

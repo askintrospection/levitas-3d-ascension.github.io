@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MinimalistBackground } from '../components/MinimalistBackground';
@@ -5,7 +6,7 @@ import { ChevronDown, Zap, Shield, Cpu, ExternalLink, Play } from 'lucide-react'
 
 const Index = () => {
   return (
-    <div className="relative min-h-screen cursor-custom">
+    <div className="relative min-h-screen">
       {/* Main Content */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -30,19 +31,19 @@ const Index = () => {
             >
               <div className="flex flex-col md:flex-row items-center justify-center space-y-3 md:space-y-0 md:space-x-3 mb-4 md:mb-6">
                 <img 
-                  src="/lovable-uploads/06c94ed1-7ecf-4770-a093-c653729d1e4f.png"
+                  src="/lovable-uploads/a8441236-826e-48c8-83de-e6b6a1f96819.png"
                   alt="Levitas Logo"
                   className="h-12 md:h-16 w-12 md:w-16 object-contain"
                 />
                 <img 
-                  src="/lovable-uploads/47b143d5-ab87-412a-a2af-626641192bb5.png"
+                  src="/lovable-uploads/07a3e2f4-830d-4ac2-a1a7-1e609fbd3949.png"
                   alt="Levitas Text"
                   className="h-8 md:h-12 object-contain"
                 />
               </div>
               <div className="flex flex-col md:flex-row items-center justify-center space-y-2 md:space-y-0 md:space-x-3 mb-4 md:mb-6">
                 <img 
-                  src="/lovable-uploads/d69fa71e-9825-443a-b765-e7bca5ff106d.png"
+                  src="/lovable-uploads/dbddc9d8-1ff0-461e-87aa-94369873ec78.png"
                   alt="STEM Racing Logo"
                   className="h-6 md:h-8 object-contain"
                 />
@@ -120,7 +121,7 @@ const Index = () => {
               </p>
             </motion.div>
 
-            {/* Features Grid */}
+            {/* Our Values Grid */}
             <div className="grid md:grid-cols-3 gap-12 max-w-6xl mx-auto">
               {[
                 { 
@@ -135,8 +136,8 @@ const Index = () => {
                 },
                 { 
                   icon: Cpu, 
-                  title: 'Innovation', 
-                  desc: 'Revolutionary design concepts pushing the boundaries of competitive racing technology.'
+                  title: 'Sustainability', 
+                  desc: 'Revolutionary eco-friendly design concepts reducing environmental impact while maintaining peak performance.'
                 }
               ].map((feature, index) => (
                 <motion.div

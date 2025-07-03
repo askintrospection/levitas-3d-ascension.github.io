@@ -98,12 +98,12 @@ const Team = () => {
                 
                 <div className="warm-gradient text-white p-4 rounded-lg flex items-center justify-center space-x-3">
                   <img 
-                    src="/lovable-uploads/62eac2a5-b39a-4c5c-9f9f-5726d0960f61.png"
+                    src="/lovable-uploads/a8441236-826e-48c8-83de-e6b6a1f96819.png"
                     alt="Levitas Logo"
                     className="h-6 w-6 object-contain"
                   />
                   <img 
-                    src="/lovable-uploads/13539e01-a337-4dff-9eea-5b0d04909982.png"
+                    src="/lovable-uploads/07a3e2f4-830d-4ac2-a1a7-1e609fbd3949.png"
                     alt="Levitas Text"
                     className="h-4 object-contain"
                   />
@@ -129,11 +129,11 @@ const Team = () => {
             <p className="text-lg body-light text-muted-foreground mb-8 max-w-4xl mx-auto stable-text">
               Every great achievement begins with a team that shares a common vision. 
               At Cars 404, we believe that diversity of thought, combined with technical 
-              excellence, creates the perfect formula for innovation.
+              excellence and sustainable practices, creates the perfect formula for innovation.
             </p>
           </div>
           
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             <div className="floating-card p-8">
               <h3 className="text-2xl font-bold mb-4 text-primary stable-text">Collaboration</h3>
               <p className="text-muted-foreground body-light stable-text">
@@ -147,6 +147,14 @@ const Team = () => {
               <p className="text-muted-foreground body-light stable-text">
                 Our team thrives on pushing boundaries and exploring uncharted 
                 territories in automotive engineering.
+              </p>
+            </div>
+
+            <div className="floating-card p-8">
+              <h3 className="text-2xl font-bold mb-4 text-primary stable-text">Sustainability</h3>
+              <p className="text-muted-foreground body-light stable-text">
+                We are committed to developing eco-friendly solutions that protect 
+                our environment while maintaining peak performance standards.
               </p>
             </div>
           </div>
