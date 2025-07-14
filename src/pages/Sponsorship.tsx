@@ -36,7 +36,7 @@ const Sponsorship = () => {
             {[
               {
                 tier: 'Silver Plan',
-                price: '₹10,000',
+                price: '$350',
                 period: '/season',
                 features: [
                   'Logo on car body',
@@ -50,7 +50,7 @@ const Sponsorship = () => {
               },
               {
                 tier: 'Gold Plan',
-                price: '₹19,999',
+                price: '$550',
                 period: '/season',
                 features: [
                   'Prominent logo placement',
@@ -66,7 +66,7 @@ const Sponsorship = () => {
               },
               {
                 tier: 'Platinum Plan',
-                price: '₹30,000',
+                price: '$800',
                 period: '/season',
                 features: [
                   'Primary sponsor status',
